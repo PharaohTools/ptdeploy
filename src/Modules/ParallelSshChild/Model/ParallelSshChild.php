@@ -2,6 +2,6 @@
 
 Namespace Model;
 
-class ParallelSshChildLinuxMac extends BaseModelFactory {
+class ParallelSshChild extends BaseModelFactory {
 
 }

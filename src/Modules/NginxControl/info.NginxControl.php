@@ -13,7 +13,7 @@ class NginxControlInfo extends Base {
     }
 
     public function routesAvailable() {
-      return array( "NginxControl" => array_merge(parent::routesAvailable(), array("start", "stop", "restart") ) );
+      return array( "NginxControl" => array_merge(parent::routesAvailable(), array("start", "stop", "restart", "reload") ) );
     }
 
     public function routeAliases() {

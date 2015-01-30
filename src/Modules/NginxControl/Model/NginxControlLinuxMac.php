@@ -29,7 +29,7 @@ class NginxControlLinuxMac extends Base {
     }
 
     private function askForNginxCtl($type) {
-      if (!in_array($type, array("start", "stop", "restart"))) { return false; }
+      if (!in_array($type, array("start", "stop", "restart", "reload"))) { return false; }
       if (isset($this->params["yes"]) && $this->params["yes"]==true) { return true ; }
       $question = 'Do you want to '.ucfirst($type).' Nginx?';
       return self::askYesOrNo($question);
@@ -69,5 +69,12 @@ class NginxControlLinuxMac extends Base {
         $command = "sudo service nginx stop";
         return self::executeAndOutput($command);
     }
+
+   private function reloadNginx(){
+        echo "Reloading Nginx...\n";
+        $command = "sudo service nginx reload";
+        return self::executeAndOutput($command);
+    }
+
 
 }

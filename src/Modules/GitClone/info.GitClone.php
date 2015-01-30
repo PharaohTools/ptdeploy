@@ -17,7 +17,7 @@ class GitCloneInfo extends Base {
     }
 
     public function routeAliases() {
-      return array("git-clone" => "GitClone", "gitclone" => "GitClone");
+      return array("git-clone" => "GitClone", "gitclone" => "GitClone", "git" => "Gitclone");
     }
 
     public function helpDefinition() {
@@ -28,8 +28,8 @@ class GitCloneInfo extends Base {
 
           - perform a checkout into configured projects folder. If you don't want to specify target dir but do want
           to specify a branch, then enter the text "none" as that parameter.
-          example: dapperstrano git co https://github.com/phpengine/yourmum {optional target dir} {optional branch}
-          example: dapperstrano git co https://github.com/phpengine/yourmum none {optional branch}
+          example: dapperstrano gitclone co https://github.com/phpengine/yourmum {optional target dir} {optional branch}
+          example: dapperstrano gitclone co https://github.com/phpengine/yourmum none {optional branch}
 
 HELPDATA;
       return $help ;

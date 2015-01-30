@@ -14,7 +14,7 @@ class LighttpdControl extends Base {
 
         $action = $pageVars["route"]["action"];
 
-        if (in_array($action, array("start", "stop", "restart"))) {
+        if (in_array($action, array("start", "stop", "restart", "reload"))) {
             $this->content["LighttpdControlResult"] = $thisModel->askWhetherToCtlLighttpd($action);
             return array ("type"=>"view", "view"=>"LighttpdControl", "pageVars"=>$this->content); }
 

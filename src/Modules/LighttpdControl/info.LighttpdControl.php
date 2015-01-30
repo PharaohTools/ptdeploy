@@ -13,7 +13,7 @@ class LighttpdControlInfo extends Base {
     }
 
     public function routesAvailable() {
-      return array( "LighttpdControl" => array_merge(parent::routesAvailable(), array("start", "stop", "restart") ) );
+      return array( "LighttpdControl" => array_merge(parent::routesAvailable(), array("start", "stop", "restart", "reload") ) );
     }
 
     public function routeAliases() {

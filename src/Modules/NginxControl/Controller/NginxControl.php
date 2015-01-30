@@ -14,7 +14,7 @@ class NginxControl extends Base {
 
         $action = $pageVars["route"]["action"];
 
-        if (in_array($action, array("start", "stop", "restart"))) {
+        if (in_array($action, array("start", "stop", "restart", "reload"))) {
             $this->content["NginxControlResult"] = $thisModel->askWhetherToCtlNginx($action);
             return array ("type"=>"view", "view"=>"NginxControl", "pageVars"=>$this->content); }
 

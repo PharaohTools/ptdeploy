@@ -17,7 +17,7 @@ class HostEditorInfo extends Base {
     }
 
     public function routeAliases() {
-      return array("he"=>"HostEditor", "hostEditor"=>"HostEditor");
+      return array("he"=>"HostEditor", "hostEditor"=>"HostEditor", "hosteditor"=>"HostEditor");
     }
 
     public function helpDefinition() {

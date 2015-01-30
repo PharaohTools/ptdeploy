@@ -12,7 +12,7 @@ class AppConfigAllOS extends Base {
     public $architectures = array("any") ;
 
     // Model Group
-    public $modelGroup = array("AppConfig") ;
+    public $modelGroup = array("Default") ;
 
     private static function checkSettingsExistOrCreateIt() {
         // if (!file_exists('papyrusfile')) { touch('papyrusfile'); }

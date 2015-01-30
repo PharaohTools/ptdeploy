@@ -13,7 +13,7 @@ class IndexInfo extends Base {
     }
 
     public function routesAvailable() {
-      return array( "Index" => array("index") );
+      return array( "Index" => array_merge(parent::routesAvailable(), array("index") ) );
     }
 
     public function routeAliases() {

@@ -21,7 +21,7 @@ class LighttpdControlLinuxMac extends Base {
     }
 
     private function askForLighttpdCtl($type) {
-      if (!in_array($type, array("start", "stop", "restart"))) { return false; }
+      if (!in_array($type, array("start", "stop", "restart", "reload"))) { return false; }
       if (isset($this->params["yes"]) && $this->params["yes"]==true) { return true ; }
       $question = 'Do you want to '.ucfirst($type).' Lighttpd?';
       return self::askYesOrNo($question);
@@ -45,5 +45,12 @@ class LighttpdControlLinuxMac extends Base {
         $command = "sudo service lighttpd stop";
         return self::executeAndOutput($command);
     }
+
+    private function reloadLighttpd(){
+        echo "Reloading Lighttpd...\n";
+        $command = "sudo service lighttpd reload";
+        return self::executeAndOutput($command);
+    }
+
 
 }
