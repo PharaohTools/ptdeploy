@@ -1,28 +1,33 @@
 <?php
 
-Namespace Info;
+namespace Info;
 
-class LighttpdControlInfo extends Base {
+class LighttpdControlInfo extends Base
+{
 
     public $hidden = false;
 
     public $name = "Lighttpd Server Control";
 
-    public function _construct() {
-      parent::__construct();
+    public function _construct()
+    {
+        parent::__construct();
     }
 
-    public function routesAvailable() {
-      return array( "LighttpdControl" => array_merge(parent::routesAvailable(), array("start", "stop", "restart") ) );
+    public function routesAvailable()
+    {
+        return array( "LighttpdControl" => array_merge(parent::routesAvailable(), array("start", "stop", "restart")) );
     }
 
-    public function routeAliases() {
-      return array("lighttpdcontrol"=>"LighttpdControl", "lighttpdctl"=>"LighttpdControl", "lighttpd-control"=>"LighttpdControl",
+    public function routeAliases()
+    {
+        return array("lighttpdcontrol"=>"LighttpdControl", "lighttpdctl"=>"LighttpdControl", "lighttpd-control"=>"LighttpdControl",
           "lighttpd-ctl"=>"LighttpdControl");
     }
 
-    public function helpDefinition() {
-      $help = <<<"HELPDATA"
+    public function helpDefinition()
+    {
+        $help = <<<"HELPDATA"
   This command is part of Default Modules and handles Lighttpd Server Control Functions.
 
   LighttpdControl, lighttpdcontrol, lighttpdctl
@@ -48,8 +53,6 @@ class LighttpdControlInfo extends Base {
           example: ptdeploy lighttpdcontrol reload --yes
 
 HELPDATA;
-      return $help ;
+        return $help ;
     }
-
-
 }

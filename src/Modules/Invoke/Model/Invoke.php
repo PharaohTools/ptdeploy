@@ -1,7 +1,8 @@
 <?php
 
-Namespace Model;
+namespace Model;
 
-class Invoke extends BaseModelFactory {
+class Invoke extends BaseModelFactory
+{
 
 }

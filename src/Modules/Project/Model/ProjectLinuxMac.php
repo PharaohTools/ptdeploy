@@ -1,8 +1,9 @@
 <?php
 
-Namespace Model;
+namespace Model;
 
-class ProjectLinuxMac extends Base  {
+class ProjectLinuxMac extends Base
+{
 
     // Compatibility
     public $os = array("Linux", "Darwin") ;
@@ -16,72 +17,102 @@ class ProjectLinuxMac extends Base  {
 
     protected $projectContainerDirectory;
 
-    public function askWhetherToInitializeProject() {
+    public function askWhetherToInitializeProject()
+    {
         return $this->performProjectInitialize();
     }
 
-    public function askWhetherToInitializeProjectContainer() {
+    public function askWhetherToInitializeProjectContainer()
+    {
         return $this->performProjectContainerInitialize();
     }
 
-    protected function performProjectInitialize() {
+    protected function performProjectInitialize()
+    {
         $projInit = $this->askForProjModifyToScreen("To initialise Project");
-        if ($projInit != true) { return false ; }
+        if ($projInit != true) {
+            return false ;
+        }
         $projInit = $this->askForProjInitToScreen();
-        if (!$projInit) { return false ; }
+        if (!$projInit) {
+            return false ;
+        }
         $this->projectInitialize() ;
         return "Seems Fine...";
     }
 
-    protected function performProjectContainerInitialize() {
+    protected function performProjectContainerInitialize()
+    {
         $projContInit = $this->askForProjContainerModifyToScreen();
-        if ($projContInit!=true) { return false; }
+        if ($projContInit!=true) {
+            return false;
+        }
         $projContInit = $this->askForProjContainerInitToScreen();
-        if (!$projContInit) { return false; }
+        if (!$projContInit) {
+            return false;
+        }
         $this->projectContainerDirectory = $this->askForProjContainerDirectory();
         $this->projectContainerInitialize();
         return "Seems Fine...";
     }
 
-    protected function askForProjModifyToScreen($extra = "") {
-        if (isset($this->params["yes"]) && $this->params["yes"]==true) { return true ; }
+    protected function askForProjModifyToScreen($extra = "")
+    {
+        if (isset($this->params["yes"]) && $this->params["yes"]==true) {
+            return true ;
+        }
         $question = 'Do you want to Modify Project Settings '.$extra.'?';
         return self::askYesOrNo($question);
     }
 
-    protected function askForProjInitToScreen() {
-        if (isset($this->params["yes"]) && $this->params["yes"]==true) { return true ; }
+    protected function askForProjInitToScreen()
+    {
+        if (isset($this->params["yes"]) && $this->params["yes"]==true) {
+            return true ;
+        }
         $question = 'Do you want to initialize this as a ptdeploy project?';
         return self::askYesOrNo($question);
     }
 
-    protected function askForProjContainerModifyToScreen() {
-        if (isset($this->params["yes"]) && $this->params["yes"]==true) { return true ; }
+    protected function askForProjContainerModifyToScreen()
+    {
+        if (isset($this->params["yes"]) && $this->params["yes"]==true) {
+            return true ;
+        }
         $question = 'Do you want to Modify Project Container Settings?';
         return self::askYesOrNo($question);
     }
 
-    protected function askForProjContainerInitToScreen() {
-        if (isset($this->params["yes"]) && $this->params["yes"]==true) { return true ; }
+    protected function askForProjContainerInitToScreen()
+    {
+        if (isset($this->params["yes"]) && $this->params["yes"]==true) {
+            return true ;
+        }
         $question = 'Do you want to initialize this as a ptdeploy project Container?';
         return self::askYesOrNo($question);
     }
 
-    protected function askForProjContainerDirectory() {
-        if (isset($this->params["proj-container"])) { return $this->params["proj-container"] ; }
+    protected function askForProjContainerDirectory()
+    {
+        if (isset($this->params["proj-container"])) {
+            return $this->params["proj-container"] ;
+        }
         $question = 'What is your Project Container directory?';
         return self::askForInput($question, true);
     }
 
-    protected function projectInitialize() {
+    protected function projectInitialize()
+    {
         $loggingFactory = new \Model\Logging();
         $logging = $loggingFactory->getModel($this->params) ;
         if ($this->checkIsPharaohProject() == false) {
             file_put_contents('papyrusfile', "");
-            $logging->log("Project Container file created", $this->getModuleName()); }
+            $logging->log("Project Container file created", $this->getModuleName());
+        }
     }
 
-    protected function projectContainerInitialize() {
+    protected function projectContainerInitialize()
+    {
         $loggingFactory = new \Model\Logging();
         $logging = $loggingFactory->getModel($this->params) ;
         $command = 'mkdir -p '.$this->projectContainerDirectory;
@@ -97,11 +128,12 @@ class ProjectLinuxMac extends Base  {
         chdir($cur_dir) ;
     }
 
-    public static function checkIsPharaohProject($dir = null) {
+    public static function checkIsPharaohProject($dir = null)
+    {
         if ($dir == null) {
-          return file_exists('papyrusfile'); }
-        else {
-          return file_exists($dir.DIRECTORY_SEPARATOR.'papyrusfile'); }
+            return file_exists('papyrusfile');
+        } else {
+            return file_exists($dir.DIRECTORY_SEPARATOR.'papyrusfile');
+        }
     }
-
 }

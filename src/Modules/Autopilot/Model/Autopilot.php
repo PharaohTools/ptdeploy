@@ -1,7 +1,8 @@
 <?php
 
-Namespace Model;
+namespace Model;
 
-class Autopilot extends BaseModelFactory {
+class Autopilot extends BaseModelFactory
+{
 
 }

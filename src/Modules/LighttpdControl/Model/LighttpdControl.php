@@ -1,7 +1,8 @@
 <?php
 
-Namespace Model;
+namespace Model;
 
-class LighttpdControl extends BaseModelFactory {
+class LighttpdControl extends BaseModelFactory
+{
 
 }

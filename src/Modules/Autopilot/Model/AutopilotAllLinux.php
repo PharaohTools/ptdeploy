@@ -1,8 +1,9 @@
 <?php
 
-Namespace Model;
+namespace Model;
 
-class AutopilotAllLinux extends BaseLinuxApp {
+class AutopilotAllLinux extends BaseLinuxApp
+{
 
     // Compatibility
     public $os = array("any") ;
@@ -14,19 +15,23 @@ class AutopilotAllLinux extends BaseLinuxApp {
     // Model Group
     public $modelGroup = array("Default") ;
 
-    public function __construct($params) {
+    public function __construct($params)
+    {
         parent::__construct($params);
         $this->addAliasParams() ;
     }
 
-    protected function addAliasParams() {
+    protected function addAliasParams()
+    {
         $dfd = "" ;
         if (isset($this->params["dfd"])) {
-            $dfd = getcwd().DS."build".DS."config".DS."ptconfigure".DS."cleofy".DS."autopilots".DS ; }
+            $dfd = getcwd().DS."build".DS."config".DS."ptconfigure".DS."cleofy".DS."autopilots".DS ;
+        }
         if (isset($this->params["af"])) {
-            $this->params["autopilot-file"] = $dfd.$this->params["af"] ; }
+            $this->params["autopilot-file"] = $dfd.$this->params["af"] ;
+        }
         if (isset($this->params["auto"])) {
-            $this->params["autopilot-file"] = $dfd.$this->params["auto"] ; }
+            $this->params["autopilot-file"] = $dfd.$this->params["auto"] ;
+        }
     }
-
 }

@@ -1,7 +1,8 @@
 <?php
 
-Namespace Model;
+namespace Model;
 
-class LetsEncrypt extends BaseModelFactory {
+class LetsEncrypt extends BaseModelFactory
+{
 
 }

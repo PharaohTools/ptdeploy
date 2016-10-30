@@ -1,29 +1,34 @@
 <?php
 
-Namespace Info;
+namespace Info;
 
-class EnvironmentConfigInfo extends PTConfigureBase {
+class EnvironmentConfigInfo extends PTConfigureBase
+{
 
     public $hidden = false;
 
     public $name = "Environment Configuration - Configure Environments for a project";
 
-    public function __construct() {
-      parent::__construct();
+    public function __construct()
+    {
+        parent::__construct();
     }
 
-    public function routesAvailable() {
-      return array( "EnvironmentConfig" =>  array_merge(parent::routesAvailable(), array(
-          "list", "list-local", "configure", "config", "delete", "del", "configure-default", "config-default") ) );
+    public function routesAvailable()
+    {
+        return array( "EnvironmentConfig" =>  array_merge(parent::routesAvailable(), array(
+          "list", "list-local", "configure", "config", "delete", "del", "configure-default", "config-default")) );
     }
 
-    public function routeAliases() {
-      return array("environmentconfig"=>"EnvironmentConfig", "environment-config"=>"EnvironmentConfig",
+    public function routeAliases()
+    {
+        return array("environmentconfig"=>"EnvironmentConfig", "environment-config"=>"EnvironmentConfig",
         "envconfig"=>"EnvironmentConfig", "env-config"=>"EnvironmentConfig");
     }
 
-    public function helpDefinition() {
-      $help = <<<"HELPDATA"
+    public function helpDefinition()
+    {
+        $help = <<<"HELPDATA"
   This module is part of a default Module and provides you with a method by which you can
   configure environments for your project from the command line. Currently compliant with
   both PTDeploy and PTConfigure.
@@ -62,7 +67,6 @@ class EnvironmentConfigInfo extends PTConfigureBase {
 
 
 HELPDATA;
-      return $help ;
+        return $help ;
     }
-
 }

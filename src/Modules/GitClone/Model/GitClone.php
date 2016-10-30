@@ -1,7 +1,8 @@
 <?php
 
-Namespace Model;
+namespace Model;
 
-class GitClone extends BaseModelFactory {
+class GitClone extends BaseModelFactory
+{
 
 }

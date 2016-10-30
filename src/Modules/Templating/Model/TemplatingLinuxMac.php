@@ -1,8 +1,9 @@
 <?php
 
-Namespace Model;
+namespace Model;
 
-class TemplatingLinuxMac extends BaseTemplater {
+class TemplatingLinuxMac extends BaseTemplater
+{
 
     // Compatibility
     public $os = array("Linux", "Darwin") ;
@@ -14,7 +15,8 @@ class TemplatingLinuxMac extends BaseTemplater {
     // Model Group
     public $modelGroup = array("any") ;
 
-    public function __construct($params) {
+    public function __construct($params)
+    {
         parent::__construct($params);
         $this->autopilotDefiner = "Templating";
         $this->installCommands = array();
@@ -37,22 +39,31 @@ class TemplatingLinuxMac extends BaseTemplater {
      *
      * @todo the recursive mkdir should specify perms, owner and group
      */
-    public function template($original, $replacements, $targetLocation, $perms = null, $owner = null, $group = null) {
+    public function template($original, $replacements, $targetLocation, $perms = null, $owner = null, $group = null)
+    {
         $fData = (is_file($original)) ? file_get_contents($original) : $original ;
         foreach ($replacements as $replaceKey => $replaceValue) {
-            $fData = $this->replaceData($fData, $replaceKey, $replaceValue); }
+            $fData = $this->replaceData($fData, $replaceKey, $replaceValue);
+        }
         if (!file_exists(dirname($targetLocation))) {
-            mkdir(dirname($targetLocation), 0775, true) ; }
+            mkdir(dirname($targetLocation), 0775, true) ;
+        }
         file_put_contents($targetLocation, $fData) ;
-        if ($perms != null) { exec("chmod $perms $targetLocation") ; }
-        if ($owner != null) { exec("chown $owner $targetLocation") ; }
-        if ($group != null) { exec("chgrp $group $targetLocation") ; }
+        if ($perms != null) {
+            exec("chmod $perms $targetLocation") ;
+        }
+        if ($owner != null) {
+            exec("chown $owner $targetLocation") ;
+        }
+        if ($group != null) {
+            exec("chgrp $group $targetLocation") ;
+        }
     }
 
-    public function replaceData($fData, $replaceKey, $replaceValue, $startTag='<%tpl.php%>', $endTag='</%tpl.php%>') {
+    public function replaceData($fData, $replaceKey, $replaceValue, $startTag = '<%tpl.php%>', $endTag = '</%tpl.php%>')
+    {
         $lookFor = $startTag.$replaceKey.$endTag ;
         $fData = str_replace($lookFor, $replaceValue, $fData) ;
         return $fData ;
     }
-
 }

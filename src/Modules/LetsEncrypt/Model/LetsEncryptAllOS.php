@@ -1,36 +1,41 @@
 <?php
 
-Namespace Model;
+namespace Model;
 
-class LetsEncryptAllOS extends Base {
+class LetsEncryptAllOS extends Base
+{
 
-	// Compatibility
-	public $os = array("any");
-	public $linuxType = array("any");
-	public $distros = array("any");
-	public $versions = array("any");
-	public $architectures = array("any");
+    // Compatibility
+    public $os = array("any");
+    public $linuxType = array("any");
+    public $distros = array("any");
+    public $versions = array("any");
+    public $architectures = array("any");
 
-	// Model Group
-	public $modelGroup = array("Default");
+    // Model Group
+    public $modelGroup = array("Default");
 
-	public function performEncryptionInstall() {
+    public function performEncryptionInstall()
+    {
 
         $loggingFactory = new \Model\Logging();
         $logging = $loggingFactory->getModel($this->params);
 
         $wu_time = (isset($this->params["wait"]) && $this->params["wait"]==true) ? $this->params["wait"] : 15 ;
         $logging->log("Waiting for Web Server warm up of {$wu_time} seconds", $this->getModuleName()) ;
-        for ($i=1; $i<=$wu_time; $i++)  {
+        for ($i=1; $i<=$wu_time; $i++) {
             sleep(1) ;
-            echo "." ; }
+            echo "." ;
+        }
 
         if (!class_exists('LetsEncryptWrap')) {
-            require dirname(__DIR__).DS.'Libraries'.DS.'LetsEncrypt'.DS.'LetsEncryptWrap.php'; }
+            require dirname(__DIR__).DS.'Libraries'.DS.'LetsEncrypt'.DS.'LetsEncryptWrap.php';
+        }
 
-        if(!defined("PHP_VERSION_ID") || PHP_VERSION_ID < 50300 || !extension_loaded('openssl') || !extension_loaded('curl')) {
+        if (!defined("PHP_VERSION_ID") || PHP_VERSION_ID < 50300 || !extension_loaded('openssl') || !extension_loaded('curl')) {
             $logging->log("You need at least PHP 5.3.0 with OpenSSL and curl extension", $this->getModuleName(), LOG_FAILURE_EXIT_CODE) ;
-            return false ; }
+            return false ;
+        }
 
         // Configuration:
         $domain = $this->params["domain"];
@@ -39,13 +44,17 @@ class LetsEncryptAllOS extends Base {
 
         if ($domain=="" || $webroot=="" || $certlocation=="") {
             $logging->log("Domain, Webroot and Certificate location are required", $this->getModuleName(), LOG_FAILURE_EXIT_CODE) ;
-            return false ; }
+            return false ;
+        }
 
         // Make sure our cert location exists
         if (!is_dir($certlocation)) {
             // Make sure nothing is already there.
-            if (file_exists($certlocation)) { unlink($certlocation); }
-            mkdir ($certlocation); }
+            if (file_exists($certlocation)) {
+                unlink($certlocation);
+            }
+            mkdir($certlocation);
+        }
 
         // Do we need to create or upgrade our cert? Assume no to start with.
         $needsgen = false;
@@ -76,7 +85,6 @@ class LetsEncryptAllOS extends Base {
                 # $le = new Analogic\ACME\Lescript($certlocation, $webroot);
                 $le->initAccount();
                 $le->signDomains(array($domain));
-
             } catch (\Exception $e) {
 //                $logger->error($e->getMessage());
 //                $logger->error($e->getTraceAsString());
@@ -95,10 +103,10 @@ class LetsEncryptAllOS extends Base {
 
         if ($res === false) {
             $logging->log("Unable to store certificate", $this->getModuleName()) ;
-            return false;}
-        else {
+            return false;
+        } else {
             $logging->log("Certificate successfully generated", $this->getModuleName()) ;
-            return true;}
-	}
-
+            return true;
+        }
+    }
 }

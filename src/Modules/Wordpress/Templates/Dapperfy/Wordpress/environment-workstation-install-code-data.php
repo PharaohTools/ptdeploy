@@ -7,21 +7,24 @@
 *     ---------------------------    *
 *************************************/
 
-Namespace Core ;
+namespace Core ;
 
-class AutoPilotConfigured extends AutoPilot {
+class AutoPilotConfigured extends AutoPilot
+{
 
     public $steps ;
 
-    public function __construct() {
-	    $this->setSteps();
+    public function __construct()
+    {
+        $this->setSteps();
     }
 
     /* Steps */
-    private function setSteps() {
+    private function setSteps()
+    {
 
-	    $this->steps =
-	      array(
+        $this->steps =
+          array(
 
               array ( "Logging" => array( "log" => array( "log-message" => "Lets initialize our new download directory as a ptdeploy project"), ) ),
               array ( "Project" => array( "init" => array(), ) , ) ,
@@ -90,12 +93,12 @@ class AutoPilotConfigured extends AutoPilot {
                   "guess" => true,
               ), ), ),
 
-	      );
+          );
+    }
 
-	  }
 
-
-    private function getTemplate() {
+    private function getTemplate()
+    {
         $template =
             <<<'TEMPLATE'
            NameVirtualHost ****IP ADDRESS****:80
@@ -135,7 +138,4 @@ TEMPLATE;
 
         return $template ;
     }
-
-
-
 }

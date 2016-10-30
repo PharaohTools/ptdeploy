@@ -1,28 +1,33 @@
 <?php
 
-Namespace Info;
+namespace Info;
 
-class PackageManagerInfo extends PTConfigureBase {
+class PackageManagerInfo extends PTConfigureBase
+{
 
-  public $hidden = false;
+    public $hidden = false;
 
-  public $name = "Native Package Manager Wrapper - Install OS neutral packages";
+    public $name = "Native Package Manager Wrapper - Install OS neutral packages";
 
-  public function __construct() {
-    parent::__construct();
-  }
+    public function __construct()
+    {
+        parent::__construct();
+    }
 
-  public function routesAvailable() {
-    return array( "PackageManager" =>  array_merge(parent::routesAvailable(), array("pkg-ensure", "pkg-install", "pkg-remove") ) );
-  }
+    public function routesAvailable()
+    {
+        return array( "PackageManager" =>  array_merge(parent::routesAvailable(), array("pkg-ensure", "pkg-install", "pkg-remove")) );
+    }
 
-  public function routeAliases() {
-    return array("package-manager"=>"PackageManager", "packagemanager"=>"PackageManager", "package-mgr"=>"PackageManager",
+    public function routeAliases()
+    {
+        return array("package-manager"=>"PackageManager", "packagemanager"=>"PackageManager", "package-mgr"=>"PackageManager",
         "pkgmgr"=>"PackageManager");
-  }
+    }
 
-  public function helpDefinition() {
-    $help = <<<"HELPDATA"
+    public function helpDefinition()
+    {
+        $help = <<<"HELPDATA"
   This module allows you to use a Package Management wrapper.
 
   PackageManager, package-manager, packagemanager, package-mgr, pkgmgr
@@ -42,7 +47,6 @@ class PackageManagerInfo extends PTConfigureBase {
   A package manager wrapper that will allow you to install packages on any system
 
 HELPDATA;
-    return $help ;
-  }
-
+        return $help ;
+    }
 }

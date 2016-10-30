@@ -1,7 +1,8 @@
 <?php
 
-Namespace Model;
+namespace Model;
 
-class PackageManager extends BaseModelFactory {
+class PackageManager extends BaseModelFactory
+{
 
 }

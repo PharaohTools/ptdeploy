@@ -7,18 +7,21 @@
  *     ---------------------------    *
  *************************************/
 
-Namespace Core ;
+namespace Core ;
 
-class AutoPilotConfigured extends AutoPilot {
+class AutoPilotConfigured extends AutoPilot
+{
 
     public $steps ;
 
-    public function __construct() {
+    public function __construct()
+    {
         $this->setSteps();
     }
 
     /* Steps */
-    private function setSteps() {
+    private function setSteps()
+    {
 
         $this->steps =
             array(
@@ -37,10 +40,10 @@ class AutoPilotConfigured extends AutoPilot {
                     "log-message" => "Invoking Continuous Build installation on environment <%tpl.php%>env_name</%tpl.php%> complete"
                 ), ) ),
             );
-
     }
 
-    private function setSSHData() {
+    private function setSSHData()
+    {
         $sshData = <<<"SSHDATA"
 cd <%tpl.php%>gen_env_tmp_dir</%tpl.php%>
 sudo rm -rf <%tpl.php%>jenkins-home</%tpl.php%>/jobs/<%tpl.php%>target-job-name</%tpl.php%>*
@@ -49,5 +52,4 @@ sudo service jenkins restart
 SSHDATA;
         return $sshData ;
     }
-
 }

@@ -1,27 +1,32 @@
 <?php
 
-Namespace Info;
+namespace Info;
 
-class SFTPInfo extends PTConfigureBase {
+class SFTPInfo extends PTConfigureBase
+{
 
     public $hidden = false;
 
     public $name = "SFTP Functionality";
 
-    public function _construct() {
-      parent::__construct();
+    public function _construct()
+    {
+        parent::__construct();
     }
 
-    public function routesAvailable() {
-      return array( "SFTP" => array_merge(parent::routesAvailable(), array("put", "get") ) );
+    public function routesAvailable()
+    {
+        return array( "SFTP" => array_merge(parent::routesAvailable(), array("put", "get")) );
     }
 
-    public function routeAliases() {
-      return array("sftp" => "SFTP");
+    public function routeAliases()
+    {
+        return array("sftp" => "SFTP");
     }
 
-  public function helpDefinition() {
-      $help = <<<"HELPDATA"
+    public function helpDefinition()
+    {
+        $help = <<<"HELPDATA"
   This module handles SFTP Transfer Functions.
 
   SFTP, sftp
@@ -39,7 +44,6 @@ class SFTPInfo extends PTConfigureBase {
         example: ptconfigure sftp get --yes --source="/tmp/file" --target="/home/user/file" # will ask for server details
 
 HELPDATA;
-      return $help ;
+        return $help ;
     }
-
 }

@@ -1,12 +1,13 @@
 <?php
 
-Namespace Model;
+namespace Model;
 
-class Help {
+class Help
+{
 
-    public function getHelpData($module) {
+    public function getHelpData($module)
+    {
         $infoObject = \Core\AutoLoader::getSingleInfoObject($module);
         return $infoObject->helpDefinition();
     }
-
 }

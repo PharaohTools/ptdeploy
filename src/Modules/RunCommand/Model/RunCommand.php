@@ -1,7 +1,8 @@
 <?php
 
-Namespace Model;
+namespace Model;
 
-class RunCommand extends BaseModelFactory {
+class RunCommand extends BaseModelFactory
+{
 
 }

@@ -1,14 +1,15 @@
 <?php
 
-Namespace Core ;
+namespace Core ;
 
-class Control {
+class Control
+{
 
-    public function executeControl($control, $pageVars) {
+    public function executeControl($control, $pageVars)
+    {
         $className = '\\Controller\\'.ucfirst($control);
         $controlObject = new $className;
         $res = $controlObject->execute($pageVars);
         return $res ;
     }
-
 }

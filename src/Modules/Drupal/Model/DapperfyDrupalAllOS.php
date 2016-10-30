@@ -1,8 +1,9 @@
 <?php
 
-Namespace Model;
+namespace Model;
 
-class DapperfyDrupalAllOS extends DapperfyAllOS {
+class DapperfyDrupalAllOS extends DapperfyAllOS
+{
 
     // Compatibility
     public $os = array("any") ;
@@ -16,17 +17,22 @@ class DapperfyDrupalAllOS extends DapperfyAllOS {
 
     public $platform = "drupal7" ;
 
-    public function __construct($params) {
+    public function __construct($params)
+    {
         parent::__construct($params);
     }
 
-    public function askToScreenWhetherToDapperfy() {
-        if (isset($this->params["yes"])) { return true ; }
+    public function askToScreenWhetherToDapperfy()
+    {
+        if (isset($this->params["yes"])) {
+            return true ;
+        }
         $question = 'Dapperfy This for Drupal?';
         return self::askYesOrNo($question, true);
     }
 
-    public function setEnvironmentReplacements() {
+    public function setEnvironmentReplacements()
+    {
 
         /* @todo use some logic to get the value set by parent::setEnvironmentReplacements()
          * and just unset the dap_db_platform var
@@ -47,20 +53,21 @@ class DapperfyDrupalAllOS extends DapperfyAllOS {
               array("var"=>"dap_db_admin_user_name", "friendly_text"=>"DB Admin User Name"),
               array("var"=>"dap_db_admin_user_pass", "friendly_text"=>"DB Admin User Pass"),
           ) );
-
     }
 
-    public function doDapperfy() {
-        $templatesDir = str_replace("Model", "Templates", dirname(__FILE__) ) ;
+    public function doDapperfy()
+    {
+        $templatesDir = str_replace("Model", "Templates", dirname(__FILE__)) ;
         $templates = scandir($templatesDir);
         foreach ($this->environments as $environment) {
-
             if (isset($this->params["environment-name"])) {
                 if ($this->params["environment-name"] != $environment["any-app"]["gen_env_name"]) {
                     $tx = "Skipping Environment {$environment["any-app"]["gen_env_name"]} to create files " ;
                     $tx .= "as specified Environment is {$this->params["environment-name"]} \n" ;
                     echo $tx;
-                    continue ; } }
+                    continue ;
+                }
+            }
 
             $defaultReplacements =
             array(
@@ -71,24 +78,28 @@ class DapperfyDrupalAllOS extends DapperfyAllOS {
             ) ;
 
             if (isset($environment["ptdeploy"])) {
-                $replacements = array_merge($defaultReplacements, $environment["ptdeploy"]) ; }
-            else {
-                $replacements = $defaultReplacements ; }
+                $replacements = array_merge($defaultReplacements, $environment["ptdeploy"]) ;
+            } else {
+                $replacements = $defaultReplacements ;
+            }
 
             foreach ($templates as $template) {
-            if (!in_array($template, array(".", ".."))) {
-                $templatorFactory = new \Model\Templating();
-                $templator = $templatorFactory->getModel($this->params);
-                $newFileName = str_replace("environment", $environment["any-app"]["gen_env_name"], $template ) ;
-                $autosDir = getcwd().DIRECTORY_SEPARATOR.'build'.DIRECTORY_SEPARATOR.'config'.DIRECTORY_SEPARATOR.
+                if (!in_array($template, array(".", ".."))) {
+                    $templatorFactory = new \Model\Templating();
+                    $templator = $templatorFactory->getModel($this->params);
+                    $newFileName = str_replace("environment", $environment["any-app"]["gen_env_name"], $template) ;
+                    $autosDir = getcwd().DIRECTORY_SEPARATOR.'build'.DIRECTORY_SEPARATOR.'config'.DIRECTORY_SEPARATOR.
                     'ptdeploy'.DIRECTORY_SEPARATOR.'dapperfy'.DIRECTORY_SEPARATOR.'autopilots'.DIRECTORY_SEPARATOR.
                     'generated';
-                $targetLocation = $autosDir.DIRECTORY_SEPARATOR.$newFileName ;
-                $templator->template(
-                    file_get_contents($templatesDir.DIRECTORY_SEPARATOR.$template),
-                    $replacements,
-                    $targetLocation );
-                echo $targetLocation."\n"; } } }
+                    $targetLocation = $autosDir.DIRECTORY_SEPARATOR.$newFileName ;
+                    $templator->template(
+                        file_get_contents($templatesDir.DIRECTORY_SEPARATOR.$template),
+                        $replacements,
+                        $targetLocation
+                    );
+                    echo $targetLocation."\n";
+                }
+            }
+        }
     }
-
 }

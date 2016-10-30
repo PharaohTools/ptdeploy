@@ -1,7 +1,8 @@
 <?php
 
-Namespace Model;
+namespace Model;
 
-class EnvironmentConfig extends BaseModelFactory {
+class EnvironmentConfig extends BaseModelFactory
+{
 
 }

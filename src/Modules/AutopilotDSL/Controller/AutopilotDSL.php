@@ -1,11 +1,11 @@
 <?php
 
-Namespace Controller ;
+namespace Controller ;
 
-class AutopilotDSL extends Base {
+class AutopilotDSL extends Base
+{
 
-    public function execute($pageVars) {
-
+    public function execute($pageVars)
+    {
     }
-
 }

@@ -1,7 +1,8 @@
 <?php
 
-Namespace Model;
+namespace Model;
 
-class Builderfy extends BaseModelFactory {
+class Builderfy extends BaseModelFactory
+{
 
 }

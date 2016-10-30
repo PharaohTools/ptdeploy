@@ -1,7 +1,8 @@
 <?php
 
-Namespace Model;
+namespace Model;
 
-class Apt extends BaseModelFactory {
+class Apt extends BaseModelFactory
+{
 
 }

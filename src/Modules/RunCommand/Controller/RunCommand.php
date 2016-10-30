@@ -1,7 +1,8 @@
 <?php
 
-Namespace Controller ;
+namespace Controller ;
 
-class RunCommand extends Base {
+class RunCommand extends Base
+{
 
 }

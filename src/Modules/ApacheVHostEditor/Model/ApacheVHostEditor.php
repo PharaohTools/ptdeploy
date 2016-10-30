@@ -1,7 +1,8 @@
 <?php
 
-Namespace Model;
+namespace Model;
 
-class ApacheVHostEditor extends BaseModelFactory {
+class ApacheVHostEditor extends BaseModelFactory
+{
 
 }

@@ -1,8 +1,9 @@
 <?php
 
-Namespace Model;
+namespace Model;
 
-class NginxControlLinuxMac extends Base {
+class NginxControlLinuxMac extends Base
+{
 
     // Compatibility
     public $os = array("Linux", "Darwin") ;
@@ -22,52 +23,65 @@ class NginxControlLinuxMac extends Base {
     private $vHostEnabledDir;
     private $vHostDir = '/etc/nginx2/sites-available' ; // no trailing slash
 
-    public function askWhetherToCtlNginx($ctl) {
-        if ( !$this->askForNginxCtl($ctl) ) { return false; }
+    public function askWhetherToCtlNginx($ctl)
+    {
+        if (!$this->askForNginxCtl($ctl)) {
+            return false;
+        }
         $this->{$ctl."Nginx"}();
         return true;
     }
 
-    private function askForNginxCtl($type) {
-      if (!in_array($type, array("start", "stop", "restart"))) { return false; }
-      if (isset($this->params["yes"]) && $this->params["yes"]==true) { return true ; }
-      $question = 'Do you want to '.ucfirst($type).' Nginx?';
-      return self::askYesOrNo($question);
+    private function askForNginxCtl($type)
+    {
+        if (!in_array($type, array("start", "stop", "restart"))) {
+            return false;
+        }
+        if (isset($this->params["yes"]) && $this->params["yes"]==true) {
+            return true ;
+        }
+        $question = 'Do you want to '.ucfirst($type).' Nginx?';
+        return self::askYesOrNo($question);
     }
 
-    private function enableVHost(){
+    private function enableVHost()
+    {
         $command = 'nginx_ensite '.$this->url;
         self::executeAndOutput($command, "a2ensite $this->url done");
         $vHostEnabledDir = (isset($vHostEditorAdditionSymLinkDirectory)) ?
-            $vHostEditorAdditionSymLinkDirectory : str_replace("sites-available", "sites-enabled", $this->vHostDir );
+            $vHostEditorAdditionSymLinkDirectory : str_replace("sites-available", "sites-enabled", $this->vHostDir);
         $command = 'sudo ln -s '.$this->vHostDir.'/'.$this->url.' '.$vHostEnabledDir.'/'.$this->url;
         return self::executeAndOutput($command, "VHost Enabled/Symlink Created if not done by a2ensite");
     }
 
-    private function disableVHost(){
+    private function disableVHost()
+    {
         foreach ($this->vHostForDeletion as $vHost) {
             $command = 'nginx_dissite '.$vHost;
-            self::executeAndOutput($command, "a2dissite $vHost done"); }
+            self::executeAndOutput($command, "a2dissite $vHost done");
+        }
         return true;
     }
 
-    private function restartNginx(){
+    private function restartNginx()
+    {
         echo "Restarting Nginx...\n";
         $command = "sudo service nginx restart";
         return self::executeAndOutput($command);
     }
 
-    private function startNginx(){
+    private function startNginx()
+    {
         echo "Starting Nginx...\n";
         $command = "sudo service nginx start";
         return self::executeAndOutput($command);
     }
 
 
-    private function stopNginx(){
+    private function stopNginx()
+    {
         echo "Stopping Nginx...\n";
         $command = "sudo service nginx stop";
         return self::executeAndOutput($command);
     }
-
 }

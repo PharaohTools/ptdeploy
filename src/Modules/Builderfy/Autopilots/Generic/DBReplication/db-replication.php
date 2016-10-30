@@ -1,19 +1,22 @@
 <?php
 
-Namespace Core ;
+namespace Core ;
 
-class AutoPilotConfigured extends AutoPilot {
+class AutoPilotConfigured extends AutoPilot
+{
 
     public $steps ;
 
-    public function __construct($params = array()) {
+    public function __construct($params = array())
+    {
         parent::__construct($params);
         $this->getDefaults();
         $this->setSteps();
     }
 
     /* Steps */
-    protected function setSteps() {
+    protected function setSteps()
+    {
 
         $this->steps =
             array(
@@ -86,32 +89,39 @@ class AutoPilotConfigured extends AutoPilot {
                 array ( "Logging" => array( "log" => array( "log-message" => "Creating Autopilots to install a manual production build complete"),),),
 
         );
-
     }
 
-    protected function getDefaults() {
+    protected function getDefaults()
+    {
         $this->getJobName() ;
         $this->getProjectName() ;
         $this->getSCMUrl() ;
     }
 
-    protected function getJobName() {
-        if (isset($this->params["job-name"])) { return $this->params["job-name"] ; }
+    protected function getJobName()
+    {
+        if (isset($this->params["job-name"])) {
+            return $this->params["job-name"] ;
+        }
         $question = 'Enter a Job Name (Jenkins Format) for your project' ;
         $this->params["job-name"] = self::askForInput($question, true) ;
     }
 
-    protected function getProjectName() {
-        if (isset($this->params["project-name"])) { return $this->params["project-name"] ; }
+    protected function getProjectName()
+    {
+        if (isset($this->params["project-name"])) {
+            return $this->params["project-name"] ;
+        }
         $question = 'Enter a Human readable name for your project' ;
         $this->params["project-name"] = self::askForInput($question, true) ;
     }
 
-    protected function getSCMUrl() {
-        if (isset($this->params["scm-url"])) { return $this->params["scm-url"] ; }
+    protected function getSCMUrl()
+    {
+        if (isset($this->params["scm-url"])) {
+            return $this->params["scm-url"] ;
+        }
         $question = 'Enter an SCM URL for your project' ;
         $this->params["scm-url"] = self::askForInput($question, true) ;
     }
-
-
 }

@@ -1,7 +1,8 @@
 <?php
 
-Namespace Controller ;
+namespace Controller ;
 
-class Templating extends Base {
+class Templating extends Base
+{
 
 }

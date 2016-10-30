@@ -1,7 +1,8 @@
 <?php
 
-Namespace Controller ;
+namespace Controller ;
 
-class PHPSSH extends Base {
+class PHPSSH extends Base
+{
 
 }

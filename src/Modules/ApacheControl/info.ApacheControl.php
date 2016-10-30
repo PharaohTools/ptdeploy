@@ -1,31 +1,36 @@
 <?php
 
-Namespace Info;
+namespace Info;
 
-class ApacheControlInfo extends Base {
+class ApacheControlInfo extends Base
+{
 
     public $hidden = false;
 
     public $name = "Apache Server Control";
 
-    public function _construct() {
-      parent::__construct();
+    public function _construct()
+    {
+        parent::__construct();
     }
 
-    public function routesAvailable() {
-      return array( "ApacheControl" => array_merge(parent::routesAvailable(), array("start", "stop", "restart", "reload") ) );
+    public function routesAvailable()
+    {
+        return array( "ApacheControl" => array_merge(parent::routesAvailable(), array("start", "stop", "restart", "reload")) );
     }
 
-    public function routeAliases() {
-      return array(
+    public function routeAliases()
+    {
+        return array(
           "apachecontrol"=>"ApacheControl",
           "apachectl"=>"ApacheControl",
           "apache-control"=>"ApacheControl",
           "apache-ctl"=>"ApacheControl");
     }
 
-    public function helpDefinition() {
-      $help = <<<"HELPDATA"
+    public function helpDefinition()
+    {
+        $help = <<<"HELPDATA"
   This command is part of Default Modules and handles Apache Server Control Functions.
 
   ApacheControl, apachecontrol, apachectl
@@ -55,8 +60,6 @@ class ApacheControlInfo extends Base {
           example: ptdeploy apachecontrol reload --yes --apache-command="apache2"
 
 HELPDATA;
-      return $help ;
+        return $help ;
     }
-
-
 }

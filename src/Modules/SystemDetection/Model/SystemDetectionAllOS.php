@@ -1,8 +1,9 @@
 <?php
 
-Namespace Model;
+namespace Model;
 
-class SystemDetectionAllOS extends Base {
+class SystemDetectionAllOS extends Base
+{
 
     public $os ; // = array("any", "Linux", "Windows", "Darwin") ;
     public $linuxType ; // = array("any", "Debian", "Redhat") ;
@@ -12,7 +13,8 @@ class SystemDetectionAllOS extends Base {
     public $hostName ; // = array("any", "32", "64" ;
     public $ipAddresses = array();
 
-    public function __construct() {
+    public function __construct()
+    {
         $this->setOperatingSystem();
         $this->setDistro();
         $this->setLinuxType();
@@ -22,30 +24,36 @@ class SystemDetectionAllOS extends Base {
         $this->setIPAddresses();
     }
 
-    private function setOperatingSystem() {
+    private function setOperatingSystem()
+    {
         $this->os = PHP_OS ;
     }
 
-    private function setDistro() {
-        if ($this->os == "Linux" ) {
-            $this->distro = $this->getLinuxDistro() ; }
-        else if ($this->os == "Darwin"  ) {
+    private function setDistro()
+    {
+        if ($this->os == "Linux") {
+            $this->distro = $this->getLinuxDistro() ;
+        } elseif ($this->os == "Darwin") {
             $this->setVersion() ;
-            $this->distro = $this->getMacDistro() ; }
-        else {
-            $this->distro = "None" ; }
+            $this->distro = $this->getMacDistro() ;
+        } else {
+            $this->distro = "None" ;
+        }
     }
 
-    private function setLinuxType() {
+    private function setLinuxType()
+    {
         if (in_array($this->distro, array("Ubuntu", "Debian"))) {
-            $this->linuxType = "Debian" ; }
-        else if (in_array($this->distro, array("CentOS", "Redhat"))) {
-            $this->linuxType = "Redhat" ; }
-        else {
-            $this->linuxType = "None" ; }
+            $this->linuxType = "Debian" ;
+        } elseif (in_array($this->distro, array("CentOS", "Redhat"))) {
+            $this->linuxType = "Redhat" ;
+        } else {
+            $this->linuxType = "None" ;
+        }
     }
 
-    private function getLinuxDistro() {
+    private function getLinuxDistro()
+    {
         //declare Linux distros(extensible list).
         $distros = array(
             "Arch" => "arch-release",
@@ -66,12 +74,16 @@ class SystemDetectionAllOS extends Base {
                     //Find distros array key(i.e. Distro name) by value(i.e. distro release file)
                     $OSDistro = $distroTitle; // array_search($distroReleaseFile, $distros);
                     //Break inner and outer loop.
-                    break 2; } } }
+                    break 2;
+                }
+            }
+        }
         return $OSDistro;
     }
 
 
-    private function getMacDistro() {
+    private function getMacDistro()
+    {
         //declare Mac distros(extensible list).
         $distros = array(
             "10.0" => "Cheetah",
@@ -89,18 +101,21 @@ class SystemDetectionAllOS extends Base {
         return $distros[$majorVersion];
     }
 
-    private function setVersion() {
+    private function setVersion()
+    {
         if ($this->os == "Linux") {
-            if (in_array($this->distro, array("Ubuntu")) ) {
+            if (in_array($this->distro, array("Ubuntu"))) {
                 exec("lsb_release -a 2> /dev/null", $output_array);
-                $this->version = substr($output_array[2], 9) ; }
-            if (in_array($this->distro, array("CentOS")) ) {
+                $this->version = substr($output_array[2], 9) ;
+            }
+            if (in_array($this->distro, array("CentOS"))) {
                 exec("cat /etc/*-release", $output_array);
-                $this->version = substr($output_array[0], 15, 3) ; } }
-        else if ($this->os == "Darwin") {
+                $this->version = substr($output_array[0], 15, 3) ;
+            }
+        } elseif ($this->os == "Darwin") {
             exec("sw_vers | grep 'ProductVersion:' | grep -o '[0-9]*\.[0-9]*\.[0-9]*'", $output_array);
-            $this->version = $output_array[0] ; }
-        else if (in_array($this->os, array("Windows", "WINNT"))) {
+            $this->version = $output_array[0] ;
+        } elseif (in_array($this->os, array("Windows", "WINNT"))) {
             exec("ver", $output_array);
             $verString = substr(
                 $output_array[1],
@@ -108,34 +123,44 @@ class SystemDetectionAllOS extends Base {
                 ((strlen($output_array[1])-1) - (strpos($output_array[1], "[Version ")+9))
             ) ;
             $versionObject = new \Model\SoftwareVersion($verString) ;
-            $this->version =  $versionObject->fullVersionNumber; }
+            $this->version =  $versionObject->fullVersionNumber;
+        }
     }
 
-    private function setArchitecture() {
-        if(($this->os == "Linux" && in_array($this->distro, array("Ubuntu", "CentOS")) ||
+    private function setArchitecture()
+    {
+        if (($this->os == "Linux" && in_array($this->distro, array("Ubuntu", "CentOS")) ||
             $this->os == "Darwin")) {
             $output = exec("arch");
-            if (strpos($output, "x86_64") !== false ) {
-                $this->architecture = "64" ; }
-            if (strpos($output, "i386") !== false ) {
-                $this->architecture = "32" ; }
-            if (strpos($output, "i686") !== false ) {
-                $this->architecture = "32" ; } }
-        else if (in_array($this->os, array("Windows", "WINNT"))) {
+            if (strpos($output, "x86_64") !== false) {
+                $this->architecture = "64" ;
+            }
+            if (strpos($output, "i386") !== false) {
+                $this->architecture = "32" ;
+            }
+            if (strpos($output, "i686") !== false) {
+                $this->architecture = "32" ;
+            }
+        } elseif (in_array($this->os, array("Windows", "WINNT"))) {
             $output = self::executeAndLoad("wmic OS get OSArchitecture");
-            if (strpos($output, "64") !== false ) {
-                $this->architecture = "64" ; }
-            else {
-                $this->architecture = "32" ; } }
+            if (strpos($output, "64") !== false) {
+                $this->architecture = "64" ;
+            } else {
+                $this->architecture = "32" ;
+            }
+        }
     }
 
-    private function setHostname() {
+    private function setHostname()
+    {
         if (in_array($this->os, array("Windows", "WINNT", "Darwin", "Linux"))) {
             exec("hostname", $output_array);
-            $this->hostName = $output_array[0] ; }
+            $this->hostName = $output_array[0] ;
+        }
     }
 
-    private function setIPAddresses() {
+    private function setIPAddresses()
+    {
         if ($this->os == "Linux") {
             if ($this->distro == "CentOS") {
                 // Centos has no network tools at all for some crazy reason, install them now
@@ -145,23 +170,27 @@ class SystemDetectionAllOS extends Base {
             $ifComm = SUDOPREFIX.'ip addr list | awk \'/inet /{sub(/\/[0-9]+/,"",$2); print $2}\' ';
             // $ifComm = SUDOPREFIX."ifconfig  | grep 'inet addr:'| grep -v '127.0.0.1' | cut -d: -f2 | awk '{ print $1}'" ;
             exec($ifComm, $outputArray);
-            foreach($outputArray as $outputLine ) {
-                $this->ipAddresses[] = $outputLine ; } }
-        else if ($this->os == "Solaris") {
+            foreach ($outputArray as $outputLine) {
+                $this->ipAddresses[] = $outputLine ;
+            }
+        } elseif ($this->os == "Solaris") {
             $ifComm = SUDOPREFIX."ifconfig  | grep 'inet addr:'| grep -v '127.0.0.1' | cut -d: -f2 | awk '{ print $1}'" ;
             exec($ifComm, $outputArray);
-            foreach($outputArray as $outputLine ) {
-                $this->ipAddresses[] = $outputLine ; } }
-        else if (in_array($this->os, array("FreeBSD", "OpenBSD"))) {
+            foreach ($outputArray as $outputLine) {
+                $this->ipAddresses[] = $outputLine ;
+            }
+        } elseif (in_array($this->os, array("FreeBSD", "OpenBSD"))) {
             $ifComm = SUDOPREFIX." ifconfig  | grep -E 'inet.[0-9]' | grep -v '127.0.0.1' | awk '{ print $2}'" ;
             exec($ifComm, $outputArray);
-            foreach($outputArray as $outputLine ) {
-                $this->ipAddresses[] = $outputLine ; } }
-        else if (in_array($this->os, array("Darwin"))) {
+            foreach ($outputArray as $outputLine) {
+                $this->ipAddresses[] = $outputLine ;
+            }
+        } elseif (in_array($this->os, array("Darwin"))) {
             $ifComm = SUDOPREFIX." /sbin/ifconfig  | grep -E 'inet.[0-9]' | grep -v '127.0.0.1' | awk '{ print $2}'" ;
             exec($ifComm, $outputArray);
-            foreach($outputArray as $outputLine ) {
-                $this->ipAddresses[] = $outputLine ; } }
+            foreach ($outputArray as $outputLine) {
+                $this->ipAddresses[] = $outputLine ;
+            }
+        }
     }
-
 }

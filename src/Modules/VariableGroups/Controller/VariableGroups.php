@@ -1,7 +1,8 @@
 <?php
 
-Namespace Controller ;
+namespace Controller ;
 
-class VariableGroups extends Base {
+class VariableGroups extends Base
+{
 
 }

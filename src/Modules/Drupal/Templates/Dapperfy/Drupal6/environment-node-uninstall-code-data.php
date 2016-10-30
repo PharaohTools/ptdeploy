@@ -7,24 +7,27 @@
 *     ---------------------------    *
 *************************************/
 
-Namespace Core ;
+namespace Core ;
 
-class AutoPilotConfigured extends AutoPilot {
+class AutoPilotConfigured extends AutoPilot
+{
 
     public $steps ;
 
-    public function __construct() {
-	    $this->setSteps();
+    public function __construct()
+    {
+        $this->setSteps();
         $this->setRevisionFolderName();
         $this->calculateVHostDocRoot();
         $this->setVHostTemplate();
     }
 
     /* Steps */
-    private function setSteps() {
+    private function setSteps()
+    {
 
-	    $this->steps =
-	      array(
+        $this->steps =
+          array(
               array ( "Git" => array(
                   "gitDeletorExecute" => true,
                   "gitDeletorCustomFolder" => " 4"
@@ -54,8 +57,6 @@ class AutoPilotConfigured extends AutoPilot {
               array ( "ApacheControl" => array(
                   "apacheCtlRestartExecute" => true,
               ) , ) ,
-	      );
-
-	  }
-
+          );
+    }
 }

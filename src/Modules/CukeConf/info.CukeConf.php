@@ -1,27 +1,32 @@
 <?php
 
-Namespace Info;
+namespace Info;
 
-class CukeConfInfo extends Base {
+class CukeConfInfo extends Base
+{
 
     public $hidden = false;
 
     public $name = "Cucumber Configuration";
 
-    public function __construct() {
-      parent::__construct();
+    public function __construct()
+    {
+        parent::__construct();
     }
 
-    public function routesAvailable() {
-      return array( "CukeConf" => array_merge(parent::routesAvailable(), array("conf", "reset") ) );
+    public function routesAvailable()
+    {
+        return array( "CukeConf" => array_merge(parent::routesAvailable(), array("conf", "reset")) );
     }
 
-    public function routeAliases() {
-      return array("cukeconf"=>"CukeConf", "cukeConf"=>"CukeConf", "cuke"=>"CukeConf");
+    public function routeAliases()
+    {
+        return array("cukeconf"=>"CukeConf", "cukeConf"=>"CukeConf", "cuke"=>"CukeConf");
     }
 
-    public function helpDefinition() {
-      $help = <<<"HELPDATA"
+    public function helpDefinition()
+    {
+        $help = <<<"HELPDATA"
   This command is part of Default Modules and provides you  with a method by which you can configure Cucumber configurations
 
   CukeConf, cukeConf, cukeconf, cuke
@@ -37,7 +42,6 @@ class CukeConfInfo extends Base {
           example: ptdeploy cukeconf reset --yes
 
 HELPDATA;
-      return $help ;
+        return $help ;
     }
-
 }

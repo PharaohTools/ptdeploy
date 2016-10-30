@@ -1,28 +1,33 @@
 <?php
 
-Namespace Info;
+namespace Info;
 
-class NginxControlInfo extends Base {
+class NginxControlInfo extends Base
+{
 
     public $hidden = false;
 
     public $name = "Nginx Server Control";
 
-    public function _construct() {
-      parent::__construct();
+    public function _construct()
+    {
+        parent::__construct();
     }
 
-    public function routesAvailable() {
-      return array( "NginxControl" => array_merge(parent::routesAvailable(), array("start", "stop", "restart") ) );
+    public function routesAvailable()
+    {
+        return array( "NginxControl" => array_merge(parent::routesAvailable(), array("start", "stop", "restart")) );
     }
 
-    public function routeAliases() {
-      return array("nginxcontrol"=>"NginxControl", "nginxctl"=>"NginxControl", "nginx-control"=>"NginxControl",
+    public function routeAliases()
+    {
+        return array("nginxcontrol"=>"NginxControl", "nginxctl"=>"NginxControl", "nginx-control"=>"NginxControl",
           "nginx-ctl"=>"NginxControl");
     }
 
-    public function helpDefinition() {
-      $help = <<<"HELPDATA"
+    public function helpDefinition()
+    {
+        $help = <<<"HELPDATA"
   This command is part of Default Modules and handles Nginx Server Control Functions.
 
   NginxControl, nginxcontrol, nginxctl
@@ -44,8 +49,6 @@ class NginxControlInfo extends Base {
           example: ptdeploy nginxcontrol reload
 
 HELPDATA;
-      return $help ;
+        return $help ;
     }
-
-
 }

@@ -1,8 +1,9 @@
 <?php
 
-Namespace Model;
+namespace Model;
 
-class DBInstallHooksWordpress extends Base {
+class DBInstallHooksWordpress extends Base
+{
 
     // Compatibility
     public $os = array("any") ;
@@ -16,27 +17,34 @@ class DBInstallHooksWordpress extends Base {
 
     protected $url ;
 
-    public function __construct() {
+    public function __construct()
+    {
     }
 
-    public function preInstallHook($dbiObject){
+    public function preInstallHook($dbiObject)
+    {
     }
 
-    public function postInstallHook($dbiObject) {
+    public function postInstallHook($dbiObject)
+    {
         $this->url = $this->askForUrl($dbiObject) ;
         $this->wpOptionsUpdater($dbiObject) ;
     }
 
     // @todo mailserver_*, blogname , blogdescription
-    protected function askForUrl($dbiObject){
-        if (isset($dbiObject->params["hook-url"])) { return $dbiObject->params["hook-url"] ; }
+    protected function askForUrl($dbiObject)
+    {
+        if (isset($dbiObject->params["hook-url"])) {
+            return $dbiObject->params["hook-url"] ;
+        }
         $question = 'What is the URL of this site for WP Options? ';
         $input = self::askForInput($question, true);
         return $input ;
     }
 
     // @todo dont use print, use logging or something better
-    protected function wpOptionsUpdater($dbiObject) {
+    protected function wpOptionsUpdater($dbiObject)
+    {
         $dbc = mysqli_connect($dbiObject->dbHost, $dbiObject->dbRootUser, $dbiObject->dbRootPass);
         echo (mysqli_error($dbc));
         $query = 'UPDATE '.$dbiObject->dbName.'.wp_options SET option_value="http://'.$this->url.'" WHERE option_name="siteurl";';
@@ -50,5 +58,4 @@ class DBInstallHooksWordpress extends Base {
         echo (mysqli_error($dbc));
         print "Wordpress option home updated\n";
     }
-
 }

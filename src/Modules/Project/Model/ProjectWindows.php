@@ -1,8 +1,9 @@
 <?php
 
-Namespace Model;
+namespace Model;
 
-class ProjectWindows extends ProjectLinuxMac  {
+class ProjectWindows extends ProjectLinuxMac
+{
 
     // Compatibility
     public $os = array("Windows", "WINNT") ;
@@ -14,7 +15,8 @@ class ProjectWindows extends ProjectLinuxMac  {
     // Model Group
     public $modelGroup = array("Default") ;
 
-    protected function projectContainerInitialize() {
+    protected function projectContainerInitialize()
+    {
         $loggingFactory = new \Model\Logging();
         $logging = $loggingFactory->getModel($this->params) ;
         $command = 'mkdir '.$this->projectContainerDirectory;
@@ -25,5 +27,4 @@ class ProjectWindows extends ProjectLinuxMac  {
         file_put_contents('dhprojc', "");
         $logging->log("Project Container file created", $this->getModuleName());
     }
-
 }

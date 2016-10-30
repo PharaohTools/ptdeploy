@@ -1,7 +1,8 @@
 <?php
 
-Namespace Model;
+namespace Model;
 
-class SystemDetection extends BaseModelFactory{
+class SystemDetection extends BaseModelFactory
+{
 
 }

@@ -1,26 +1,31 @@
 <?php
 
-Namespace Info;
+namespace Info;
 
-class LoggingInfo extends PTConfigureBase {
+class LoggingInfo extends PTConfigureBase
+{
 
     public $hidden = false;
 
     public $name = "Logging - Output errors to the logging";
 
-    public function __construct() {
+    public function __construct()
+    {
         parent::__construct();
     }
 
-    public function routesAvailable() {
-        return array( "Logging" =>  array_merge( array("help", "log") ) );
+    public function routesAvailable()
+    {
+        return array( "Logging" =>  array_merge(array("help", "log")) );
     }
 
-    public function routeAliases() {
+    public function routeAliases()
+    {
         return array("logging"=>"Logging");
     }
 
-    public function exposedParams() {
+    public function exposedParams()
+    {
         return array(
             "Log" => array(
                 "log" => array(
@@ -30,8 +35,9 @@ class LoggingInfo extends PTConfigureBase {
         );
     }
 
-    public function helpDefinition() {
-      $help = <<<"HELPDATA"
+    public function helpDefinition()
+    {
+        $help = <<<"HELPDATA"
   Use this to log a message to the Console, and optionally also the php error log.
 
   Logging, logging
@@ -42,7 +48,6 @@ class LoggingInfo extends PTConfigureBase {
         example: ptconfigure logging log --php-log --log-message="Here is something logging to the console and error log"
 
 HELPDATA;
-      return $help ;
+        return $help ;
     }
-
 }

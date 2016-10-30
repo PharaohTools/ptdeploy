@@ -7,21 +7,24 @@
 *     ---------------------------    *
 *************************************/
 
-Namespace Core ;
+namespace Core ;
 
-class AutoPilotConfigured extends AutoPilot {
+class AutoPilotConfigured extends AutoPilot
+{
 
     public $steps ;
 
-    public function __construct() {
-	    $this->setSteps();
+    public function __construct()
+    {
+        $this->setSteps();
     }
 
     /* Steps */
-    private function setSteps() {
+    private function setSteps()
+    {
 
-	    $this->steps =
-	      array(
+        $this->steps =
+          array(
           array ( "Project" => array(
                     "projectInitializeExecute" => true,
           ) , ) ,
@@ -45,16 +48,16 @@ class AutoPilotConfigured extends AutoPilot {
               array ( "ApacheControl" => array(
                   "apacheCtlRestartExecute" => true,
               ) , ) ,
-	      );
-
-	}
+          );
+    }
 
 
  // This function will set the vhost template for your Virtual Host
  // You need to call this from your constructor
- private function setVHostTemplate() {
-   $this->steps[2]["ApacheVHostEditor"]["virtualHostEditorAdditionTemplateData"] =
-  <<<'TEMPLATE'
+    private function setVHostTemplate()
+    {
+         $this->steps[2]["ApacheVHostEditor"]["virtualHostEditorAdditionTemplateData"] =
+        <<<'TEMPLATE'
  NameVirtualHost ****IP ADDRESS****:80
  <VirtualHost ****IP ADDRESS****:80>
    ServerAdmin webmaster@localhost
@@ -89,7 +92,5 @@ class AutoPilotConfigured extends AutoPilot {
   CustomLog /var/log/apache2/access.log combined
   </VirtualHost>
 TEMPLATE;
-}
-
-
+    }
 }

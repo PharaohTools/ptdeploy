@@ -1,7 +1,8 @@
 <?php
 
-Namespace Model;
+namespace Model;
 
-class ParallelSshChildLinuxMac extends BaseModelFactory {
+class ParallelSshChildLinuxMac extends BaseModelFactory
+{
 
 }

@@ -1,30 +1,35 @@
 <?php
 
-Namespace Info;
+namespace Info;
 
-class DBConfigureInfo extends Base {
+class DBConfigureInfo extends Base
+{
 
     public $hidden = false;
 
     public $name = "Database Connection Configuration Functions";
 
-    public function _construct() {
-      parent::__construct();
+    public function _construct()
+    {
+        parent::__construct();
     }
 
-    public function routesAvailable() {
-      return array( "DBConfigure" => array_merge(
-          parent::routesAvailable(),
-          array("configure", "config", "conf", "reset"),
-          $this->getExtraRoutes()
-      ) );
+    public function routesAvailable()
+    {
+        return array( "DBConfigure" => array_merge(
+            parent::routesAvailable(),
+            array("configure", "config", "conf", "reset"),
+            $this->getExtraRoutes()
+        ) );
     }
 
-    public function routeAliases() {
-      return array("dbconfigure"=>"DBConfigure", "db-configure"=>"DBConfigure", "db-conf"=>"DBConfigure");
+    public function routeAliases()
+    {
+        return array("dbconfigure"=>"DBConfigure", "db-configure"=>"DBConfigure", "db-conf"=>"DBConfigure");
     }
 
-    public function helpDefinition() {
+    public function helpDefinition()
+    {
         $extraHelp = $this->getExtraHelpDefinitions() ;
         $help = <<<"HELPDATA"
   This command is part of Default Modules and handles Databasing Functions.
@@ -43,11 +48,12 @@ class DBConfigureInfo extends Base {
 
       $extraHelp
 HELPDATA;
-      return $help ;
+        return $help ;
     }
 
 
-    protected function getExtraHelpDefinitions() {
+    protected function getExtraHelpDefinitions()
+    {
         $extraDefsText = "" ;
         $infos = \Core\AutoLoader::getInfoObjects() ;
         foreach ($infos as $info) {
@@ -56,18 +62,22 @@ HELPDATA;
                 if (in_array("DBConfigure", $defNames)) {
                     $defs = $info->helpDefinitions() ;
                     $thisDef = $defs["DBConfigure"] ;
-                    $extraDefsText .= $thisDef ; } } }
+                    $extraDefsText .= $thisDef ;
+                }
+            }
+        }
         return $extraDefsText ;
     }
 
-    protected function getExtraRoutes() {
+    protected function getExtraRoutes()
+    {
         $extraActions = array() ;
         $infos = \Core\AutoLoader::getInfoObjects() ;
         foreach ($infos as $info) {
             if (method_exists($info, "dbConfigureActions")) {
-                $extraActions = array_merge($extraActions, $info->dbConfigureActions()); } }
+                $extraActions = array_merge($extraActions, $info->dbConfigureActions());
+            }
+        }
         return $extraActions ;
     }
-
-
 }

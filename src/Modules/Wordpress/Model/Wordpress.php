@@ -1,7 +1,8 @@
 <?php
 
-Namespace Model;
+namespace Model;
 
-class Wordpress extends BaseModelFactory {
+class Wordpress extends BaseModelFactory
+{
 
 }

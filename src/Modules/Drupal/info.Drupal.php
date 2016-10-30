@@ -1,46 +1,55 @@
 <?php
 
-Namespace Info;
+namespace Info;
 
-class DrupalInfo extends Base {
+class DrupalInfo extends Base
+{
 
     public $hidden = false;
 
     public $name = "Drupal - Integration and Templates for Drupal";
 
-    public function _construct() {
-      parent::__construct();
+    public function _construct()
+    {
+        parent::__construct();
     }
 
-    public function routesAvailable() {
-        return array( "Drupal" => array_merge(parent::routesAvailable(), array() ) );
+    public function routesAvailable()
+    {
+        return array( "Drupal" => array_merge(parent::routesAvailable(), array()) );
     }
 
-    public function routeAliases() {
+    public function routeAliases()
+    {
         return array("drupal"=>"Drupal");
     }
 
-    public function builderfyActions() {
+    public function builderfyActions()
+    {
         return array( "drupal" );
     }
 
-    public function dapperfyActions() {
+    public function dapperfyActions()
+    {
         // return array( "drupal" );
         return array( "drupal", "drupal7", "drupal-ptvirtualize", "drupal7-ptvirtualize" );
     }
 
-    public function dbConfigureActions() {
+    public function dbConfigureActions()
+    {
         return array( "drupal7-conf", "drupal6-conf", "drupal7-reset", "drupal6-reset" );
     }
 
-    public function helpDefinitions() {
+    public function helpDefinitions()
+    {
         return array(
             "Builderfy"=>$this->builderfyHelpDefinition(),
             "Dapperfy"=>$this->dapperfyHelpDefinition(),
             "DBConfigure"=>$this->dbConfigureHelpDefinition());
     }
 
-    public function helpDefinition() {
+    public function helpDefinition()
+    {
         $help = <<<"HELPDATA"
   This module is a Default Modules and provides autopilots for drupal tailored Builderfy and Dapperfy Autopilots.
   Also provides Drupal Database Configuration for the DBConfigure Module.
@@ -63,7 +72,8 @@ HELPDATA;
         return $help ;
     }
 
-    public function builderfyHelpDefinition() {
+    public function builderfyHelpDefinition()
+    {
         $help = <<<"HELPDATA"
 
 --------------
@@ -83,7 +93,8 @@ HELPDATA;
         return $help ;
     }
 
-    public function dapperfyHelpDefinition() {
+    public function dapperfyHelpDefinition()
+    {
         $help = <<<"HELPDATA"
 
 --------------
@@ -100,7 +111,8 @@ HELPDATA;
         return $help ;
     }
 
-    public function dbConfigureHelpDefinition() {
+    public function dbConfigureHelpDefinition()
+    {
         $help = <<<"HELPDATA"
 
 --------------
@@ -116,8 +128,4 @@ HELPDATA;
 HELPDATA;
         return $help ;
     }
-
-
-
-
 }

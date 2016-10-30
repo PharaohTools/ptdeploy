@@ -1,7 +1,8 @@
 <?php
 
-Namespace Model;
+namespace Model;
 
-class CukeConf extends BaseModelFactory {
+class CukeConf extends BaseModelFactory
+{
 
 }

@@ -1,7 +1,8 @@
 <?php
 
-Namespace Model;
+namespace Model;
 
-class Joomla extends BaseModelFactory {
+class Joomla extends BaseModelFactory
+{
 
 }

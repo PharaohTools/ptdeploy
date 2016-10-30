@@ -1,38 +1,44 @@
 <?php
 
-Namespace Info;
+namespace Info;
 
-class BuilderfyInfo extends Base {
+class BuilderfyInfo extends Base
+{
 
     public $hidden = false;
 
     public $name = "PTDeploy Builderfyer - Create some standard autopilots for your project";
 
-    public function __construct() {
-      parent::__construct();
+    public function __construct()
+    {
+        parent::__construct();
     }
 
-    public function routesAvailable() {
-      return array( "Builderfy" =>  array_merge(
-          parent::routesAvailable(),
-          array(
+    public function routesAvailable()
+    {
+        return array( "Builderfy" =>  array_merge(
+            parent::routesAvailable(),
+            array(
               "install-generic-autopilots", "developer", "manual-staging", "continuous-staging", "manual-production",
               "continuous-staging-to-production" ),
-          $this->getExtraRoutes()
-      ) );
+            $this->getExtraRoutes()
+        ) );
     }
 
-    public function routeAliases() {
-      return array("builderfy"=>"Builderfy");
+    public function routeAliases()
+    {
+        return array("builderfy"=>"Builderfy");
     }
 
-    public function dependencies() {
+    public function dependencies()
+    {
         return array("EnvironmentConfig");
     }
 
-    public function helpDefinition() {
-      $extraHelp = $this->getExtraHelpDefinitions() ;
-      $help = <<<"HELPDATA"
+    public function helpDefinition()
+    {
+        $extraHelp = $this->getExtraHelpDefinitions() ;
+        $help = <<<"HELPDATA"
   This is a default Module and provides you a way to deploy build jobs to jenkins that are configured for your project.
 
   Builderfy, builderfy
@@ -77,10 +83,11 @@ class BuilderfyInfo extends Base {
 
         $extraHelp
 HELPDATA;
-      return $help ;
+        return $help ;
     }
 
-    protected function getExtraHelpDefinitions() {
+    protected function getExtraHelpDefinitions()
+    {
         $extraDefsText = "" ;
         $infos = \Core\AutoLoader::getInfoObjects() ;
         foreach ($infos as $info) {
@@ -89,17 +96,22 @@ HELPDATA;
                 if (in_array("Builderfy", $defNames)) {
                     $defs = $info->helpDefinitions() ;
                     $thisDef = $defs["Builderfy"] ;
-                    $extraDefsText .= $thisDef ; } } }
+                    $extraDefsText .= $thisDef ;
+                }
+            }
+        }
         return $extraDefsText ;
     }
 
-    protected function getExtraRoutes() {
+    protected function getExtraRoutes()
+    {
         $extraActions = array() ;
         $infos = \Core\AutoLoader::getInfoObjects() ;
         foreach ($infos as $info) {
             if (method_exists($info, "builderfyActions")) {
-                $extraActions = array_merge($extraActions, $info->builderfyActions()); } }
+                $extraActions = array_merge($extraActions, $info->builderfyActions());
+            }
+        }
         return $extraActions ;
     }
-
 }

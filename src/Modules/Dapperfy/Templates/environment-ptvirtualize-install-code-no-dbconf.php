@@ -7,17 +7,20 @@
  *     ---------------------------    *
  *************************************/
 
-Namespace Core ;
+namespace Core ;
 
-class AutoPilotConfigured extends AutoPilot {
+class AutoPilotConfigured extends AutoPilot
+{
 
     public $steps ;
 
-    public function __construct() {
+    public function __construct()
+    {
         $this->setSteps();
     }
 
-    private function setSteps() {
+    private function setSteps()
+    {
 
         $this->steps =
             array(
@@ -48,7 +51,8 @@ class AutoPilotConfigured extends AutoPilot {
             );
     }
 
-    private function getTemplate() {
+    private function getTemplate()
+    {
         $template =
             <<<'TEMPLATE'
  NameVirtualHost 0.0.0.0:80
@@ -91,6 +95,4 @@ TEMPLATE;
 
         return $template ;
     }
-
-
 }

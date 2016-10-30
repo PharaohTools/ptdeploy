@@ -7,18 +7,21 @@
  *     ---------------------------    *
  *************************************/
 
-Namespace Core ;
+namespace Core ;
 
-class AutoPilotConfigured extends AutoPilot {
+class AutoPilotConfigured extends AutoPilot
+{
 
     public $steps ;
 
-    public function __construct() {
+    public function __construct()
+    {
         $this->setSteps();
     }
 
     /* Steps */
-    private function setSteps() {
+    private function setSteps()
+    {
 
         $this->steps =
             array(
@@ -37,10 +40,10 @@ class AutoPilotConfigured extends AutoPilot {
                     "log-message" => "Invoking Continuous Build job from Staging on environment <%tpl.php%>env_name</%tpl.php%> complete"
                 ), ) ),
             );
-
     }
 
-    private function setSSHData() {
+    private function setSSHData()
+    {
         $longCommand =
             'sudo ptdeploy builderfy continuous-staging --yes ' .
             '--jenkins-home="<%tpl.php%>jenkins-home</%tpl.php%>" ' .
@@ -66,5 +69,4 @@ sudo service jenkins restart
 SSHDATA;
         return $sshData ;
     }
-
 }

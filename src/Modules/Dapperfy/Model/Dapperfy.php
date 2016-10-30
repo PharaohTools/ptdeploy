@@ -1,7 +1,8 @@
 <?php
 
-Namespace Model;
+namespace Model;
 
-class Dapperfy extends BaseModelFactory {
+class Dapperfy extends BaseModelFactory
+{
 
 }

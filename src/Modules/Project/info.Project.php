@@ -1,28 +1,35 @@
 <?php
 
-Namespace Info;
+namespace Info;
 
-class ProjectInfo extends Base {
+class ProjectInfo extends Base
+{
 
     public $hidden = false;
 
     public $name = "PTDeploy Project Management Functions";
 
-    public function _construct() {
-      parent::__construct();
+    public function _construct()
+    {
+        parent::__construct();
     }
 
-    public function routesAvailable() {
-      return array( "Project" => array_merge(parent::routesAvailable(),
-        array("init", "build-install", "container", "cont") ) );
+    public function routesAvailable()
+    {
+        return array( "Project" => array_merge(
+            parent::routesAvailable(),
+            array("init", "build-install", "container", "cont")
+        ) );
     }
 
-    public function routeAliases() {
-      return array("proj"=>"Project", "project"=>"Project");
+    public function routeAliases()
+    {
+        return array("proj"=>"Project", "project"=>"Project");
     }
 
-    public function helpDefinition() {
-      $help = <<<"HELPDATA"
+    public function helpDefinition()
+    {
+        $help = <<<"HELPDATA"
   This command is part of Default Modules and handles Project initialisation functions, like configuring a project, or a project
   container and also installing Jenkins build files into a running Jenkins instance.
 
@@ -49,7 +56,6 @@ class ProjectInfo extends Base {
                         --new-job-dir="Project_Build_Alternate_Name"  # If target one is not available
 
 HELPDATA;
-      return $help ;
+        return $help ;
     }
-
 }

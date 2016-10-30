@@ -1,33 +1,39 @@
 <?php
 
-Namespace Info;
+namespace Info;
 
-class SshKeyStoreInfo extends PTConfigureBase {
+class SshKeyStoreInfo extends PTConfigureBase
+{
 
     public $hidden = false;
 
     public $name = "For Storing and Accessing SSH Keys";
 
-    public function __construct() {
-      parent::__construct();
+    public function __construct()
+    {
+        parent::__construct();
     }
 
-    public function routesAvailable() {
+    public function routesAvailable()
+    {
         return array( "SshKeyStore" =>  array_merge(
             array("help", "find")
         ) );
     }
 
-    public function routeAliases() {
+    public function routeAliases()
+    {
         return array("sshkeystore"=>"SshKeyStore", "ssh-key-store"=>"SshKeyStore");
     }
 
-    public function dependencies() {
+    public function dependencies()
+    {
         return array("Service", "Logging");
     }
 
-    public function helpDefinition() {
-      $help = <<<"HELPDATA"
+    public function helpDefinition()
+    {
+        $help = <<<"HELPDATA"
   This module allows you to find credentials for a key on a machine
 
   SshKeyStore, sshkeystore, ssh-key-store
@@ -38,7 +44,6 @@ class SshKeyStoreInfo extends PTConfigureBase {
         example: ptconfigure ssh-key-store find --key=daveylad --prefer=user
 
 HELPDATA;
-      return $help ;
+        return $help ;
     }
-
 }

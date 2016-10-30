@@ -1,7 +1,8 @@
 <?php
 
-Namespace Model;
+namespace Model;
 
-class Templating extends BaseModelFactory {
+class Templating extends BaseModelFactory
+{
 
 }

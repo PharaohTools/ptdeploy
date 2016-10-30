@@ -1,58 +1,67 @@
 <?php
 
-Namespace Controller ;
+namespace Controller ;
 
-class Autopilot extends Base {
+class Autopilot extends Base
+{
 
-    public function execute($pageVars) {
+    public function execute($pageVars)
+    {
 
         $thisModel = $this->getModelAndCheckDependencies(substr(get_class($this), 11), $pageVars) ;
         // if we don't have an object, its an array of errors
-        if (is_array($thisModel)) { return $this->failDependencies($pageVars, $this->content, $thisModel) ; }
+        if (is_array($thisModel)) {
+            return $this->failDependencies($pageVars, $this->content, $thisModel) ;
+        }
 
         $action = $pageVars["route"]["action"];
-        if ( in_array($action, array("install", "execute", "x", "test") ) ) {
-            if ( isset($thisModel->params["autopilot-file"]) && strlen($thisModel->params["autopilot-file"]) > 0 ) {
+        if (in_array($action, array("install", "execute", "x", "test"))) {
+            if (isset($thisModel->params["autopilot-file"]) && strlen($thisModel->params["autopilot-file"]) > 0) {
                 $autoPilot = $this->loadAutoPilot($thisModel->params, $pageVars);
-                if ( $autoPilot!==null && $autoPilot!==false ) {
+                if ($autoPilot!==null && $autoPilot!==false) {
 //                    echo "1" ;
                     $autoPilotExecutor = new \Controller\AutopilotExecutor();
                     // get params from the base model to inject into the loaded autopilot object
                     $autoPilot->params = $thisModel->params ;
-                    if ($action =="test" || (isset($thisModel->params["test"]) && $thisModel->params["test"]==true) ) {
-                        return $autoPilotExecutor->executeAuto($pageVars, $autoPilot, true); }
-                    return $autoPilotExecutor->executeAuto($pageVars, $autoPilot, false); }
-                else {
-//                    echo "2" ;
+                    if ($action =="test" || (isset($thisModel->params["test"]) && $thisModel->params["test"]==true)) {
+                        return $autoPilotExecutor->executeAuto($pageVars, $autoPilot, true);
+                    }
+                    return $autoPilotExecutor->executeAuto($pageVars, $autoPilot, false);
+                } else {
+                //                    echo "2" ;
                     \Core\BootStrap::setExitCode(1);
                     $this->content["messages"][] = "There was a problem with the autopilot file specified";
                     $this->content["messages"][] = "Attempted specifying {$thisModel->params["autopilot-file"]}" ;
-                    return array ("type"=>"control", "control"=>"index", "pageVars"=>array_merge($pageVars, $this->content)); } }
-            else {
-//                echo "3" ;
+                    return array ("type"=>"control", "control"=>"index", "pageVars"=>array_merge($pageVars, $this->content));
+                }
+            } else {
+            //                echo "3" ;
                 \Core\BootStrap::setExitCode(1);
                 $this->content["messages"][] = "Parameter --autopilot-file is required";
-                return array ("type"=>"control", "control"=>"index", "pageVars"=>$this->content); } }
-
-        else if ($action=="help") {
+                return array ("type"=>"control", "control"=>"index", "pageVars"=>$this->content);
+            }
+        } elseif ($action=="help") {
             $helpModel = new \Model\Help();
             $this->content["helpData"] = $helpModel->getHelpData($pageVars["route"]["control"]);
-            return array ("type"=>"view", "view"=>"help", "pageVars"=>$this->content); }
-
-        else {
+            return array ("type"=>"view", "view"=>"help", "pageVars"=>$this->content);
+        } else {
             \Core\BootStrap::setExitCode(1);
-            $this->content["messages"][] = "Invalid Action - Action does not Exist for Autopilot"; }
+            $this->content["messages"][] = "Invalid Action - Action does not Exist for Autopilot";
+        }
 
         return array ("type"=>"control", "control"=>"index", "pageVars"=>$this->content);
-
     }
 
-    private function loadAutoPilot($params, $pageVars){
+    private function loadAutoPilot($params, $pageVars)
+    {
         $autoPilotFileName = escapeshellcmd($params["autopilot-file"]);
         $autoPilotFilePath = getcwd().DS.$autoPilotFileName;
         $autoPilotFileRawPath = $autoPilotFileName;
-        $defaultFolderToCheck = str_replace("src".DS."Controller",
-            "build".DS."config".DS.PHARAOH_APP, dirname(__FILE__));
+        $defaultFolderToCheck = str_replace(
+            "src".DS."Controller",
+            "build".DS."config".DS.PHARAOH_APP,
+            dirname(__FILE__)
+        );
         $defaultName = $defaultFolderToCheck.DS.$autoPilotFileName.".php";
         $loggingFactory = new \Model\Logging();
         $logging = $loggingFactory->getModel($params);
@@ -69,26 +78,32 @@ class Autopilot extends Base {
                 if (substr($autoPilotFileName, -7) == "dsl.php") {
                     $dsl_au = $this->loadDSLAutoPilot($autoPilotFileName, $pageVars) ;
                     if (is_object($dsl_au)) {
-                        return $dsl_au ; }
-                    else {
+                        return $dsl_au ;
+                    } else {
                         $logging->log("Unable to build object from DSL", "Autopilot", LOG_FAILURE_EXIT_CODE) ;
-                        return false ; } }
-                else if (substr($autoPilotFileName, -4) == ".php") {
+                        return false ;
+                    }
+                } elseif (substr($autoPilotFileName, -4) == ".php") {
                     $au = $this->apLoader($path, $params);
                     if (is_object($au)) {
-                        return $au ; }
-                    else {
+                        return $au ;
+                    } else {
                         $logging->log("Unable to build object from PHP File", "Autopilot", LOG_FAILURE_EXIT_CODE) ;
-                        return false ; } }
-                else  {
-                    $logging->log("Unable to find $path", "AutopilotDSL") ; } } }
+                        return false ;
+                    }
+                } else {
+                    $logging->log("Unable to find $path", "AutopilotDSL") ;
+                }
+            }
+        }
 
         $logging->log("No more paths to attempt to load", "Autopilot") ;
         $logging->log("Unable to find Default Autopilot Class", "Autopilot", LOG_FAILURE_EXIT_CODE) ;
         return false ;
     }
 
-    protected function apLoader($autoPilotFileName, $params) {
+    protected function apLoader($autoPilotFileName, $params)
+    {
         $loggingFactory = new \Model\Logging();
         $logging = $loggingFactory->getModel($params);
 
@@ -97,19 +112,22 @@ class Autopilot extends Base {
         $logging->log("Looking for Default Autopilot Class", "Autopilot") ;
         if (class_exists('\Core\AutoPilotConfigured')) {
             $autoPilot = new \Core\AutoPilotConfigured($params) ;
-            return $autoPilot ; }
+            return $autoPilot ;
+        }
 
-        $bn = basename( $autoPilotFileName ) ;
+        $bn = basename($autoPilotFileName) ;
         $fname = str_replace(".php", "", $bn);
         $c2c = '\Core\\'.$fname;
 
         if ($fname != "Autopilot" && $fname != "autopilot" && class_exists($c2c)) {
             $autoPilot = new $c2c($params) ;
-            return $autoPilot; }
+            return $autoPilot;
+        }
         return false ;
     }
 
-    private function loadDSLAutoPilot($filename, $pageVars){
+    private function loadDSLAutoPilot($filename, $pageVars)
+    {
         $dslModel = $this->getModelAndCheckDependencies("AutopilotDSL", $pageVars) ;
         $autoPilotReturn = $dslModel->loopOurDSLFile($filename) ;
         $autoPilotData = $this->transformData($autoPilotReturn["steps"]);
@@ -119,15 +137,17 @@ class Autopilot extends Base {
         return $auto ;
     }
 
-    public function transformData($array_to_transform) {
+    public function transformData($array_to_transform)
+    {
         $all_steps = array() ;
         foreach ($array_to_transform as $single_step) {
             if (isset($single_step["params"]) && is_array($single_step["params"])) {
                 $all_steps[] = array( "{$single_step["module"]}" =>
-                array( "{$single_step["action"]}" => $single_step["params"] )) ; }
-            else {
-                $all_steps[] = array( "{$single_step["module"]}" => array( "{$single_step["action"]}")) ; } }
+                array( "{$single_step["action"]}" => $single_step["params"] )) ;
+            } else {
+                $all_steps[] = array( "{$single_step["module"]}" => array( "{$single_step["action"]}")) ;
+            }
+        }
         return $all_steps ;
     }
-
 }

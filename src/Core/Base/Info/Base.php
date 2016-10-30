@@ -1,38 +1,44 @@
 <?php
 
-Namespace Info;
+namespace Info;
 
-class Base {
+class Base
+{
 
     public $hidden ;
 
     public $name ;
 
-    public function __construct() {
+    public function __construct()
+    {
     }
 
     // PTConfigureBase specifies these
-    public function routesAvailable() {
+    public function routesAvailable()
+    {
         return array();
     }
 
-    public function routeAliases() {
+    public function routeAliases()
+    {
         return array();
     }
 
-    public function dependencies() {
+    public function dependencies()
+    {
         return array();
     }
 
-    public function groups() {
+    public function groups()
+    {
         return array();
     }
 
-    public function helpDefinition() {
-      $help = <<<"HELPDATA"
+    public function helpDefinition()
+    {
+        $help = <<<"HELPDATA"
   There is no help defined for this module
 HELPDATA;
-      return $help ;
+        return $help ;
     }
-
 }

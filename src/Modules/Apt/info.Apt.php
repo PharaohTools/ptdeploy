@@ -1,34 +1,40 @@
 <?php
 
-Namespace Info;
+namespace Info;
 
-class AptInfo extends PTConfigureBase {
+class AptInfo extends PTConfigureBase
+{
 
     public $hidden = false;
 
     public $name = "Add, Remove or Modify Apts";
 
-    public function __construct() {
-      parent::__construct();
+    public function __construct()
+    {
+        parent::__construct();
     }
 
-    public function routesAvailable() {
+    public function routesAvailable()
+    {
         // return array( "Apt" =>  array_merge(parent::routesAvailable(), array() ) );
         return array( "Apt" =>  array_merge(
             array("help", "status", "pkg-install", "pkg-ensure", "pkg-remove", "update")
         ) );
     }
 
-    public function routeAliases() {
+    public function routeAliases()
+    {
         return array("apt"=>"Apt");
     }
 
-    public function packagerName() {
+    public function packagerName()
+    {
         return "Apt";
     }
 
-    public function helpDefinition() {
-      $help = <<<"HELPDATA"
+    public function helpDefinition()
+    {
+        $help = <<<"HELPDATA"
   This module allows you to modify create or modify apts
 
   Apt, apt
@@ -62,7 +68,6 @@ class AptInfo extends PTConfigureBase {
         example: ptconfigure apt remove-from-group --aptname="somename" --groupname="somegroupname"
 
 HELPDATA;
-      return $help ;
+        return $help ;
     }
-
 }

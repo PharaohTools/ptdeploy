@@ -18,19 +18,22 @@ if (in_array(PHP_OS, array("Windows", "WINNT"))) {
     define('PFILESDIR', $sd."\\PharaohTools\\") ;
     define('PTCCOMM', PFILESDIR.'ptconfigure.cmd"') ;
     define('PTBCOMM', PFILESDIR.'ptbuild.cmd"') ;
-    define('PTDCOMM',  PFILESDIR."ptdeploy.cmd") ;
-    define('PTVCOMM',  PFILESDIR."ptvirtualize.cmd") ;
-    define('PTTRCOMM',  PFILESDIR."pttrack.cmd") ;
-    define('PTTECOMM',  PFILESDIR."pttest.cmd") ;
+    define('PTDCOMM', PFILESDIR."ptdeploy.cmd") ;
+    define('PTVCOMM', PFILESDIR."ptvirtualize.cmd") ;
+    define('PTTRCOMM', PFILESDIR."pttrack.cmd") ;
+    define('PTTECOMM', PFILESDIR."pttest.cmd") ;
     define('BOXDIR', $sd.'\\PharaohTools\boxes') ;
     define('PIPEDIR', $sd.'\\PharaohTools\pipes'.'\\') ;
     define("DS", "\\");
-    define("BASE_TEMP_DIR", getenv("SystemDrive").'\Temp\\'); }
-else if (in_array(PHP_OS, array("Linux", "Solaris", "FreeBSD", "OpenBSD", "Darwin"))) {
+    define("BASE_TEMP_DIR", getenv("SystemDrive").'\Temp\\');
+} elseif (in_array(PHP_OS, array("Linux", "Solaris", "FreeBSD", "OpenBSD", "Darwin"))) {
     $uname = exec('whoami');
     $isAdmin = ($uname == "root") ? true : false ;
-    if ($isAdmin == true) { define('SUDOPREFIX', ""); }
-    else { define('SUDOPREFIX', "sudo "); }
+    if ($isAdmin == true) {
+        define('SUDOPREFIX', "");
+    } else {
+        define('SUDOPREFIX', "sudo ");
+    }
     define('VBOXMGCOMM', "vboxmanage ") ;
     define('PFILESDIR', "/opt/") ;
     define('PTCCOMM', "ptconfigure ") ;
@@ -42,7 +45,8 @@ else if (in_array(PHP_OS, array("Linux", "Solaris", "FreeBSD", "OpenBSD", "Darwi
     define("DS", "/");
     define("BASE_TEMP_DIR", '/tmp/');
     define('BOXDIR', '/ptvirtualize/boxes'.'\\') ;
-    define('PIPEDIR', '/opt/ptbuild/pipes') ; }
+    define('PIPEDIR', '/opt/ptbuild/pipes') ;
+}
 
 // LOG LEVELS
 define('LOG_FAILURE_EXIT_CODE', 1) ;

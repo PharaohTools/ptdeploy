@@ -1,42 +1,51 @@
 <?php
 
-Namespace Info;
+namespace Info;
 
-class JoomlaInfo extends Base {
+class JoomlaInfo extends Base
+{
 
     public $hidden = false;
 
     public $name = "Joomla - Integration and Templates for Joomla";
 
-    public function _construct() {
-      parent::__construct();
+    public function _construct()
+    {
+        parent::__construct();
     }
 
-    public function routesAvailable() {
-        return array( "Joomla" => array_merge(parent::routesAvailable(), array() ) );
+    public function routesAvailable()
+    {
+        return array( "Joomla" => array_merge(parent::routesAvailable(), array()) );
     }
 
-    public function routeAliases() {
+    public function routeAliases()
+    {
         return array( "joomla"=>"Joomla");
     }
 
-    public function builderfyActions() {
+    public function builderfyActions()
+    {
         return array( "joomla" );
     }
 
-    public function dapperfyActions() {
+    public function dapperfyActions()
+    {
         return array( "joomla", "joomla15", "joomla30", "joomla30-ptvirtualize", "joomla-ptvirtualize" );
     }
 
-    public function dbConfigureActions() {
+    public function dbConfigureActions()
+    {
         return array( "joomla30-conf", "joomla15-conf", "joomla30-reset", "joomla15-reset" );
     }
 
-    public function dbInstallActions() {
+    public function dbInstallActions()
+    {
         return array( "joomla-save" );
     }
 
-    public function helpDefinitions() {
+    public function helpDefinitions()
+    {
         return array(
             "Builderfy"=>$this->builderfyHelpDefinition(),
             "Dapperfy"=>$this->dapperfyHelpDefinition(),
@@ -44,7 +53,8 @@ class JoomlaInfo extends Base {
             "DBInstall"=>$this->dbInstallHelpDefinition());
     }
 
-    public function helpDefinition() {
+    public function helpDefinition()
+    {
         $help = <<<"HELPDATA"
   This module is a Default one, and provides integration for Joomla websites. It has tailored Builderfy and Dapperfy
   Autopilots and also provides Joomla Database Configuration for the DBConfigure Module.
@@ -67,7 +77,8 @@ HELPDATA;
         return $help ;
     }
 
-    public function builderfyHelpDefinition() {
+    public function builderfyHelpDefinition()
+    {
         $help = <<<"HELPDATA"
 
 --------------
@@ -87,7 +98,8 @@ HELPDATA;
         return $help ;
     }
 
-    public function dapperfyHelpDefinition() {
+    public function dapperfyHelpDefinition()
+    {
         $help = <<<"HELPDATA"
 
 --------------
@@ -107,7 +119,8 @@ HELPDATA;
         return $help ;
     }
 
-    public function dbConfigureHelpDefinition() {
+    public function dbConfigureHelpDefinition()
+    {
         $help = <<<"HELPDATA"
 
 --------------
@@ -123,7 +136,8 @@ HELPDATA;
         return $help ;
     }
 
-    public function dbInstallHelpDefinition() {
+    public function dbInstallHelpDefinition()
+    {
         $help = <<<"HELPDATA"
 
 --------------
@@ -142,8 +156,4 @@ HELPDATA;
 HELPDATA;
         return $help ;
     }
-
-
-
-
 }

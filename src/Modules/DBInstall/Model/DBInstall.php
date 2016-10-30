@@ -1,7 +1,8 @@
 <?php
 
-Namespace Model;
+namespace Model;
 
-class DBInstall extends BaseModelFactory {
+class DBInstall extends BaseModelFactory
+{
 
 }

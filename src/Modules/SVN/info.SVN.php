@@ -1,27 +1,32 @@
 <?php
 
-Namespace Info;
+namespace Info;
 
-class SVNInfo extends Base {
+class SVNInfo extends Base
+{
 
     public $hidden = false;
 
     public $name = "SVN Source Control Project Checkout/Download Functions";
 
-    public function _construct() {
-      parent::__construct();
+    public function _construct()
+    {
+        parent::__construct();
     }
 
-    public function routesAvailable() {
-      return array( "SVN" => array_merge(parent::routesAvailable(), array("checkout", "co") ) );
+    public function routesAvailable()
+    {
+        return array( "SVN" => array_merge(parent::routesAvailable(), array("checkout", "co")) );
     }
 
-    public function routeAliases() {
-      return array("svn" => "SVN");
+    public function routeAliases()
+    {
+        return array("svn" => "SVN");
     }
 
-    public function helpDefinition() {
-      $help = <<<"HELPDATA"
+    public function helpDefinition()
+    {
+        $help = <<<"HELPDATA"
   This command is part of Default Modules and handles Checkout Functions.
 
   Checkout, checkout, co
@@ -32,7 +37,6 @@ class SVNInfo extends Base {
           example: ptdeploy svn co https://svnhub.com/phpengine/yourmum none {optional branch}
 
 HELPDATA;
-      return $help ;
+        return $help ;
     }
-
 }

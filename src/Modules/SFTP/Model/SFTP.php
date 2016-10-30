@@ -1,7 +1,8 @@
 <?php
 
-Namespace Model;
+namespace Model;
 
-class SFTP extends BaseModelFactory {
+class SFTP extends BaseModelFactory
+{
 
 }

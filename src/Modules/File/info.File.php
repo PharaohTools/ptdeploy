@@ -1,29 +1,34 @@
 <?php
 
-Namespace Info;
+namespace Info;
 
-class FileInfo extends PTConfigureBase {
+class FileInfo extends PTConfigureBase
+{
 
     public $hidden = false;
 
     public $name = "Functions to Modify Files";
 
-    public function __construct() {
-      parent::__construct();
+    public function __construct()
+    {
+        parent::__construct();
     }
 
-    public function routesAvailable() {
+    public function routesAvailable()
+    {
         // return array( "File" =>  array_merge(parent::routesAvailable(), array() ) );
-        return array( "File" =>  array_merge( array("help", "create", "delete", "exists", "should-exist", "append", "should-have-line",
-            "should-not-have-line", "replace-line") ) );
+        return array( "File" =>  array_merge(array("help", "create", "delete", "exists", "should-exist", "append", "should-have-line",
+            "should-not-have-line", "replace-line")) );
     }
 
-    public function routeAliases() {
-      return array("file"=>"File");
+    public function routeAliases()
+    {
+        return array("file"=>"File");
     }
 
-    public function helpDefinition() {
-      $help = <<<"HELPDATA"
+    public function helpDefinition()
+    {
+        $help = <<<"HELPDATA"
   This module allows you to modify files or check their existence
 
   File, file
@@ -65,7 +70,6 @@ class FileInfo extends PTConfigureBase {
 
 
 HELPDATA;
-      return $help ;
+        return $help ;
     }
-
 }

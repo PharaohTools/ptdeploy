@@ -1,8 +1,9 @@
 <?php
 
-Namespace Model;
+namespace Model;
 
-class DapperfyJoomlaAllOS extends DapperfyAllOS {
+class DapperfyJoomlaAllOS extends DapperfyAllOS
+{
 
     // Compatibility
     public $os = array("any") ;
@@ -16,17 +17,22 @@ class DapperfyJoomlaAllOS extends DapperfyAllOS {
 
     public $platform = "joomla30" ;
 
-    public function __construct($params) {
+    public function __construct($params)
+    {
         parent::__construct($params);
     }
 
-    public function askToScreenWhetherToDapperfy() {
-        if (isset($this->params["yes"])) { return true ; }
+    public function askToScreenWhetherToDapperfy()
+    {
+        if (isset($this->params["yes"])) {
+            return true ;
+        }
         $question = 'Dapperfy This for Joomla?';
         return self::askYesOrNo($question, true);
     }
 
-    public function setEnvironmentReplacements() {
+    public function setEnvironmentReplacements()
+    {
 
         /* @todo use some logic to get the value set by parent::setEnvironmentReplacements()
          * and just unset the dap_db_platform var
@@ -47,26 +53,27 @@ class DapperfyJoomlaAllOS extends DapperfyAllOS {
               array("var"=>"dap_db_admin_user_name", "friendly_text"=>"DB Admin User Name"),
               array("var"=>"dap_db_admin_user_pass", "friendly_text"=>"DB Admin User Pass"),
           ) );
-
     }
 
 
-    public function doDapperfy() {
-        $templatesDir1 = str_replace("Joomla", "Dapperfy", dirname(__FILE__) ) ;
-        $templatesDir1 = str_replace("Model", "Templates", $templatesDir1 ) ;
+    public function doDapperfy()
+    {
+        $templatesDir1 = str_replace("Joomla", "Dapperfy", dirname(__FILE__)) ;
+        $templatesDir1 = str_replace("Model", "Templates", $templatesDir1) ;
         $templates1 = scandir($templatesDir1);
 
-        $templatesDir2 = str_replace("Model", "Templates/Dapperfy/".ucfirst($this->platform), dirname(__FILE__) ) ;
+        $templatesDir2 = str_replace("Model", "Templates/Dapperfy/".ucfirst($this->platform), dirname(__FILE__)) ;
         $templates2 = scandir($templatesDir2);
         // $templates = array_merge($templates2, $templates1) ;
         foreach ($this->environments as $environment) {
-
             if (isset($this->params["environment-name"])) {
                 if ($this->params["environment-name"] != $environment["any-app"]["gen_env_name"]) {
                     $tx = "Skipping Environment {$environment["any-app"]["gen_env_name"]} to create files " ;
                     $tx .= "as specified Environment is {$this->params["environment-name"]} \n" ;
                     echo $tx;
-                    continue ; } }
+                    continue ;
+                }
+            }
 
             $defaultReplacements =
                 array(
@@ -77,19 +84,19 @@ class DapperfyJoomlaAllOS extends DapperfyAllOS {
                 ) ;
 
             if (isset($environment["ptdeploy"])) {
-                $replacements = array_merge($defaultReplacements, $environment["ptdeploy"]) ; }
-            else {
-                $replacements = $defaultReplacements ; }
+                $replacements = array_merge($defaultReplacements, $environment["ptdeploy"]) ;
+            } else {
+                $replacements = $defaultReplacements ;
+            }
 
 
             if (!isset($this->params["no-autopilot-creation"])) {
-
                 echo "Standard Dapperfies:\n" ;
                 foreach ($templates1 as $template) {
                     if (!in_array($template, array(".", ".."))) {
                         $templatorFactory = new \Model\Templating();
                         $templator = $templatorFactory->getModel($this->params);
-                        $newFileName = str_replace("environment", $environment["any-app"]["gen_env_name"], $template ) ;
+                        $newFileName = str_replace("environment", $environment["any-app"]["gen_env_name"], $template) ;
                         $autosDir = getcwd().DIRECTORY_SEPARATOR.'build'.DIRECTORY_SEPARATOR.'config'.DIRECTORY_SEPARATOR.
                             'ptdeploy'.DIRECTORY_SEPARATOR.'dapperfy'.DIRECTORY_SEPARATOR.'autopilots'.DIRECTORY_SEPARATOR.
                             'generated';
@@ -97,15 +104,18 @@ class DapperfyJoomlaAllOS extends DapperfyAllOS {
                         $templator->template(
                             file_get_contents($templatesDir1.DIRECTORY_SEPARATOR.$template),
                             $replacements,
-                            $targetLocation );
-                        echo $targetLocation."\n"; } }
+                            $targetLocation
+                        );
+                        echo $targetLocation."\n";
+                    }
+                }
 
                 echo "Joomla Dapperfies:\n" ;
                 foreach ($templates2 as $template) {
                     if (!in_array($template, array(".", ".."))) {
                         $templatorFactory = new \Model\Templating();
                         $templator = $templatorFactory->getModel($this->params);
-                        $newFileName = str_replace("environment", $environment["any-app"]["gen_env_name"], $template ) ;
+                        $newFileName = str_replace("environment", $environment["any-app"]["gen_env_name"], $template) ;
                         $autosDir = getcwd().DIRECTORY_SEPARATOR.'build'.DIRECTORY_SEPARATOR.'config'.DIRECTORY_SEPARATOR.
                             'ptdeploy'.DIRECTORY_SEPARATOR.'dapperfy'.DIRECTORY_SEPARATOR.'autopilots'.DIRECTORY_SEPARATOR.
                             'generated';
@@ -113,11 +123,14 @@ class DapperfyJoomlaAllOS extends DapperfyAllOS {
                         $templator->template(
                             file_get_contents($templatesDir2.DIRECTORY_SEPARATOR.$template),
                             $replacements,
-                            $targetLocation );
-                        echo $targetLocation."\n"; } } }
-
-            else {
-                echo "Skipping creation of autopilot files in environment {$environment["any-app"]["gen_env_name"]} due to no-autopilot-creation parameter.\n" ; } }
-
+                            $targetLocation
+                        );
+                        echo $targetLocation."\n";
+                    }
+                }
+            } else {
+                echo "Skipping creation of autopilot files in environment {$environment["any-app"]["gen_env_name"]} due to no-autopilot-creation parameter.\n" ;
+            }
+        }
     }
 }

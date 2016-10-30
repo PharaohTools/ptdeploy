@@ -1,28 +1,33 @@
 <?php
 
-Namespace Info;
+namespace Info;
 
-class PharaohToolRunnerInfo extends PTConfigureBase {
+class PharaohToolRunnerInfo extends PTConfigureBase
+{
 
     public $hidden = false;
 
     public $name = "PharaohToolRunner Functionality";
 
-    public function _construct() {
-      parent::__construct();
+    public function _construct()
+    {
+        parent::__construct();
     }
 
-    public function routesAvailable() {
-      return array( "PharaohToolRunner" => array_merge(array("help", "run") ) );
+    public function routesAvailable()
+    {
+        return array( "PharaohToolRunner" => array_merge(array("help", "run")) );
     }
 
-    public function routeAliases() {
-      return array("pharaohtoolrunner" => "PharaohToolRunner", "ptrunner" => "PharaohToolRunner",
+    public function routeAliases()
+    {
+        return array("pharaohtoolrunner" => "PharaohToolRunner", "ptrunner" => "PharaohToolRunner",
           "pt-runner" => "PharaohToolRunner");
     }
 
-  public function helpDefinition() {
-      $help = <<<"HELPDATA"
+    public function helpDefinition()
+    {
+        $help = <<<"HELPDATA"
   This module handles Running methods from Other Pharaoh Tools.
 
   PharaohToolRunner, pharaohtoolrunner
@@ -38,7 +43,6 @@ class PharaohToolRunnerInfo extends PTConfigureBase {
                     --params="param1:value1,param2:value2"
 
 HELPDATA;
-      return $help ;
+        return $help ;
     }
-
 }

@@ -1,26 +1,31 @@
 <?php
 
-Namespace Info;
+namespace Info;
 
-class AutopilotInfo extends PTConfigureBase {
+class AutopilotInfo extends PTConfigureBase
+{
 
     public $hidden = false;
 
     public $name = "Autopilot - User Defined Installations";
 
-    public function __construct() {
+    public function __construct()
+    {
         parent::__construct();
     }
 
-    public function routesAvailable() {
-        return array( "Autopilot" =>  array_merge(parent::routesAvailable(), array("install", "execute", "x", "test") ) );
+    public function routesAvailable()
+    {
+        return array( "Autopilot" =>  array_merge(parent::routesAvailable(), array("install", "execute", "x", "test")) );
     }
 
-    public function routeAliases() {
+    public function routeAliases()
+    {
         return array("auto"=>"Autopilot", "autopilot"=>"Autopilot");
     }
 
-    public function helpDefinition() {
+    public function helpDefinition()
+    {
         $help = "This command is part of a default Module and provides you with a method by which you can perform user defined
   executions of any ".PHARAOH_APP." Modules, in any order, and with your own predefined settings.
 
@@ -36,5 +41,4 @@ class AutopilotInfo extends PTConfigureBase {
     example: ".PHARAOH_APP." auto test --af=*path-to-file*";
         return $help ;
     }
-
 }

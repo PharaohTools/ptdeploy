@@ -1,8 +1,9 @@
 <?php
 
-Namespace Model;
+namespace Model;
 
-class PHPSSHUbuntu extends BaseLinuxApp {
+class PHPSSHUbuntu extends BaseLinuxApp
+{
 
     // Compatibility
     public $os = array("Linux") ;
@@ -14,7 +15,8 @@ class PHPSSHUbuntu extends BaseLinuxApp {
     // Model Group
     public $modelGroup = array("Default") ;
 
-    public function __construct($params) {
+    public function __construct($params)
+    {
         parent::__construct($params);
         $this->autopilotDefiner = "PHPSSH";
         $this->installCommands = array(                                                                                          //libssh2-1-dev libssh2-php
@@ -33,7 +35,8 @@ class PHPSSHUbuntu extends BaseLinuxApp {
         $this->initialize();
     }
 
-    public function askStatus() {
+    public function askStatus()
+    {
         $modsTextCmd = SUDOPREFIX.'php -m';
         $modsText = $this->executeAndLoad($modsTextCmd) ;
         $modsToCheck = array("ssh2") ;
@@ -43,8 +46,9 @@ class PHPSSHUbuntu extends BaseLinuxApp {
         foreach ($modsToCheck as $modToCheck) {
             if (!strstr($modsText, $modToCheck)) {
                 $logging->log("PHP Module {$modToCheck} does not exist.") ;
-                $passing = false ; } }
+                $passing = false ;
+            }
+        }
         return $passing ;
     }
-
 }

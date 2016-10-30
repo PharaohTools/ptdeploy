@@ -1,8 +1,9 @@
 <?php
 
-Namespace Model;
+namespace Model;
 
-class ApacheVHostEditorUbuntuModern extends ApacheVHostEditorUbuntuLegacy {
+class ApacheVHostEditorUbuntuModern extends ApacheVHostEditorUbuntuLegacy
+{
 
     // Compatibility
     public $os = array("Linux") ;
@@ -14,21 +15,25 @@ class ApacheVHostEditorUbuntuModern extends ApacheVHostEditorUbuntuLegacy {
     // Model Group
     public $modelGroup = array("Default") ;
 
-    public function __construct($params) {
+    public function __construct($params)
+    {
         parent::__construct($params) ;
     }
 
-    public function enableVHost(){
+    public function enableVHost()
+    {
 
         $this->params["vhe-file-ext"] = $this->askForFileExtension() ;
-        if (isset($this->params["vhe-file-ext"]) && strlen($this->params["vhe-file-ext"])>0 ) {
-            $command = 'a2ensite '.$this->url.$this->params["vhe-file-ext"]; }
-        else {
-            $command = 'a2ensite '.$this->url.".conf" ; }
+        if (isset($this->params["vhe-file-ext"]) && strlen($this->params["vhe-file-ext"])>0) {
+            $command = 'a2ensite '.$this->url.$this->params["vhe-file-ext"];
+        } else {
+            $command = 'a2ensite '.$this->url.".conf" ;
+        }
         return self::executeAndOutput($command, "$command done");
     }
 
-    public function setBalancerVHostTemplates() {
+    public function setBalancerVHostTemplates()
+    {
 
         $clusterName = $this->askForClusterName() ;
         $servers = $this->getServersText() ;
@@ -85,20 +90,22 @@ TEMPLATE2;
             "http" => $template1,
             "http-https" => $template2
         );
-
     }
 
-    protected function askForFileExtension() {
+    protected function askForFileExtension()
+    {
         $loggingFactory = new \Model\Logging();
         $logging = $loggingFactory->getModel($this->params);
         $logging->log("Setting a file extension for Modern Ubuntu (14+)?", $this->getModuleName()) ;
-        if (isset($this->params["vhe-file-ext"])) { return $this->params["vhe-file-ext"] ; }
+        if (isset($this->params["vhe-file-ext"])) {
+            return $this->params["vhe-file-ext"] ;
+        }
         if (isset($this->params["guess"])) {
             $logging->log("Guessing your VHost on Modern Ubuntu (14+) uses a .conf extension", $this->getModuleName()) ;
-            return ".conf" ; }
+            return ".conf" ;
+        }
         $question = 'What File Extension should be used? Enter nothing for None (probably .conf on this system)';
         $input = self::askForInput($question) ;
         return $input ;
     }
-
 }

@@ -1,7 +1,8 @@
 <?php
 
-Namespace Model;
+namespace Model;
 
-class PharaohToolRunner extends BaseModelFactory {
+class PharaohToolRunner extends BaseModelFactory
+{
 
 }

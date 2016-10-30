@@ -1,42 +1,51 @@
 <?php
 
-Namespace Info;
+namespace Info;
 
-class WordpressInfo extends Base {
+class WordpressInfo extends Base
+{
 
     public $hidden = false;
 
     public $name = "Wordpress - Integration and Templates for Wordpress";
 
-    public function _construct() {
-      parent::__construct();
+    public function _construct()
+    {
+        parent::__construct();
     }
 
-    public function routesAvailable() {
-        return array( "Wordpress" => array_merge(parent::routesAvailable(), array() ) );
+    public function routesAvailable()
+    {
+        return array( "Wordpress" => array_merge(parent::routesAvailable(), array()) );
     }
 
-    public function routeAliases() {
+    public function routeAliases()
+    {
         return array( "wordpress"=>"Wordpress");
     }
 
-    public function builderfyActions() {
+    public function builderfyActions()
+    {
         return array( "wordpress" );
     }
 
-    public function dapperfyActions() {
+    public function dapperfyActions()
+    {
         return array( "wordpress");
     }
 
-    public function dbConfigureActions() {
+    public function dbConfigureActions()
+    {
         return array("wordpress-conf", "wordpress-reset");
     }
 
-    public function dbInstallActions() {
+    public function dbInstallActions()
+    {
         return array("wordpress-install", "wp-install");
     }
 
-    public function helpDefinitions() {
+    public function helpDefinitions()
+    {
         return array(
             "Builderfy"=>$this->builderfyHelpDefinition(),
             "Dapperfy"=>$this->dapperfyHelpDefinition(),
@@ -44,7 +53,8 @@ class WordpressInfo extends Base {
             "DBInstall"=>$this->dbInstallHelpDefinition());
     }
 
-    public function helpDefinition() {
+    public function helpDefinition()
+    {
         $help = <<<"HELPDATA"
   This module is a Default one, and provides integration for Wordpress websites. It has tailored Builderfy and Dapperfy
   Autopilots and also provides Wordpress Database Configuration for the DBConfigure Module.
@@ -67,7 +77,8 @@ HELPDATA;
         return $help ;
     }
 
-    public function builderfyHelpDefinition() {
+    public function builderfyHelpDefinition()
+    {
         $help = <<<"HELPDATA"
 
 --------------
@@ -87,7 +98,8 @@ HELPDATA;
         return $help ;
     }
 
-    public function dapperfyHelpDefinition() {
+    public function dapperfyHelpDefinition()
+    {
         $help = <<<"HELPDATA"
 
 --------------
@@ -103,7 +115,8 @@ HELPDATA;
         return $help ;
     }
 
-    public function dbConfigureHelpDefinition() {
+    public function dbConfigureHelpDefinition()
+    {
         $help = <<<"HELPDATA"
 
 --------------
@@ -119,7 +132,8 @@ HELPDATA;
         return $help ;
     }
 
-    public function dbInstallHelpDefinition() {
+    public function dbInstallHelpDefinition()
+    {
         $help = <<<"HELPDATA"
 
 --------------
@@ -134,8 +148,4 @@ HELPDATA;
 HELPDATA;
         return $help ;
     }
-
-
-
-
 }

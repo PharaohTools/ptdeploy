@@ -1,8 +1,9 @@
 <?php
 
-Namespace Model;
+namespace Model;
 
-class FactsRuntimeAnyOS extends FactsAnyOS {
+class FactsRuntimeAnyOS extends FactsAnyOS
+{
 
     // Compatibility
     public $os = array("any") ;
@@ -14,7 +15,8 @@ class FactsRuntimeAnyOS extends FactsAnyOS {
     // Model Group
     public $modelGroup = array("Runtime") ;
 
-    public function getAllAvailableFactNamesAndMethods() {
+    public function getAllAvailableFactNamesAndMethods()
+    {
         $all_fact_names = array(
             "cwd" => "factGetCwd",
             "getcwd" => "factGetCwd",
@@ -23,14 +25,14 @@ class FactsRuntimeAnyOS extends FactsAnyOS {
         return $all_fact_names ;
     }
 
-    public function factGetCwd() {
+    public function factGetCwd()
+    {
         $cwd = getcwd() ;
         return $cwd ;
     }
 
-    public function factGetConstant($const) {
+    public function factGetConstant($const)
+    {
         return constant($const) ;
     }
-
 }
-

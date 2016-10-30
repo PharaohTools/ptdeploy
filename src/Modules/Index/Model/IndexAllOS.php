@@ -1,8 +1,9 @@
 <?php
 
-Namespace Model;
+namespace Model;
 
-class IndexAllOS extends Base {
+class IndexAllOS extends Base
+{
 
     // Compatibility
     public $os = array("any") ;
@@ -14,15 +15,19 @@ class IndexAllOS extends Base {
     // Model Group
     public $modelGroup = array("Default") ;
 
-    public function findModuleNames($params) {
+    public function findModuleNames($params)
+    {
         if (isset($this->params["compatible-only"]) && $this->params["compatible-only"]=="true") {
-            return $this->findOnlyCompatibleModuleNames($params); }
+            return $this->findOnlyCompatibleModuleNames($params);
+        }
         if (isset($this->params["only-compatible"]) && $this->params["only-compatible"]=="true") {
-            return $this->findOnlyCompatibleModuleNames($params); }
+            return $this->findOnlyCompatibleModuleNames($params);
+        }
         return $this->findAllModuleNames() ;
     }
 
-    private function findAllModuleNames() {
+    private function findAllModuleNames()
+    {
         $allInfoObjects = \Core\AutoLoader::getInfoObjects() ;
         $moduleNames = array();
         foreach ($allInfoObjects as $infoObject) {
@@ -31,19 +36,22 @@ class IndexAllOS extends Base {
             $miniRay["command"] = $array_keys[0];
             $miniRay["name"] = $infoObject->name ;
             $miniRay["hidden"] = $infoObject->hidden ;
-            $moduleNames[] = $miniRay; }
+            $moduleNames[] = $miniRay;
+        }
         return $moduleNames;
     }
 
-    private function findOnlyCompatibleModuleNames($params) {
+    private function findOnlyCompatibleModuleNames($params)
+    {
         $allModules = $this->findAllModuleNames() ;
         $controllerBase = new \Controller\Base();
         $errors = $controllerBase->checkForRegisteredModels($params, $allModules) ;
         $compatibleModules = array();
-        foreach($allModules as $oneModule) {
+        foreach ($allModules as $oneModule) {
             if (!in_array($oneModule["command"], $errors)) {
-                $compatibleModules[] = $oneModule ; } }
+                $compatibleModules[] = $oneModule ;
+            }
+        }
         return $compatibleModules;
     }
-
 }

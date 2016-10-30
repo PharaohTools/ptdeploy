@@ -1,34 +1,40 @@
 <?php
 
-Namespace Info;
+namespace Info;
 
-class DapperfyInfo extends Base {
+class DapperfyInfo extends Base
+{
 
     public $hidden = false;
 
     public $name = "PTDeploy Dapperfyer - Automated Application Deployment autopilots for your project";
 
-    public function __construct() {
-      parent::__construct();
+    public function __construct()
+    {
+        parent::__construct();
     }
 
-    public function routesAvailable() {
-      return array( "Dapperfy" =>  array_merge(
-          parent::routesAvailable(),
-          array("create", "standard"),
-          $this->getExtraRoutes()
-      ) );
+    public function routesAvailable()
+    {
+        return array( "Dapperfy" =>  array_merge(
+            parent::routesAvailable(),
+            array("create", "standard"),
+            $this->getExtraRoutes()
+        ) );
     }
 
-    public function routeAliases() {
-      return array("dapperfy"=>"Dapperfy");
+    public function routeAliases()
+    {
+        return array("dapperfy"=>"Dapperfy");
     }
 
-    public function dependencies() {
+    public function dependencies()
+    {
         return array("EnvironmentConfig");
     }
 
-    public function helpDefinition() {
+    public function helpDefinition()
+    {
         $extraHelp = $this->getExtraHelpDefinitions() ;
         $help = <<<"HELPDATA"
   This command is part of a default Module Core and provides you with a method by which you can
@@ -53,7 +59,8 @@ HELPDATA;
         return $help ;
     }
 
-    protected function getExtraHelpDefinitions() {
+    protected function getExtraHelpDefinitions()
+    {
         $extraDefsText = "" ;
         $infos = \Core\AutoLoader::getInfoObjects() ;
         foreach ($infos as $info) {
@@ -62,17 +69,22 @@ HELPDATA;
                 if (in_array("Dapperfy", $defNames)) {
                     $defs = $info->helpDefinitions() ;
                     $thisDef = $defs["Dapperfy"] ;
-                    $extraDefsText .= $thisDef ; } } }
+                    $extraDefsText .= $thisDef ;
+                }
+            }
+        }
         return $extraDefsText ;
     }
 
-    protected function getExtraRoutes() {
+    protected function getExtraRoutes()
+    {
         $extraActions = array() ;
         $infos = \Core\AutoLoader::getInfoObjects() ;
         foreach ($infos as $info) {
             if (method_exists($info, "dapperfyActions")) {
-                $extraActions = array_merge($extraActions, $info->dapperfyActions()); } }
+                $extraActions = array_merge($extraActions, $info->dapperfyActions());
+            }
+        }
         return $extraActions ;
     }
-
 }

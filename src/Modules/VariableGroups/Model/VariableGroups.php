@@ -1,7 +1,8 @@
 <?php
 
-Namespace Model;
+namespace Model;
 
-class VariableGroups extends BaseModelFactory {
+class VariableGroups extends BaseModelFactory
+{
 
 }

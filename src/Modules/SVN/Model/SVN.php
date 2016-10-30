@@ -1,7 +1,8 @@
 <?php
 
-Namespace Model;
+namespace Model;
 
-class SVN extends BaseModelFactory {
+class SVN extends BaseModelFactory
+{
 
 }

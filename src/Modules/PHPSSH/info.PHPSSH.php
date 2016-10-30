@@ -1,27 +1,32 @@
 <?php
 
-Namespace Info;
+namespace Info;
 
-class PHPSSHInfo extends PTConfigureBase {
+class PHPSSHInfo extends PTConfigureBase
+{
 
-  public $hidden = false;
+    public $hidden = false;
 
-  public $name = "PHP SSH - PHP SSH Extension";
+    public $name = "PHP SSH - PHP SSH Extension";
 
-  public function __construct() {
-    parent::__construct();
-  }
+    public function __construct()
+    {
+        parent::__construct();
+    }
 
-  public function routesAvailable() {
-    return array( "PHPSSH" =>  array_merge(parent::routesAvailable(), array("install") ) );
-  }
+    public function routesAvailable()
+    {
+        return array( "PHPSSH" =>  array_merge(parent::routesAvailable(), array("install")) );
+    }
 
-  public function routeAliases() {
-    return array("php-ssh"=>"PHPSSH", "phpssh"=>"PHPSSH");
-  }
+    public function routeAliases()
+    {
+        return array("php-ssh"=>"PHPSSH", "phpssh"=>"PHPSSH");
+    }
 
-  public function helpDefinition() {
-    $help = <<<"HELPDATA"
+    public function helpDefinition()
+    {
+        $help = <<<"HELPDATA"
   This module allows you to install the PHP SSH default Module
 
   PHPSSH, php-ssh, phpssh
@@ -31,7 +36,6 @@ class PHPSSHInfo extends PTConfigureBase {
         example: ptconfigure phpssh install
 
 HELPDATA;
-    return $help ;
-  }
-
+        return $help ;
+    }
 }

@@ -1,30 +1,34 @@
 <?php
 
-Namespace Info;
+namespace Info;
 
-class IndexInfo extends Base {
+class IndexInfo extends Base
+{
 
     public $hidden = true;
 
     public $name = "Index/Home Page";
 
-    public function _construct() {
-      parent::__construct();
+    public function _construct()
+    {
+        parent::__construct();
     }
 
-    public function routesAvailable() {
-      return array( "Index" => array("index") );
+    public function routesAvailable()
+    {
+        return array( "Index" => array("index") );
     }
 
-    public function routeAliases() {
-      return array("index"=>"Index");
+    public function routeAliases()
+    {
+        return array("index"=>"Index");
     }
 
-    public function helpDefinition() {
-      $help = <<<"HELPDATA"
+    public function helpDefinition()
+    {
+        $help = <<<"HELPDATA"
   This command is part of Default Modules - its the default route and only used for help and as an Intro really...
 HELPDATA;
-      return $help ;
+        return $help ;
     }
-
 }

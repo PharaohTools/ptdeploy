@@ -2,7 +2,8 @@
 
 namespace Model;
 
-class RegExp {
+class RegExp
+{
 
     public $regexp;
 
@@ -15,6 +16,4 @@ class RegExp {
     {
         return "RegExp({$this->regexp})";
     }
-
-
 }

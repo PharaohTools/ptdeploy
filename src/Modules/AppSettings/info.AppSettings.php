@@ -1,27 +1,32 @@
 <?php
 
-Namespace Info;
+namespace Info;
 
-class AppSettingsInfo extends Base {
+class AppSettingsInfo extends Base
+{
 
     public $hidden = false;
 
     public $name = "PTDeploy Application Settings";
 
-    public function __construct() {
-      parent::__construct();
+    public function __construct()
+    {
+        parent::__construct();
     }
 
-    public function routesAvailable() {
-      return array( "AppSettings" =>  array_merge(parent::routesAvailable(), array("set", "get", "list", "delete") ) );
+    public function routesAvailable()
+    {
+        return array( "AppSettings" =>  array_merge(parent::routesAvailable(), array("set", "get", "list", "delete")) );
     }
 
-    public function routeAliases() {
-      return array("appsettings"=>"AppSettings");
+    public function routeAliases()
+    {
+        return array("appsettings"=>"AppSettings");
     }
 
-    public function helpDefinition() {
-      $help = <<<"HELPDATA"
+    public function helpDefinition()
+    {
+        $help = <<<"HELPDATA"
   This command is part of Default Modules and provides you  with a method by which you can configure Application Settings.
   You can configure default application settings, ie: mysql admin user, host, pass
 
@@ -44,7 +49,6 @@ class AppSettingsInfo extends Base {
         example: ptdeploy appsettings list
 
 HELPDATA;
-      return $help ;
+        return $help ;
     }
-
 }

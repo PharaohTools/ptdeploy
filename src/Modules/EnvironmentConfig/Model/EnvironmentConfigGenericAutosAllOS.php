@@ -1,8 +1,9 @@
 <?php
 
-Namespace Model;
+namespace Model;
 
-class EnvironmentConfigGenericAutosAllOS extends BaseLinuxApp {
+class EnvironmentConfigGenericAutosAllOS extends BaseLinuxApp
+{
 
     // Compatibility
     public $os = array("any") ;
@@ -23,7 +24,8 @@ class EnvironmentConfigGenericAutosAllOS extends BaseLinuxApp {
             "configure-default" => "performGenericEnvironmentConfig",
         ) ;
 
-    public function __construct($params) {
+    public function __construct($params)
+    {
         parent::__construct($params);
         $this->autopilotDefiner = "EnvConfig";
         $this->programNameMachine = "env-config"; // command and app dir name
@@ -32,13 +34,15 @@ class EnvironmentConfigGenericAutosAllOS extends BaseLinuxApp {
         $this->initialize();
     }
 
-    public function performGenericEnvironmentConfig() {
+    public function performGenericEnvironmentConfig()
+    {
         $this->setDefaultEnvironments();
         $this->chooseDefaultEnvironment();
         return $this->setEnvConfigParamsAndInstall() ;
     }
 
-    protected function setDefaultEnvironments() {
+    protected function setDefaultEnvironments()
+    {
         $this->defaultEnvironments["local"] = array(
             "any-app" => array("gen_env_name" => "default-local", "gen_env_tmp_dir" => "/tmp/"),
             "servers" => array(array("target" => "127.0.0.1", "user" => "any", "password" => "any") ),
@@ -65,24 +69,29 @@ class EnvironmentConfigGenericAutosAllOS extends BaseLinuxApp {
         ) ;
     }
 
-    public function chooseDefaultEnvironment() {
+    public function chooseDefaultEnvironment()
+    {
 
         if (isset($this->params["env-name"])) {
-            $this->params["environment-name"] = $this->params["env-name"] ;}
+            $this->params["environment-name"] = $this->params["env-name"] ;
+        }
 
         if (isset($this->params["envname"])) {
-            $this->params["environment-name"] = $this->params["envname"] ;}
+            $this->params["environment-name"] = $this->params["envname"] ;
+        }
 
         $options = array_keys($this->defaultEnvironments);
         if (isset($this->params["environment-name"]) &&
             in_array($this->params["environment-name"], $options) ) {
             $this->chosenEnvironment = $this->params["environment-name"] ;
-            return; }
+            return;
+        }
         $question = "Pick a default environment name to install:" ;
         $this->chosenEnvironment = self::askForArrayOption($question, $options, true);
     }
 
-    public function setEnvConfigParamsAndInstall() {
+    public function setEnvConfigParamsAndInstall()
+    {
         $envConfNewParams = array(
             "environment-name" => $this->defaultEnvironments[$this->chosenEnvironment]["any-app"]["gen_env_name"] ,
             "tmp-dir" => $this->defaultEnvironments[$this->chosenEnvironment]["any-app"]["gen_env_tmp_dir"],
@@ -95,5 +104,4 @@ class EnvironmentConfigGenericAutosAllOS extends BaseLinuxApp {
         $envConfig = $envConfigFactory->getModel($envConfAllParams);
         return $envConfig->askWhetherToEnvironmentConfig() ;
     }
-
 }

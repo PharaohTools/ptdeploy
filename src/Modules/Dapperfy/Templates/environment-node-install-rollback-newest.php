@@ -7,18 +7,21 @@
  *     ---------------------------    *
  *************************************/
 
-Namespace Core ;
+namespace Core ;
 
-class AutoPilotConfigured extends AutoPilot {
+class AutoPilotConfigured extends AutoPilot
+{
 
     public $steps ;
 
-    public function __construct() {
+    public function __construct()
+    {
         $this->setSteps();
     }
 
     /* Steps */
-    private function setSteps() {
+    private function setSteps()
+    {
 
         $this->steps =
             array(
@@ -35,8 +38,5 @@ class AutoPilotConfigured extends AutoPilot {
 
                 array ( "Logging" => array( "log" =>array( "log-message" => "Our revisioning is done" ), ), ),
             );
-
     }
-
-
 }

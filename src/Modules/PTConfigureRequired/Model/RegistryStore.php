@@ -2,7 +2,8 @@
 
 namespace Model;
 
-class RegistryStore {
+class RegistryStore
+{
 
     // Compatibility
     public $os = array("any") ;
@@ -16,14 +17,16 @@ class RegistryStore {
 
     public static $store ;
 
-    public static function setValue($variable, $value) {
+    public static function setValue($variable, $value)
+    {
         self::$store[$variable] = $value;
     }
 
-    public static function getValue($variable) {
+    public static function getValue($variable)
+    {
         if (isset(self::$store[$variable])) {
-            return self::$store[$variable] ; }
+            return self::$store[$variable] ;
+        }
         return null ;
     }
-
 }

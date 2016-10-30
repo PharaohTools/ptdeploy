@@ -1,28 +1,35 @@
 <?php
 
-Namespace Info;
+namespace Info;
 
-class VersionInfo extends Base {
+class VersionInfo extends Base
+{
 
     public $hidden = false;
 
     public $name = "Versioning Functions";
 
-    public function _construct() {
-      parent::__construct();
+    public function _construct()
+    {
+        parent::__construct();
     }
 
-    public function routesAvailable() {
-      return array( "Version" => array_merge(parent::routesAvailable(),
-        array("cli", "latest", "rollback", "specific") ) );
+    public function routesAvailable()
+    {
+        return array( "Version" => array_merge(
+            parent::routesAvailable(),
+            array("cli", "latest", "rollback", "specific")
+        ) );
     }
 
-    public function routeAliases() {
-      return array("version" => "Version", "vrs" => "Version");
+    public function routeAliases()
+    {
+        return array("version" => "Version", "vrs" => "Version");
     }
 
-    public function helpDefinition() {
-      $help = <<<"HELPDATA"
+    public function helpDefinition()
+    {
+        $help = <<<"HELPDATA"
   This command is part of Default Modules and handles Application Versioning, allowing for rollbacks and the like.
 
   Version, version, vrs
@@ -46,7 +53,6 @@ class VersionInfo extends Base {
           example: ptdeploy version latest --limit=3
 
 HELPDATA;
-      return $help ;
+        return $help ;
     }
-
 }

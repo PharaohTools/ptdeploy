@@ -1,7 +1,8 @@
 <?php
 
-Namespace Model;
+namespace Model;
 
-class HostEditor extends BaseModelFactory {
+class HostEditor extends BaseModelFactory
+{
 
 }

@@ -1,8 +1,9 @@
 <?php
 
-Namespace Model;
+namespace Model;
 
-class ApacheVHostEditorCentos extends ApacheVHostEditorUbuntuLegacy {
+class ApacheVHostEditorCentos extends ApacheVHostEditorUbuntuLegacy
+{
 
     // Compatibility
     public $os = array("Linux") ;
@@ -14,45 +15,62 @@ class ApacheVHostEditorCentos extends ApacheVHostEditorUbuntuLegacy {
     // Model Group
     public $modelGroup = array("Default") ;
 
-    public function __construct($params) {
+    public function __construct($params)
+    {
         parent::__construct($params) ;
     }
 
-    protected function performVHostEnable() {
-        if ( $this->askForEnableVHost() ) {
+    protected function performVHostEnable()
+    {
+        if ($this->askForEnableVHost()) {
             $urlRay = $this->selectVHostInProjectOrFS() ;
             $this->url = $urlRay[0] ;
-            $this->enableVHost(); }
+            $this->enableVHost();
+        }
         return true;
     }
 
-    protected function performVHostDisable(){
-        if ( $this->askForDisableVHost() ) {
+    protected function performVHostDisable()
+    {
+        if ($this->askForDisableVHost()) {
             $this->vHostForDeletion = $this->selectVHostInProjectOrFS();
-            $this->disableVHost(); }
+            $this->disableVHost();
+        }
         return true;
     }
 
-    protected function askForFileExtension() {
-        if (isset($this->params["vhe-file-ext"])) { return $this->params["vhe-file-ext"] ; }
-        if (isset($this->params["guess"])) { return "" ; }
+    protected function askForFileExtension()
+    {
+        if (isset($this->params["vhe-file-ext"])) {
+            return $this->params["vhe-file-ext"] ;
+        }
+        if (isset($this->params["guess"])) {
+            return "" ;
+        }
         $question = 'What File Extension should be used? Enter nothing for None (probably .conf on this system)';
         $input = self::askForInput($question) ;
         return $input ;
     }
 
-    protected function askForVHostDirectory(){
-        if (isset($this->params["vhe-vhost-dir"])) { return $this->params["vhe-vhost-dir"] ; }
+    protected function askForVHostDirectory()
+    {
+        if (isset($this->params["vhe-vhost-dir"])) {
+            return $this->params["vhe-vhost-dir"] ;
+        }
         $question = 'What is your VHost directory?';
-        if ($this->detectRHVHostFolderExistence()) { $question .= ' Found "/etc/httpd/vhosts.d" - Enter nothing to use this';
-            if (isset($this->params["guess"])) { return "/etc/httpd/vhosts.d" ; }
+        if ($this->detectRHVHostFolderExistence()) {
+            $question .= ' Found "/etc/httpd/vhosts.d" - Enter nothing to use this';
+            if (isset($this->params["guess"])) {
+                return "/etc/httpd/vhosts.d" ;
+            }
             $input = self::askForInput($question);
-            return ($input=="") ? "/etc/httpd/vhosts.d" : $input ;  }
+            return ($input=="") ? "/etc/httpd/vhosts.d" : $input ;
+        }
         return self::askForInput($question, true);
     }
 
-    protected function detectRHVHostFolderExistence(){
+    protected function detectRHVHostFolderExistence()
+    {
         return file_exists("/etc/httpd/vhosts.d");
     }
-
 }

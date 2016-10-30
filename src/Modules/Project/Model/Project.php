@@ -1,7 +1,8 @@
 <?php
 
-Namespace Model;
+namespace Model;
 
-class Project extends BaseModelFactory {
+class Project extends BaseModelFactory
+{
 
 }

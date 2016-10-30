@@ -1,8 +1,9 @@
 <?php
 
-Namespace Model;
+namespace Model;
 
-class LoggingAll extends BaseLinuxApp {
+class LoggingAll extends BaseLinuxApp
+{
 
     // Compatibility
     public $os = array("any") ;
@@ -17,7 +18,8 @@ class LoggingAll extends BaseLinuxApp {
     // Model Group
     public static $logMessage = null ;
 
-    public function __construct($params) {
+    public function __construct($params)
+    {
         parent::__construct($params);
         $this->autopilotDefiner = "Logging";
         $this->installCommands = array(
@@ -31,31 +33,41 @@ class LoggingAll extends BaseLinuxApp {
         $this->initialize();
     }
 
-    public function setLogMessage() {
+    public function setLogMessage()
+    {
         if (isset($this->params["log-message"])) {
-            self::$logMessage = $this->params["log-message"] ; }
+            self::$logMessage = $this->params["log-message"] ;
+        }
         if (isset($this->params["message"])) {
-            self::$logMessage = $this->params["message"] ; }
-        else {
-            self::$logMessage = self::askForInput("Enter Log Message", true) ; }
+            self::$logMessage = $this->params["message"] ;
+        } else {
+            self::$logMessage = self::askForInput("Enter Log Message", true) ;
+        }
     }
 
-    public function log($message = null, $source = null, $log_exit_code = null) {
+    public function log($message = null, $source = null, $log_exit_code = null)
+    {
         if (isset($this->params["log-message"])) {
-            self::$logMessage = $this->params["log-message"] ; }
+            self::$logMessage = $this->params["log-message"] ;
+        }
         if (isset($this->params["message"])) {
-            self::$logMessage = $this->params["message"] ; }
+            self::$logMessage = $this->params["message"] ;
+        }
         if (is_null($source) && isset($this->params["source"])) {
-            $source = $this->params["source"] ; }
+            $source = $this->params["source"] ;
+        }
         if (isset(self::$logMessage)) {
-            $message = self::$logMessage ; }
+            $message = self::$logMessage ;
+        }
 
         if (!isset($message) || is_null($message)) {
 //            debug_print_backtrace() ;
-            return true ; }
+            return true ;
+        }
 
         if (!is_null($log_exit_code)) {
-            \Core\BootStrap::setExitCode($log_exit_code) ; }
+            \Core\BootStrap::setExitCode($log_exit_code) ;
+        }
         $stx = (strlen($source)>0) ? "[$source] " : "" ;
         $fullMessage = "[Pharaoh Logging] " . $stx . $message . "\n" ;
 
@@ -64,21 +76,31 @@ class LoggingAll extends BaseLinuxApp {
             (isset($this->params["disable-ansi"]) && $this->params["disable-ansi"] == false)) {
             $disable_ansi = true ;
             $logFactory = new \Model\Logging() ;
-            $colours = $logFactory->getModel($this->params, "Colours") ; }
+            $colours = $logFactory->getModel($this->params, "Colours") ;
+        }
 
         if (!is_null($log_exit_code)) {
-            if ($disable_ansi==false) { $fullMessage = $colours->getColoredString($fullMessage, "red", null) ; }
-            $res = file_put_contents("php://stderr", $fullMessage ); }
-        else {
-            if ($disable_ansi==false) { $fullMessage = $colours->getColoredString($fullMessage, "green", null) ; }
-            $res = file_put_contents("php://stdout", $fullMessage ); }
+            if ($disable_ansi==false) {
+                $fullMessage = $colours->getColoredString($fullMessage, "red", null) ;
+            }
+            $res = file_put_contents("php://stderr", $fullMessage);
+        } else {
+            if ($disable_ansi==false) {
+                $fullMessage = $colours->getColoredString($fullMessage, "green", null) ;
+            }
+            $res = file_put_contents("php://stdout", $fullMessage);
+        }
 
-        if ($res==false) { return false ;}
+        if ($res==false) {
+            return false ;
+        }
         if (isset($this->params["php-log"])) {
             $res = error_log($fullMessage) ;
-            if ($res==false) { return false ;} }
+            if ($res==false) {
+                return false ;
+            }
+        }
         self::$logMessage = null ;
         return true ;
     }
-
 }

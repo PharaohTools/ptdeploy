@@ -1,8 +1,9 @@
 <?php
 
-Namespace Model;
+namespace Model;
 
-class DBConfigureDataWordpress extends Base {
+class DBConfigureDataWordpress extends Base
+{
 
     // Compatibility
     public $os = array("Linux", "Darwin") ;
@@ -22,30 +23,35 @@ class DBConfigureDataWordpress extends Base {
     private $extraConfigFileReplacements ;
     private $extraConfigFiles = array() ; // array('build/config/phpunit/bootstrap.php'); // extra files requiring db config
 
-    public function __construct(){
+    public function __construct()
+    {
         $this->setReplacements();
         $this->setProperties();
         $this->setExtraConfigReplacements();
     }
 
-    public function getProperty($property) {
+    public function getProperty($property)
+    {
         return $this->$property;
     }
 
-    protected function setProperties() {
+    protected function setProperties()
+    {
         $prefix = (isset($this->params["parent-path"])) ? $this->params["parent-path"] : "" ;
         if (strlen($prefix) > 0) {
-            $this->settingsFileLocation = $prefix; }
-        else {
-            $this->settingsFileName = 'src'.DS.'wp-config.php'; }
-
+            $this->settingsFileLocation = $prefix;
+        } else {
+            $this->settingsFileName = 'src'.DS.'wp-config.php';
+        }
     }
 
-    public function __call($var1, $var2){
+    public function __call($var1, $var2)
+    {
         return "" ; // @todo what even is this
     }
 
-    private function setReplacements(){
+    private function setReplacements()
+    {
         $this->settingsFileReplacements = array(
             "DB_NAME" => '  define(\'DB_NAME\', \'****DB NAME****\');',
             'DB_USER' => '  define(\'DB_USER\', \'****DB USER****\');',
@@ -54,7 +60,8 @@ class DBConfigureDataWordpress extends Base {
         );
     }
 
-    private function setExtraConfigReplacements(){
+    private function setExtraConfigReplacements()
+    {
         $this->extraConfigFileReplacements = array(
             '$bootstrapDbName =' => '$bootstrapDbName = "****DB NAME****" ; ',
             '$bootstrapDbUser =' => '$this->dbUser = "****DB USER****" ; ',
@@ -62,5 +69,4 @@ class DBConfigureDataWordpress extends Base {
             '$bootstrapDbHost =' => '$this->dbHost = "****DB HOST****" ; ',
         );
     }
-
 }

@@ -1,27 +1,32 @@
 <?php
 
-Namespace Info;
+namespace Info;
 
-class FactsInfo extends Base {
+class FactsInfo extends Base
+{
 
-  public $hidden = false;
+    public $hidden = false;
 
-  public $name = "Digital Ocean Demonstration Module";
+    public $name = "Digital Ocean Demonstration Module";
 
-  public function __construct() {
-    parent::__construct();
-  }
+    public function __construct()
+    {
+        parent::__construct();
+    }
 
-  public function routesAvailable() {
-    return array( "Facts" =>  array_merge(parent::routesAvailable(), array("install") ) );
-  }
+    public function routesAvailable()
+    {
+        return array( "Facts" =>  array_merge(parent::routesAvailable(), array("install")) );
+    }
 
-  public function routeAliases() {
-    return array("Facts"=>"Facts", "facts"=>"Facts");
-  }
+    public function routeAliases()
+    {
+        return array("Facts"=>"Facts", "facts"=>"Facts");
+    }
 
-  public function helpDefinition() {
-    $help = <<<"HELPDATA"
+    public function helpDefinition()
+    {
+        $help = <<<"HELPDATA"
   This is a dummy Linux module that doesn't execute any commands.
 
   Facts, Facts
@@ -35,7 +40,6 @@ class FactsInfo extends Base {
         example: ptconfigure Facts list
 
 HELPDATA;
-    return $help ;
-  }
-
+        return $help ;
+    }
 }

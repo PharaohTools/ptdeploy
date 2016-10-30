@@ -7,18 +7,21 @@
  *     ---------------------------    *
  *************************************/
 
-Namespace Core ;
+namespace Core ;
 
-class AutoPilotConfigured extends AutoPilot {
+class AutoPilotConfigured extends AutoPilot
+{
 
     public $steps ;
 
-    public function __construct() {
+    public function __construct()
+    {
         $this->setSteps();
     }
 
     /* Steps */
-    private function setSteps() {
+    private function setSteps()
+    {
 
         $this->steps =
             array(
@@ -45,10 +48,10 @@ class AutoPilotConfigured extends AutoPilot {
                     "log-message" => "Invoking Drupal Code, Database Data and Data Configuration on environment <%tpl.php%>env_name</%tpl.php%> complete"
                 ), ) ),
             );
-
     }
 
-    private function setSSHData() {
+    private function setSSHData()
+    {
         $sshData = <<<"SSHDATA"
 cd <%tpl.php%>gen_env_tmp_dir</%tpl.php%>
 sudo ptdeploy autopilot execute <%tpl.php%>env_name</%tpl.php%>-node-install-code-data.php
@@ -56,5 +59,4 @@ sudo rm <%tpl.php%>env_name</%tpl.php%>-node-install-code-data.php
 SSHDATA;
         return $sshData ;
     }
-
 }

@@ -1,7 +1,8 @@
 <?php
 
-Namespace Model;
+namespace Model;
 
-class PHPSSH extends BaseModelFactory {
+class PHPSSH extends BaseModelFactory
+{
 
 }

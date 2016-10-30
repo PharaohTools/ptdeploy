@@ -1,7 +1,8 @@
 <?php
 
-Namespace Model;
+namespace Model;
 
-class Version extends BaseModelFactory {
+class Version extends BaseModelFactory
+{
 
 }

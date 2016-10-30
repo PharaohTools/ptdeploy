@@ -2,7 +2,8 @@
 
 namespace Model ;
 
-class InvokeBashSsh {
+class InvokeBashSsh
+{
 
     // Compatibility
     public $os = array("any");
@@ -14,53 +15,60 @@ class InvokeBashSsh {
     // Model Group
     public $modelGroup = array("DriverBashSSH");
 
-	/**
-	 * @var \Model\InvokeServer
-	 */
-	protected $server;
+    /**
+     * @var \Model\InvokeServer
+     */
+    protected $server;
 
-	/**
-	 * @var string
-	 */
-	protected $connection;
+    /**
+     * @var string
+     */
+    protected $connection;
 
-	protected $commandsPipe;
+    protected $commandsPipe;
 
-	/**
-	 * @param Server $server
-	 */
-	public function setServer($server) {
-		$this->server = $server;
-	}
+    /**
+     * @param Server $server
+     */
+    public function setServer($server)
+    {
+        $this->server = $server;
+    }
 
-	public function connect() {
+    public function connect()
+    {
         if (substr($this->server->password, 0, 4) == 'KS::') {
             $ksf = new SshKeyStore();
             $ks = $ksf->getModel(array("key" => $this->server->password, "guess" => "true")) ;
-            $this->server->password = $ks->findKey() ; }
-		if(file_exists($this->server->password)){
-			$launcher = 'ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -o IdentitiesOnly=yes -i '.escapeshellarg($this->server->password); }
-        else{
-			$launcher = 'sshpass -p '.escapeshellarg($this->server->password).' ssh -o UserKnownHostsFile=/dev/null ' .
-                '-o StrictHostKeyChecking=no -o PubkeyAuthentication=no'; }
-		$this->commandsPipe = tempnam(null, 'ssh');
-		$launcher .= " -T -p {$this->server->port} ";
-		$launcher .= escapeshellarg($this->server->username.'@'.$this->server->host);
-		$pipe = "tail -f {$this->commandsPipe}";
-		if(!pcntl_fork()){
-			$fp = popen("$pipe | $launcher" ,"r");
-			while (!feof($fp)) {
-				echo fgets($fp, 4096); }
-			pclose($fp);
-			exit; }
+            $this->server->password = $ks->findKey() ;
+        }
+        if (file_exists($this->server->password)) {
+            $launcher = 'ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -o IdentitiesOnly=yes -i '.escapeshellarg($this->server->password);
+        } else {
+            $launcher = 'sshpass -p '.escapeshellarg($this->server->password).' ssh -o UserKnownHostsFile=/dev/null ' .
+                '-o StrictHostKeyChecking=no -o PubkeyAuthentication=no';
+        }
+        $this->commandsPipe = tempnam(null, 'ssh');
+        $launcher .= " -T -p {$this->server->port} ";
+        $launcher .= escapeshellarg($this->server->username.'@'.$this->server->host);
+        $pipe = "tail -f {$this->commandsPipe}";
+        if (!pcntl_fork()) {
+            $fp = popen("$pipe | $launcher", "r");
+            while (!feof($fp)) {
+                echo fgets($fp, 4096);
+            }
+            pclose($fp);
+            exit;
+        }
         return true ;
-	}
+    }
 
-	/**
-	 * @param $command
-	 * @return string
-	 */
-	public function exec($command) {
-		file_put_contents($this->commandsPipe, $command.PHP_EOL, FILE_APPEND);
-	}
+    /**
+     * @param $command
+     * @return string
+     */
+    public function exec($command)
+    {
+        file_put_contents($this->commandsPipe, $command.PHP_EOL, FILE_APPEND);
+    }
 }

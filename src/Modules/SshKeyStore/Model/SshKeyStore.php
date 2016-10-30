@@ -1,7 +1,8 @@
 <?php
 
-Namespace Model;
+namespace Model;
 
-class SshKeyStore extends BaseModelFactory {
+class SshKeyStore extends BaseModelFactory
+{
 
 }

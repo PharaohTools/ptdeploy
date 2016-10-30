@@ -1,7 +1,8 @@
 <?php
 
-Namespace Model;
+namespace Model;
 
-class AppSettings extends BaseModelFactory  {
+class AppSettings extends BaseModelFactory
+{
 
 }

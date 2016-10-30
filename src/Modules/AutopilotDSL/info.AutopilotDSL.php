@@ -1,26 +1,31 @@
 <?php
 
-Namespace Info;
+namespace Info;
 
-class AutopilotDSLInfo extends PTConfigureBase {
+class AutopilotDSLInfo extends PTConfigureBase
+{
 
     public $hidden = false;
 
     public $name = "Autopilot DSL - A Simple Syntax for Autopilots";
 
-    public function __construct() {
+    public function __construct()
+    {
         parent::__construct();
     }
 
-    public function routesAvailable() {
+    public function routesAvailable()
+    {
         return array( "AutopilotDSL" => array("help") );
     }
 
-    public function routeAliases() {
+    public function routeAliases()
+    {
         return array("auto-dsl"=>"AutopilotDSL", "autopilot-dsl"=>"AutopilotDSL");
     }
 
-    public function helpDefinition() {
+    public function helpDefinition()
+    {
         $help = <<<"HELPDATA"
   This DSL for Autopilots allows for your Autopilots to be defined in a highly streamlined syntax.
 
@@ -41,5 +46,4 @@ Logging do log
 HELPDATA;
         return $help ;
     }
-
 }

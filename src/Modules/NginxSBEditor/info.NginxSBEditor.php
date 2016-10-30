@@ -1,27 +1,34 @@
 <?php
 
-Namespace Info;
+namespace Info;
 
-class NginxSBEditorInfo extends Base {
+class NginxSBEditorInfo extends Base
+{
 
     public $hidden = false;
 
     public $name = "Nginx Server Block Functions";
 
-    public function _construct() {
+    public function _construct()
+    {
         parent::__construct();
     }
 
-    public function routesAvailable() {
+    public function routesAvailable()
+    {
         return array( "NginxSBEditor" => array_merge(
-            parent::routesAvailable(), array("add", "rm", "remove", "list", "enable", "en", "disable", "dis") ) );
+            parent::routesAvailable(),
+            array("add", "rm", "remove", "list", "enable", "en", "disable", "dis")
+        ) );
     }
 
-    public function routeAliases() {
+    public function routeAliases()
+    {
         return array("nginx-sb-editor"=>"NginxSBEditor", "nginxsbe"=>"NginxSBEditor");
     }
 
-    public function helpDefinition() {
+    public function helpDefinition()
+    {
         $help = <<<"HELPDATA"
   This command is part of Default Modules and handles Nginx ServerBlocks Functions.
 
@@ -51,11 +58,12 @@ class NginxSBEditorInfo extends Base {
           example: ptdeploy nginxsbe disable
 
 HELPDATA;
-      return $help ;
+        return $help ;
     }
 
 
-    public function generatorCodeInjection($step=null) {
+    public function generatorCodeInjection($step = null)
+    {
         $inject = <<<'INJECT'
 //
 // // This function will set the ServerBlock template for your Server Block
@@ -63,16 +71,16 @@ HELPDATA;
 // private function calculateServerBlockDocRoot() {
         $serverAlias = str_replace("www", "*", $this->serverBlockEditorAdditionURL);
 INJECT;
-$inject .= "\n".'//   $this->steps['.$step.']["NginxSBEditor"]["serverBlockEditorAdditionDocRoot"] = getcwd();'."\n";
-$inject .= <<<'INJECT'
+        $inject .= "\n".'//   $this->steps['.$step.']["NginxSBEditor"]["serverBlockEditorAdditionDocRoot"] = getcwd();'."\n";
+        $inject .= <<<'INJECT'
 // }
 //
 // // This function will set the ServerBlock template for your Server Block
 // // You need to call this from your constructor
 // private function setServerBlockTemplate() {
 INJECT;
-    $inject .= "\n".'//   $this->steps['.$step.']["NginxSBEditor"]["serverBlockEditorAdditionTemplateData"] = '."\n";
-    $inject .= <<<'INJECT'
+        $inject .= "\n".'//   $this->steps['.$step.']["NginxSBEditor"]["serverBlockEditorAdditionTemplateData"] = '."\n";
+        $inject .= <<<'INJECT'
 //  <<<'TEMPLATE'
 //  NameserverBlock ****IP ADDRESS****:80
 //  <serverBlock ****IP ADDRESS****:80>
@@ -112,7 +120,5 @@ INJECT;
 //
 INJECT;
         return $inject ;
-
     }
-
 }

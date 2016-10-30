@@ -1,7 +1,8 @@
 <?php
 
-Namespace Model;
+namespace Model;
 
-class NginxControl extends BaseModelFactory {
+class NginxControl extends BaseModelFactory
+{
 
 }

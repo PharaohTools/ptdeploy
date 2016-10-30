@@ -1,31 +1,36 @@
 <?php
 
-Namespace Info;
+namespace Info;
 
-class ApacheVHostEditorInfo extends Base {
+class ApacheVHostEditorInfo extends Base
+{
 
     public $hidden = false;
 
     public $name = "Apache Virtual Host Functions";
 
-    public function _construct() {
-      parent::__construct();
+    public function _construct()
+    {
+        parent::__construct();
     }
 
-    public function routesAvailable() {
-      return array( "ApacheVHostEditor" => array_merge(parent::routesAvailable(), array("add", "add-balancer", "rm",
+    public function routesAvailable()
+    {
+        return array( "ApacheVHostEditor" => array_merge(parent::routesAvailable(), array("add", "add-balancer", "rm",
           "remove", "list", "enable", "en", "disable", "dis", "disable-default", "dis-default", "enable-default",
-          "en-default") ) );
+          "en-default")) );
     }
 
-    public function routeAliases() {
-      return array("vhe"=>"ApacheVHostEditor", "vhosted"=>"ApacheVHostEditor", "vhed"=>"ApacheVHostEditor",
+    public function routeAliases()
+    {
+        return array("vhe"=>"ApacheVHostEditor", "vhosted"=>"ApacheVHostEditor", "vhed"=>"ApacheVHostEditor",
           "vhosteditor"=>"ApacheVHostEditor", "VHostEditor"=>"ApacheVHostEditor",  "apachevhosteditor"=>"ApacheVHostEditor");
     }
 
     // @todo finish this
-    public function helpDefinition() {
-      $help = <<<"HELPDATA"
+    public function helpDefinition()
+    {
+        $help = <<<"HELPDATA"
   This command is part of Default Modules and handles Apache VHosts Functions.
 
   ApacheVHostEditor, apachevhosteditor, vhosteditor, vhe, vhosted
@@ -84,8 +89,6 @@ class ApacheVHostEditorInfo extends Base {
           example: ptdeploy vhe disable-default -yg
 
 HELPDATA;
-      return $help ;
+        return $help ;
     }
-
-
 }

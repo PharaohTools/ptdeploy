@@ -1,7 +1,8 @@
 <?php
 
-Namespace Model;
+namespace Model;
 
-class Logging extends BaseModelFactory {
+class Logging extends BaseModelFactory
+{
 
 }

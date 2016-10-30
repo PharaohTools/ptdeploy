@@ -1,42 +1,48 @@
 <?php
 
-Namespace Model;
+namespace Model;
 
-class SystemDetectionFactory {
+class SystemDetectionFactory
+{
 
-    public static function getCompatibleModel($module, $modelGroup, $modelParams) {
+    public static function getCompatibleModel($module, $modelGroup, $modelParams)
+    {
         $modelsInModuleGroup = self::getModelsInModuleGroup($module, $modelGroup, $modelParams) ;
         $mostCompatibleModel = self::getCompatibleModelFromAllInGroup($modelsInModuleGroup) ;
         return $mostCompatibleModel ;
     }
 
-    public static function getModelsInModuleGroup($module, $modelGroup, $modelParams) {
+    public static function getModelsInModuleGroup($module, $modelGroup, $modelParams)
+    {
         $allModelsOfModule = \Core\AutoLoader::getAllModelsOfModule($module, $modelParams);
         $groupModels = array() ;
         foreach ($allModelsOfModule as $modelOfModule) {
-            if ( (isset($modelOfModule->modelGroup) && in_array($modelGroup, $modelOfModule->modelGroup) ) ||
+            if ((isset($modelOfModule->modelGroup) && in_array($modelGroup, $modelOfModule->modelGroup) ) ||
                 (isset($modelOfModule->modelGroup) && in_array("any", $modelOfModule->modelGroup) ) ) {
-                $groupModels[] = $modelOfModule ; } }
+                $groupModels[] = $modelOfModule ;
+            }
+        }
         return $groupModels;
     }
 
-    public static function getCompatibleModelFromAllInGroup($models) {
+    public static function getCompatibleModelFromAllInGroup($models)
+    {
         include_once("SystemDetectionAllOS.php");
         $system = new \Model\SystemDetectionAllOS();
-        foreach($models as $model) {
-            if (
-                (in_array($system->os, $model->os) || in_array("any", $model->os)) &&
+        foreach ($models as $model) {
+            if ((in_array($system->os, $model->os) || in_array("any", $model->os)) &&
                 (in_array($system->linuxType, $model->linuxType) || in_array("any", $model->linuxType)) &&
                 (in_array($system->distro, $model->distros) || in_array("any", $model->distros)) &&
                 (self::versionsAreCompatible($system->version, $model->versions) || in_array("any", $model->versions)) &&
                 (in_array($system->architecture, $model->architectures) || in_array("any", $model->architectures))
             ) {
                 // if the everything matches, we have an exact match so return it
-                return $model; } }
+                return $model;
+            }
+        }
 
-        foreach($models as $model) {
-            if (
-                (in_array($system->os, $model->os) || in_array("any", $model->os)) &&
+        foreach ($models as $model) {
+            if ((in_array($system->os, $model->os) || in_array("any", $model->os)) &&
                 (in_array($system->linuxType, $model->linuxType) || in_array("any", $model->linuxType)) &&
                 (in_array($system->distro, $model->distros) || in_array("any", $model->distros)) &&
                 (in_array($system->architecture, $model->architectures) || in_array("any", $model->architectures))
@@ -46,11 +52,12 @@ class SystemDetectionFactory {
                 $message ="PTConfigure Warning!: Model ".get_class($model)." may not work as expected, since it " .
                     "doesn't specify exact OS version match";
                 // error_log($message);
-                return $model; } }
+                return $model;
+            }
+        }
 
-        foreach($models as $model) {
-            if (
-                (in_array($system->os, $model->os) || in_array("any", $model->os)) &&
+        foreach ($models as $model) {
+            if ((in_array($system->os, $model->os) || in_array("any", $model->os)) &&
                 (in_array($system->linuxType, $model->linuxType) || in_array("any", $model->linuxType)) &&
                 (in_array($system->architecture, $model->architectures) || in_array("any", $model->architectures))
             ) {
@@ -59,24 +66,30 @@ class SystemDetectionFactory {
                 $message = "PTConfigure Urgent Warning!: Model ".get_class($model)." may not work as expected, since " .
                     "it doesn't specify matching OS version or distro match";
                 // error_log($message);
-                return $model; } }
+                return $model;
+            }
+        }
         return null ;
     }
 
-    private static function versionsAreCompatible($systemVersion, $modelVersions) {
+    private static function versionsAreCompatible($systemVersion, $modelVersions)
+    {
         $matches = array() ;
         $svo = (is_object($systemVersion)) ? $systemVersion : new \Model\SoftwareVersion($systemVersion) ;
-        for ($i=0; $i<count($modelVersions) ; $i++) {
+        for ($i=0; $i<count($modelVersions); $i++) {
             // if string literal version
             if (is_string($modelVersions[$i])) {
                 if (is_object($svo) && $svo->shortVersionNumber == $modelVersions[$i]) {
-                    return true ; } }
+                    return true ;
+                }
+            }
             // if conditions
             if (is_array($modelVersions[$i])) {
                 $svo->setCondition($modelVersions[$i][0], $modelVersions[$i][1]) ;
-                $matches[] = $svo->isCompatible() ; } }
+                $matches[] = $svo->isCompatible() ;
+            }
+        }
         $res = (in_array(false, $matches)) ? false : true ;
         return $res ;
     }
-
 }

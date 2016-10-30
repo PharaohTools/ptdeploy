@@ -7,20 +7,23 @@
 *     ---------------------------    *
 *************************************/
 
-Namespace Core ;
+namespace Core ;
 
-class AutoPilotConfigured extends AutoPilot {
+class AutoPilotConfigured extends AutoPilot
+{
 
     public $steps ;
 
-    public function __construct() {
-	    $this->setSteps();
+    public function __construct()
+    {
+        $this->setSteps();
     }
 
-    protected function setSteps() {
+    protected function setSteps()
+    {
 
-	    $this->steps =
-	      array(
+        $this->steps =
+          array(
 
               array ( "Logging" => array( "log" => array( "log-message" => "Starting PTDeploy Application Configuration of Virtual Machine Host"), ) ),
 
@@ -32,14 +35,15 @@ class AutoPilotConfigured extends AutoPilot {
 
               array ( "Logging" => array( "log" => array( "log-message" => "PTDeploy Application Configuration of Virtual Machine Host Complete", ), ), ),
 
-	      );
+          );
+    }
 
-	  }
-
-    protected function getCurrentTargetFromPapyrus() {
+    protected function getCurrentTargetFromPapyrus()
+    {
         $pf = \Model\AppConfig::getProjectVariable("ptvirtualize-box", true) ;
         if (is_array($pf) && count($pf)>0) {
-            return $pf["target"] ; }
+            return $pf["target"] ;
+        }
         return null ;
     }
 }

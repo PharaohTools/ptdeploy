@@ -1,7 +1,8 @@
 <?php
 
-Namespace Model;
+namespace Model;
 
-class Drupal extends BaseModelFactory {
+class Drupal extends BaseModelFactory
+{
 
 }

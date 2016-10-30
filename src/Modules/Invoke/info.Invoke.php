@@ -1,27 +1,32 @@
 <?php
 
-Namespace Info;
+namespace Info;
 
-class InvokeInfo extends PTConfigureBase {
+class InvokeInfo extends PTConfigureBase
+{
 
     public $hidden = false;
 
     public $name = "SSH Invocation Functions";
 
-    public function _construct() {
-      parent::__construct();
+    public function _construct()
+    {
+        parent::__construct();
     }
 
-    public function routesAvailable() {
-      return array( "Invoke" => array_merge(parent::routesAvailable(), array("cli", "script", "data") ) );
+    public function routesAvailable()
+    {
+        return array( "Invoke" => array_merge(parent::routesAvailable(), array("cli", "script", "data")) );
     }
 
-    public function routeAliases() {
-      return array("invoke" => "Invoke", "inv" => "Invoke");
+    public function routeAliases()
+    {
+        return array("invoke" => "Invoke", "inv" => "Invoke");
     }
 
-  public function helpDefinition() {
-      $help = '
+    public function helpDefinition()
+    {
+        $help = '
   This module is part of the Default Distribution and handles SSH Connection Functions.
 
   Invoke, invoke, inv
@@ -50,7 +55,6 @@ class InvokeInfo extends PTConfigureBase {
             --timeout=30 # will guess 30 seconds to wait for connections
 
 ';
-      return $help ;
+        return $help ;
     }
-
 }

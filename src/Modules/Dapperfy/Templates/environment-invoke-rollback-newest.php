@@ -7,18 +7,21 @@
 *     ---------------------------    *
 *************************************/
 
-Namespace Core ;
+namespace Core ;
 
-class AutoPilotConfigured extends AutoPilot {
+class AutoPilotConfigured extends AutoPilot
+{
 
     public $steps ;
 
-    public function __construct() {
+    public function __construct()
+    {
         $this->setSteps();
     }
 
     /* Steps */
-    private function setSteps() {
+    private function setSteps()
+    {
 
         $this->steps =
         array(
@@ -46,10 +49,10 @@ class AutoPilotConfigured extends AutoPilot {
                 "log-message" => "Invoking Rollback to newest Version on environment <%tpl.php%>env_name</%tpl.php%> complete"
             ), ) ),
         );
-
     }
 
-    private function setSSHData() {
+    private function setSSHData()
+    {
         $sshData = <<<"SSHDATA"
 cd <%tpl.php%>gen_env_tmp_dir</%tpl.php%>
 sudo ptdeploy autopilot execute --autopilot-file="<%tpl.php%>env_name</%tpl.php%>-node-install-rollback-newest.php"
@@ -57,5 +60,4 @@ sudo rm <%tpl.php%>env_name</%tpl.php%>-node-install-rollback-newest.php
 SSHDATA;
         return $sshData ;
     }
-
 }

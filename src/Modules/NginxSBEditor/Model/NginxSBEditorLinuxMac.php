@@ -1,8 +1,9 @@
 <?php
 
-Namespace Model;
+namespace Model;
 
-class NginxSBEditorLinuxMac extends Base {
+class NginxSBEditorLinuxMac extends Base
+{
 
     // Compatibility
     public $os = array("Linux", "Darwin") ;
@@ -26,269 +27,349 @@ class NginxSBEditorLinuxMac extends Base {
     private $ServerBlockTemplateDir;
     private $ServerBlockDefaultTemplates;
 
-    public function __construct($params) {
+    public function __construct($params)
+    {
         parent::__construct($params);
         $this->setServerBlockDefaultTemplates();
     }
 
-    public function askWhetherToListServerBlock() {
+    public function askWhetherToListServerBlock()
+    {
         return $this->performServerBlockListing();
     }
 
-    public function askWhetherToCreateServerBlock() {
+    public function askWhetherToCreateServerBlock()
+    {
         return $this->performServerBlockCreation();
     }
 
-    public function askWhetherToDeleteServerBlock() {
+    public function askWhetherToDeleteServerBlock()
+    {
         return $this->performServerBlockDeletion();
     }
 
-    public function askWhetherToEnableServerBlock() {
+    public function askWhetherToEnableServerBlock()
+    {
         return $this->performServerBlockEnable();
     }
 
-    public function askWhetherToDisableServerBlock() {
+    public function askWhetherToDisableServerBlock()
+    {
         return $this->performServerBlockDisable();
     }
 
-    private function performServerBlockListing() {
+    private function performServerBlockListing()
+    {
         $this->ServerBlockDir = $this->askForServerBlockDirectory();
         $this->ServerBlockEnabledDir = $this->askForServerBlockEnabledDirectory();
         $this->listAllServerBlocks();
         return true;
     }
 
-    private function performServerBlockCreation() {
-        if ( !$this->askForServerBlockEntry() ) { return false; }
+    private function performServerBlockCreation()
+    {
+        if (!$this->askForServerBlockEntry()) {
+            return false;
+        }
         $this->docRoot = $this->askForDocRoot();
         $this->url = $this->askForHostURL();
         $this->ServerBlockIp = $this->askForServerBlockIp();
         $this->ServerBlockTemplateDir = $this->askForServerBlockTemplateDirectory();
         $this->selectServerBlockTemplate();
         $this->processServerBlock();
-        if ( !$this->checkServerBlockOkay() ) { return false; }
+        if (!$this->checkServerBlockOkay()) {
+            return false;
+        }
         $this->ServerBlockDir = $this->askForServerBlockDirectory();
         $this->attemptServerBlockWrite();
-        if ( $this->askForEnableServerBlock() ) {
+        if ($this->askForEnableServerBlock()) {
             $this->ServerBlockEnabledDir = $this->askForServerBlockEnabledDirectory();
-            $this->enableServerBlock(); }
+            $this->enableServerBlock();
+        }
         return true;
     }
 
-    private function performServerBlockDeletion(){
-        if ( !$this->askForServerBlockDeletion() ) { return false; }
+    private function performServerBlockDeletion()
+    {
+        if (!$this->askForServerBlockDeletion()) {
+            return false;
+        }
         echo "Deleting ServerBlock\n";
         $this->ServerBlockDir = $this->askForServerBlockDirectory();
         $this->ServerBlockForDeletion = $this->selectServerBlockInProjectOrFS();
-        if ( self::areYouSure("Definitely delete ServerBlock?") == false ) {
-            return false; }
-        if ( $this->askForDisableServerBlock() ) {
+        if (self::areYouSure("Definitely delete ServerBlock?") == false) {
+            return false;
+        }
+        if ($this->askForDisableServerBlock()) {
             $this->ServerBlockEnabledDir = $this->askForServerBlockEnabledDirectory();
-            $this->disableServerBlock(); }
+            $this->disableServerBlock();
+        }
         $this->attemptServerBlockDeletion();
         return true;
     }
 
-    private function performServerBlockEnable() {
-        if ( $this->askForEnableServerBlock() ) {
+    private function performServerBlockEnable()
+    {
+        if ($this->askForEnableServerBlock()) {
             $this->ServerBlockEnabledDir = $this->askForServerBlockEnabledDirectory();
             $urlRay = $this->selectServerBlockInProjectOrFS() ;
             $this->url = $urlRay[0] ;
-            $this->enableServerBlock(); }
+            $this->enableServerBlock();
+        }
         return true;
     }
 
-    private function performServerBlockDisable(){
-        if ( $this->askForDisableServerBlock() ) {
+    private function performServerBlockDisable()
+    {
+        if ($this->askForDisableServerBlock()) {
             $this->ServerBlockEnabledDir = $this->askForServerBlockEnabledDirectory();
             $this->ServerBlockForDeletion = $this->selectServerBlockInProjectOrFS();
-            $this->disableServerBlock(); }
+            $this->disableServerBlock();
+        }
         return true;
     }
 
-    private function askForServerBlockEntry() {
-        if (isset($this->params["yes"]) && $this->params["yes"]==true) { return true ; }
+    private function askForServerBlockEntry()
+    {
+        if (isset($this->params["yes"]) && $this->params["yes"]==true) {
+            return true ;
+        }
         $question = 'Do you want to add a ServerBlock?';
         return self::askYesOrNo($question);
     }
 
-    private function askForServerBlockDeletion() {
-        if (isset($this->params["yes"]) && $this->params["yes"]==true) { return true ; }
+    private function askForServerBlockDeletion()
+    {
+        if (isset($this->params["yes"]) && $this->params["yes"]==true) {
+            return true ;
+        }
         $question = 'Do you want to delete ServerBlock/s?';
         return self::askYesOrNo($question);
     }
 
-    private function askForEnableServerBlock() {
-        if (isset($this->params["guess"]) && $this->params["guess"]==true) { return true ; }
+    private function askForEnableServerBlock()
+    {
+        if (isset($this->params["guess"]) && $this->params["guess"]==true) {
+            return true ;
+        }
         $question = 'Do you want to enable a ServerBlock?';
         return self::askYesOrNo($question);
     }
 
-    private function askForDisableServerBlock() {
-        if (isset($this->params["guess"]) && $this->params["guess"]==true) { return true ; }
+    private function askForDisableServerBlock()
+    {
+        if (isset($this->params["guess"]) && $this->params["guess"]==true) {
+            return true ;
+        }
         $question = 'Do you want to disable a ServerBlock?';
         return self::askYesOrNo($question);
     }
 
-    private function askForDocRoot() {
-        if (isset($this->params["sb-docroot"])) { return $this->params["sb-docroot"] ; }
+    private function askForDocRoot()
+    {
+        if (isset($this->params["sb-docroot"])) {
+            return $this->params["sb-docroot"] ;
+        }
         $question = 'What\'s the document root? Enter nothing for '.getcwd();
         $input = self::askForInput($question);
         return ($input=="") ? getcwd() : $input ;
     }
 
-    private function askForHostURL() {
-        if (isset($this->params["sb-url"])) { return $this->params["sb-url"] ; }
+    private function askForHostURL()
+    {
+        if (isset($this->params["sb-url"])) {
+            return $this->params["sb-url"] ;
+        }
         $question = 'What URL do you want to add as server name?';
         return self::askForInput($question, true);
     }
 
-    private function askForServerBlockIp() {
-        if (isset($this->params["sb-ip-port"])) { return $this->params["sb-ip-port"] ; }
+    private function askForServerBlockIp()
+    {
+        if (isset($this->params["sb-ip-port"])) {
+            return $this->params["sb-ip-port"] ;
+        }
         $question = 'What IP:Port should be set? Enter nothing for 127.0.0.1:80';
         $input = self::askForInput($question) ;
         return ($input=="") ? '127.0.0.1:80' : $input ;
     }
 
-    private function checkServerBlockOkay(){
-        if (isset($this->params["yes"]) && $this->params["yes"]==true) { return true ; }
+    private function checkServerBlockOkay()
+    {
+        if (isset($this->params["yes"]) && $this->params["yes"]==true) {
+            return true ;
+        }
         $question = 'Please check ServerBlock: '.$this->ServerBlockTemplate."\n\nIs this Okay?";
         return self::askYesOrNo($question);
     }
 
-    private function askForServerBlockDirectory(){
+    private function askForServerBlockDirectory()
+    {
         $question = 'What is your ServerBlock directory?';
         if ($this->detectNginxServerBlockFolderExistence()) {
             if (isset($this->params["guess"]) && $this->params["guess"]==true) {
                 echo 'Guessed "/etc/nginx/sites-available" - Using this'."\n";
-                return "/etc/nginx/sites-available" ; }
+                return "/etc/nginx/sites-available" ;
+            }
             $question .= ' Found "/etc/nginx/sites-available" - Enter nothing to use this';
             $input = self::askForInput($question);
-            return ($input=="") ? $this->ServerBlockDir : $input ;  }
+            return ($input=="") ? $this->ServerBlockDir : $input ;
+        }
         return self::askForInput($question, true);
     }
 
-    private function askForServerBlockEnabledDirectory(){
+    private function askForServerBlockEnabledDirectory()
+    {
         $question = 'What is your Enabled Symlink ServerBlock directory?';
         if ($this->detectServerBlockEnabledFolderExistence()) {
             if (isset($this->params["guess"]) && $this->params["guess"]==true) {
                 echo 'Guessed "/etc/nginx/sites-enabled" - Using this'."\n";
-                return "/etc/nginx/sites-enabled" ; }
+                return "/etc/nginx/sites-enabled" ;
+            }
             $question .= ' Found "/etc/nginx/sites-enabled" - Enter nothing to use this';
             $input = self::askForInput($question);
-            return ($input=="") ? $this->ServerBlockDir : $input ;  }
+            return ($input=="") ? $this->ServerBlockDir : $input ;
+        }
         return self::askForInput($question, true);
     }
 
-    private function askForServerBlockAvailableDirectory() {
+    private function askForServerBlockAvailableDirectory()
+    {
         $question = 'What is your Available ServerBlock directory?';
         if ($this->detectNginxServerBlockFolderExistence()) {
             if (isset($this->params["guess"]) && $this->params["guess"]==true) {
                 echo 'Guessed "/etc/nginx/sites-available" - Using this'."\n";
-                return "/etc/nginx/sites-available" ; }
+                return "/etc/nginx/sites-available" ;
+            }
             $question .= ' Found "/etc/nginx/sites-available" - Enter nothing to use this';
             $input = self::askForInput($question);
-            return ($input=="") ? "/etc/nginx/sites-available" : $input ;  }
+            return ($input=="") ? "/etc/nginx/sites-available" : $input ;
+        }
         return self::askForInput($question, true);
     }
 
-    private function askForServerBlockTemplateDirectory() {
+    private function askForServerBlockTemplateDirectory()
+    {
         $question = 'What is your ServerBlock Template directory? Enter nothing for default templates';
         if ($this->detectServerBlockTemplateFolderExistence()) {
             $question .= ' Found "'.$this->docRoot.'/build/config/ptdeploy/server-blocks" - Enter nothing to use this';
             $input = self::askForInput($question);
-            return ($input=="") ? $this->ServerBlockTemplateDir : $input ;  }
-        else {
-          $input = self::askForInput($question);
-          return ($input=="") ? $this->ServerBlockTemplateDir : $input ;
+            return ($input=="") ? $this->ServerBlockTemplateDir : $input ;
+        } else {
+            $input = self::askForInput($question);
+            return ($input=="") ? $this->ServerBlockTemplateDir : $input ;
         }
     }
 
-    private function detectNginxServerBlockFolderExistence(){
+    private function detectNginxServerBlockFolderExistence()
+    {
         return file_exists("/etc/nginx/sites-available");
     }
 
-    private function detectServerBlockEnabledFolderExistence(){
+    private function detectServerBlockEnabledFolderExistence()
+    {
         return file_exists("/etc/nginx/sites-enabled");
     }
 
-    private function detectServerBlockTemplateFolderExistence(){
-        return file_exists( $this->ServerBlockTemplateDir = $this->docRoot."/build/config/ptdeploy/server-blocks");
+    private function detectServerBlockTemplateFolderExistence()
+    {
+        return file_exists($this->ServerBlockTemplateDir = $this->docRoot."/build/config/ptdeploy/server-blocks");
     }
 
-    private function attemptServerBlockWrite($serverBlockEditorAdditionFileSuffix=null){
+    private function attemptServerBlockWrite($serverBlockEditorAdditionFileSuffix = null)
+    {
         $this->createServerBlock();
         $this->moveServerBlockAsRoot($serverBlockEditorAdditionFileSuffix);
         $this->writeServerBlockToProjectFile($serverBlockEditorAdditionFileSuffix);
     }
 
-    private function attemptServerBlockDeletion(){
+    private function attemptServerBlockDeletion()
+    {
         $this->deleteServerBlockAsRoot();
         $this->deleteServerBlockFromProjectFile();
     }
 
-    private function processServerBlock() {
+    private function processServerBlock()
+    {
         $replacements =  array('****WEB ROOT****'=>$this->docRoot,
             '****SERVER NAME****'=>$this->url, '****IP ADDRESS****'=>$this->ServerBlockIp);
         $this->ServerBlockTemplate = strtr($this->ServerBlockTemplate, $replacements);
     }
 
-    private function createServerBlock() {
+    private function createServerBlock()
+    {
         $tmpDir = self::$tempDir.'/ServerBlocktemp/';
-        if (!file_exists($tmpDir)) {mkdir ($tmpDir, 0777, true);}
+        if (!file_exists($tmpDir)) {
+            mkdir($tmpDir, 0777, true);
+        }
         return file_put_contents($tmpDir.'/'.$this->url, $this->ServerBlockTemplate);
     }
 
-    private function moveServerBlockAsRoot($serverBlockEditorAdditionFileSuffix=null){
+    private function moveServerBlockAsRoot($serverBlockEditorAdditionFileSuffix = null)
+    {
         $command = 'sudo mv '.self::$tempDir.'/ServerBlocktemp/'.$this->url.' '.$this->ServerBlockDir.'/'.$this->url.$serverBlockEditorAdditionFileSuffix;
         return self::executeAndOutput($command);
     }
 
-    private function deleteServerBlockAsRoot(){
+    private function deleteServerBlockAsRoot()
+    {
         foreach ($this->ServerBlockForDeletion as $ServerBlock) {
             $command = 'sudo rm -f '.$this->ServerBlockDir.'/'.$ServerBlock;
-            self::executeAndOutput($command, "ServerBlock $ServerBlock Deleted  if existed"); }
+            self::executeAndOutput($command, "ServerBlock $ServerBlock Deleted  if existed");
+        }
         return true;
     }
 
-    private function writeServerBlockToProjectFile($serverBlockEditorAdditionFileSuffix=null){
-        if ($this->checkIsDHProject()){
-            \Model\AppConfig::setProjectVariable("server-blocks", $this->url.$serverBlockEditorAdditionFileSuffix); }
+    private function writeServerBlockToProjectFile($serverBlockEditorAdditionFileSuffix = null)
+    {
+        if ($this->checkIsDHProject()) {
+            \Model\AppConfig::setProjectVariable("server-blocks", $this->url.$serverBlockEditorAdditionFileSuffix);
+        }
     }
 
-    private function deleteServerBlockFromProjectFile(){
-        if ($this->checkIsDHProject()){
+    private function deleteServerBlockFromProjectFile()
+    {
+        if ($this->checkIsDHProject()) {
             $allProjectServerBlocks = \Model\AppConfig::getProjectVariable("server-blocks");
-            for ($i = 0; $i<=count($allProjectServerBlocks) ; $i++ ) {
+            for ($i = 0; $i<=count($allProjectServerBlocks); $i++) {
                 if (isset($allProjectServerBlocks[$i]) && in_array($allProjectServerBlocks[$i], $this->ServerBlockForDeletion)) {
-                    unset($allProjectServerBlocks[$i]); } }
-            \Model\AppConfig::setProjectVariable("server-blocks", $allProjectServerBlocks); }
+                    unset($allProjectServerBlocks[$i]);
+                }
+            }
+            \Model\AppConfig::setProjectVariable("server-blocks", $allProjectServerBlocks);
+        }
     }
 
-    private function enableServerBlock($NginxSBEditorAdditionSymLinkDirectory=null) {
+    private function enableServerBlock($NginxSBEditorAdditionSymLinkDirectory = null)
+    {
         $srvBlockAvailDir = (isset($NginxSBEditorAdditionSymLinkDirectory)) ?
-            $NginxSBEditorAdditionSymLinkDirectory : str_replace("sites-enabled", "sites-available", $this->ServerBlockEnabledDir );
+            $NginxSBEditorAdditionSymLinkDirectory : str_replace("sites-enabled", "sites-available", $this->ServerBlockEnabledDir);
         if (file_exists($this->ServerBlockEnabledDir.DIRECTORY_SEPARATOR.$this->url)) {
             echo "Symlink already exists\n" ;
-            self::executeAndOutput("sudo rm $this->ServerBlockEnabledDir".DIRECTORY_SEPARATOR.$this->url, "Existing Symlink deleted"); }
+            self::executeAndOutput("sudo rm $this->ServerBlockEnabledDir".DIRECTORY_SEPARATOR.$this->url, "Existing Symlink deleted");
+        }
         $command = 'sudo ln -s ' .$srvBlockAvailDir.DIRECTORY_SEPARATOR.$this->url  .
             ' ' .$this->ServerBlockEnabledDir.DIRECTORY_SEPARATOR.$this->url;
         return self::executeAndOutput($command, "Server Block Enabled Symlink Created");
     }
 
-    private function disableServerBlock(){
-        $srvAvailDir = str_replace("sites-available", "sites-enabled", $this->ServerBlockEnabledDir ) ;
+    private function disableServerBlock()
+    {
+        $srvAvailDir = str_replace("sites-available", "sites-enabled", $this->ServerBlockEnabledDir) ;
         foreach ($this->ServerBlockForDeletion as $ServerBlock) {
             $command = 'sudo rm -f '.$srvAvailDir.DIRECTORY_SEPARATOR.$ServerBlock;
-            self::executeAndOutput($command, "Server Block $ServerBlock Disabled  if existed");  }
+            self::executeAndOutput($command, "Server Block $ServerBlock Disabled  if existed");
+        }
         return true;
     }
 
-    private function checkIsDHProject() {
+    private function checkIsDHProject()
+    {
         return file_exists('dhproj');
     }
 
-    private function listAllServerBlocks() {
+    private function listAllServerBlocks()
+    {
         $projResults = ($this->checkIsDHProject()) ? \Model\AppConfig::getProjectVariable("server-blocks") : array() ;
         $enabledResults = scandir($this->ServerBlockEnabledDir);
         $otherResults = scandir($this->ServerBlockDir);
@@ -300,27 +381,39 @@ class NginxSBEditorLinuxMac extends Base {
             foreach ($projResults as $result) {
                 $question .= "($i1) $result\n";
                 $i1++;
-                $availableServerBlocks[] = $result;} }
+                $availableServerBlocks[] = $result;
+            }
+        }
         if (count($enabledResults)>0) {
             $question .= "--- Enabled Server Blocks: ---\n";
             foreach ($otherResults as $result) {
-                if ($result === '.' or $result === '..') continue;
+                if ($result === '.' or $result === '..') {
+                    continue;
+                }
                 $question .= "($i1) $result\n";
                 $i1++;
-                $availableServerBlocks[] = $result;} }
+                $availableServerBlocks[] = $result;
+            }
+        }
         if (count($otherResults)>0) {
             $question .= "--- All Available Server Blocks: ---\n";
             foreach ($otherResults as $result) {
-                if ($result === '.' or $result === '..') continue;
+                if ($result === '.' or $result === '..') {
+                    continue;
+                }
                 $question .= "($i1) $result\n";
                 $i1++;
-                $availableServerBlocks[] = $result;} }
+                $availableServerBlocks[] = $result;
+            }
+        }
         echo $question;
     }
 
-    private function selectServerBlockInProjectOrFS(){
+    private function selectServerBlockInProjectOrFS()
+    {
         if (isset($this->params["site"])) {
-            return array($this->params["site"]) ; }
+            return array($this->params["site"]) ;
+        }
         $projResults = ($this->checkIsDHProject())
           ? \Model\AppConfig::getProjectVariable("server-blocks")
           : array() ;
@@ -333,25 +426,36 @@ class NginxSBEditorLinuxMac extends Base {
             foreach ($projResults as $result) {
                 $question .= "($i1) $result\n";
                 $i1++;
-                $availableServerBlocks[] = $result;} }
+                $availableServerBlocks[] = $result;
+            }
+        }
         if (count($otherResults)>0) {
             $question .= "--- All Server Blocks: ---\n";
             foreach ($otherResults as $result) {
-                if ($result === '.' or $result === '..') continue;
+                if ($result === '.' or $result === '..') {
+                    continue;
+                }
                 $question .= "($i1) $result\n";
                 $i1++;
-                $availableServerBlocks[] = $result;} }
+                $availableServerBlocks[] = $result;
+            }
+        }
         $validChoice = false;
         while ($validChoice == false) {
-            if ($i2>0) { $question = "That's not a valid option, ".$question; }
+            if ($i2>0) {
+                $question = "That's not a valid option, ".$question;
+            }
             $input = self::askForInput($question) ;
-            if ( array_key_exists($input, $availableServerBlocks) ){
-                $validChoice = true;}
-            $i2++; }
+            if (array_key_exists($input, $availableServerBlocks)) {
+                $validChoice = true;
+            }
+            $i2++;
+        }
         return array($availableServerBlocks[$input]) ;
     }
 
-    private function selectServerBlockTemplate(){
+    private function selectServerBlockTemplate()
+    {
         $ServerBlockTemplateResults = (is_array($this->ServerBlockTemplateDir) &&
         count($this->ServerBlockTemplateDir)>0)
           ? scandir($this->ServerBlockTemplateDir)
@@ -361,34 +465,45 @@ class NginxSBEditorLinuxMac extends Base {
         $availableServerBlockTemplates = array();
         $question .= "--- Default Server Block Templates: ---\n";
         foreach ($this->ServerBlockDefaultTemplates as $title => $data) {
-          $question .= "($i1) $title\n";
-          $i1++;
-          $availableServerBlockTemplates[] = $title; }
+            $question .= "($i1) $title\n";
+            $i1++;
+            $availableServerBlockTemplates[] = $title;
+        }
         if (count($ServerBlockTemplateResults)>0) {
             $question .= "--- Server Block Templates in Project: ---\n";
             foreach ($ServerBlockTemplateResults as $result) {
-                if ($result === '.' or $result === '..') continue;
+                if ($result === '.' or $result === '..') {
+                    continue;
+                }
                 $question .= "($i1) $result\n";
                 $i1++;
-                $availableServerBlockTemplates[] = $result;} }
+                $availableServerBlockTemplates[] = $result;
+            }
+        }
         $validChoice = false;
         while ($validChoice == false) {
-            if ($i2==1) { $question = "That's not a valid option, ".$question; }
+            if ($i2==1) {
+                $question = "That's not a valid option, ".$question;
+            }
             $input = self::askForInput($question) ;
-            if (array_key_exists($input, $availableServerBlockTemplates) ){
-                $validChoice = true;}
-            $i2++; }
-        if (array_key_exists($availableServerBlockTemplates[$input], $this->ServerBlockDefaultTemplates) ) {
-          $this->ServerBlockTemplate
+            if (array_key_exists($input, $availableServerBlockTemplates)) {
+                $validChoice = true;
+            }
+            $i2++;
+        }
+        if (array_key_exists($availableServerBlockTemplates[$input], $this->ServerBlockDefaultTemplates)) {
+            $this->ServerBlockTemplate
             = $this->ServerBlockDefaultTemplates[$availableServerBlockTemplates[$input]];
-          return ; }
-      $this->ServerBlockTemplate = file_get_contents($this->ServerBlockTemplateDir . '/' .
+            return ;
+        }
+        $this->ServerBlockTemplate = file_get_contents($this->ServerBlockTemplateDir . '/' .
         $availableServerBlockTemplates[$input]);
     }
 
-    private function setServerBlockDefaultTemplates() {
+    private function setServerBlockDefaultTemplates()
+    {
 
-      $template1 = <<<'TEMPLATE1'
+        $template1 = <<<'TEMPLATE1'
 server {
         listen   ****IP ADDRESS**** ; ## listen for ipv4; this line is default and implied
         #listen   [::]:80 default ipv6only=on; ## listen for ipv6
@@ -413,7 +528,7 @@ server {
 
 TEMPLATE1;
 
-      $template2 = <<<'TEMPLATE2'
+        $template2 = <<<'TEMPLATE2'
 server {
         listen   ****IP ADDRESS**** ; ## listen for ipv4; this line is default and implied
         #listen   [::]:80 default ipv6only=on; ## listen for ipv6
@@ -437,7 +552,7 @@ server {
 }
 TEMPLATE2;
 
-      $template3 = <<<'TEMPLATE3'
+        $template3 = <<<'TEMPLATE3'
 
 server {
         listen   ****IP ADDRESS**** ; ## listen for ipv4; this line is default and implied
@@ -510,14 +625,12 @@ server {
 }
 TEMPLATE5;
 
-    $this->ServerBlockDefaultTemplates = array(
-      "docroot-no-suffix" => $template1,
-      "docroot-src-sfx" => $template2,
-      "docroot-web-suffix" => $template3,
-      "docroot-www-suffix" => $template4,
-      "docroot-docroot-suffix" => $template5
-    );
-
+        $this->ServerBlockDefaultTemplates = array(
+        "docroot-no-suffix" => $template1,
+        "docroot-src-sfx" => $template2,
+        "docroot-web-suffix" => $template3,
+        "docroot-www-suffix" => $template4,
+        "docroot-docroot-suffix" => $template5
+        );
     }
-
 }
