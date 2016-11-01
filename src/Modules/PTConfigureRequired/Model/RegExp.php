@@ -7,12 +7,12 @@ class RegExp
 
     public $regexp;
 
-    function __construct($regexp)
+    public function __construct($regexp)
     {
         $this->regexp = $regexp;
     }
 
-    function __toString()
+    public function __toString()
     {
         return "RegExp({$this->regexp})";
     }

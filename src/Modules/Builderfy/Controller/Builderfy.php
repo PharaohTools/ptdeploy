@@ -15,7 +15,7 @@ class Builderfy extends Base
             return $otherModuleExecutor->executeBuilderfy($pageVars) ;
         }
 
-        $thisModel = $this->getModelAndCheckDependencies(substr(get_class($this), 11), $pageVars) ;
+        $thisModel = $this->getModelAndDeps(substr(get_class($this), 11), $pageVars) ;
         // if we don't have an object, its an array of errors
         if (is_array($thisModel)) {
             return $this->failDependencies($pageVars, $this->content, $thisModel) ;
@@ -27,7 +27,7 @@ class Builderfy extends Base
 
 
         if (in_array($action, array("install-generic-autopilots"))) {
-            $thisModel = $this->getModelAndCheckDependencies(substr(get_class($this), 11), $pageVars, "GenericAutos") ;
+            $thisModel = $this->getModelAndDeps(substr(get_class($this), 11), $pageVars, "GenericAutos") ;
             // if we don't have an object, its an array of errors
             if (is_array($thisModel)) {
                 return $this->failDependencies($pageVars, $this->content, $thisModel) ;
@@ -46,7 +46,7 @@ class Builderfy extends Base
 
         foreach ($actionsToModelGroups as $actionCurrent => $modelGroup) {
             if ($action == $actionCurrent) {
-                $thisModel = $this->getModelAndCheckDependencies(substr(get_class($this), 11), $pageVars, $modelGroup) ;
+                $thisModel = $this->getModelAndDeps(substr(get_class($this), 11), $pageVars, $modelGroup) ;
                 // if we don't have an object, its an array of errors
                 if (is_array($thisModel)) {
                     return $this->failDependencies($pageVars, $this->content, $thisModel) ;

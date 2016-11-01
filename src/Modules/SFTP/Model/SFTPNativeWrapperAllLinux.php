@@ -72,7 +72,7 @@ class SFTPNativeWrapperAllLinux extends Base
         return $res ;
     }
 
-    public function _is_dir($dn)
+    public function isDir($dn)
     {
 
         $command = "cd /tmp/" ;

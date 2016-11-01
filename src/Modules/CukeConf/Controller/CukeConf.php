@@ -10,7 +10,7 @@ class CukeConf extends Base
         $this->content["route"] = $pageVars["route"];
         $this->content["messages"] = $pageVars["messages"];
 
-        $thisModel = $this->getModelAndCheckDependencies(substr(get_class($this), 11), $pageVars) ;
+        $thisModel = $this->getModelAndDeps(substr(get_class($this), 11), $pageVars) ;
         // if we don't have an object, its an array of errors
         if (is_array($thisModel)) {
             return $this->failDependencies($pageVars, $this->content, $thisModel) ;

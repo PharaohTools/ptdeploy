@@ -8,7 +8,7 @@ class EnvironmentConfig extends Base
     public function execute($pageVars)
     {
 
-        $thisModel = $this->getModelAndCheckDependencies(substr(get_class($this), 11), $pageVars) ;
+        $thisModel = $this->getModelAndDeps(substr(get_class($this), 11), $pageVars) ;
         // if we don't have an object, its an array of errors
         if (is_array($thisModel)) {
             return $this->failDependencies($pageVars, $this->content, $thisModel) ;
@@ -36,7 +36,7 @@ class EnvironmentConfig extends Base
         }
 
         if (in_array($action, array("config-default", "configure-default"))) {
-            $thisModel = $this->getModelAndCheckDependencies(substr(get_class($this), 11), $pageVars, "GenericAutos") ;
+            $thisModel = $this->getModelAndDeps(substr(get_class($this), 11), $pageVars, "GenericAutos") ;
             // if we don't have an object, its an array of errors
             if (is_array($thisModel)) {
                 return $this->failDependencies($pageVars, $this->content, $thisModel) ;

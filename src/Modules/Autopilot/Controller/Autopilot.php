@@ -8,7 +8,7 @@ class Autopilot extends Base
     public function execute($pageVars)
     {
 
-        $thisModel = $this->getModelAndCheckDependencies(substr(get_class($this), 11), $pageVars) ;
+        $thisModel = $this->getModelAndDeps(substr(get_class($this), 11), $pageVars) ;
         // if we don't have an object, its an array of errors
         if (is_array($thisModel)) {
             return $this->failDependencies($pageVars, $this->content, $thisModel) ;
@@ -128,7 +128,7 @@ class Autopilot extends Base
 
     private function loadDSLAutoPilot($filename, $pageVars)
     {
-        $dslModel = $this->getModelAndCheckDependencies("AutopilotDSL", $pageVars) ;
+        $dslModel = $this->getModelAndDeps("AutopilotDSL", $pageVars) ;
         $autoPilotReturn = $dslModel->loopOurDSLFile($filename) ;
         $autoPilotData = $this->transformData($autoPilotReturn["steps"]);
         $auto = new \StdClass() ;

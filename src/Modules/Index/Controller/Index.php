@@ -7,7 +7,7 @@ class Index extends Base
 
     public function execute($pageVars)
     {
-        $thisModel = $this->getModelAndCheckDependencies(substr(get_class($this), 11), $pageVars) ;
+        $thisModel = $this->getModelAndDeps(substr(get_class($this), 11), $pageVars) ;
         // if we don't have an object, its an array of errors
         $this->content = $pageVars ;
         if (is_array($thisModel)) {

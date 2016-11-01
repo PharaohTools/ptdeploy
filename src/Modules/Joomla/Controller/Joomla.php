@@ -11,7 +11,7 @@ class Joomla extends Base
         $action = $pageVars["route"]["action"];
 
         if ($action == "joomla-continuous") {
-            $thisModel = $this->getModelAndCheckDependencies(substr(get_class($this), 11), $pageVars, "JoomlaContinuous") ;
+            $thisModel = $this->getModelAndDeps(substr(get_class($this), 11), $pageVars, "JoomlaContinuous") ;
             // if we don't have an object, its an array of errors
             if (is_array($thisModel)) {
                 return $this->failDependencies($pageVars, $this->content, $thisModel) ;
@@ -23,7 +23,7 @@ class Joomla extends Base
         }
 
         if ($action == "joomla-efficient") {
-            $thisModel = $this->getModelAndCheckDependencies(substr(get_class($this), 11), $pageVars, "JoomlaEfficient") ;
+            $thisModel = $this->getModelAndDeps(substr(get_class($this), 11), $pageVars, "JoomlaEfficient") ;
             // if we don't have an object, its an array of errors
             if (is_array($thisModel)) {
                 return $this->failDependencies($pageVars, $this->content, $thisModel) ;
@@ -44,7 +44,7 @@ class Joomla extends Base
         $action = $pageVars["route"]["action"];
 
         if (in_array($action, array("joomla", "joomla30"))) {
-            $thisModel = $this->getModelAndCheckDependencies(substr(get_class($this), 11), $pageVars, "DapperfyJoomla") ;
+            $thisModel = $this->getModelAndDeps(substr(get_class($this), 11), $pageVars, "DapperfyJoomla") ;
             if (is_array($thisModel)) {
                 return $this->failDependencies($pageVars, $this->content, $thisModel) ;
             }
@@ -54,7 +54,7 @@ class Joomla extends Base
         }
 
         if (in_array($action, array("joomla15"))) {
-            $thisModel = $this->getModelAndCheckDependencies(substr(get_class($this), 11), $pageVars, "DapperfyJoomla") ;
+            $thisModel = $this->getModelAndDeps(substr(get_class($this), 11), $pageVars, "DapperfyJoomla") ;
             if (is_array($thisModel)) {
                 return $this->failDependencies($pageVars, $this->content, $thisModel) ;
             }
@@ -64,7 +64,7 @@ class Joomla extends Base
         }
 
         if (in_array($action, array("joomla-ptvirtualize", "joomla30-ptvirtualize"))) {
-            $thisModel = $this->getModelAndCheckDependencies(substr(get_class($this), 11), $pageVars, "DapperfyJoomlaPTVirtualize") ;
+            $thisModel = $this->getModelAndDeps(substr(get_class($this), 11), $pageVars, "DapperfyJoomlaPTVirtualize") ;
             if (is_array($thisModel)) {
                 return $this->failDependencies($pageVars, $this->content, $thisModel) ;
             }
@@ -74,7 +74,7 @@ class Joomla extends Base
         }
 
         if (in_array($action, array("joomla15-ptvirtualize"))) {
-            $thisModel = $this->getModelAndCheckDependencies(substr(get_class($this), 11), $pageVars, "DapperfyJoomlaPTVirtualize") ;
+            $thisModel = $this->getModelAndDeps(substr(get_class($this), 11), $pageVars, "DapperfyJoomlaPTVirtualize") ;
             if (is_array($thisModel)) {
                 return $this->failDependencies($pageVars, $this->content, $thisModel) ;
             }
@@ -93,12 +93,12 @@ class Joomla extends Base
         $action = $pageVars["route"]["action"];
 
         if ($action == "joomla30-conf") {
-            $thisModel = $this->getModelAndCheckDependencies("DBConfigure", $pageVars) ;
+            $thisModel = $this->getModelAndDeps("DBConfigure", $pageVars) ;
             // if we don't have an object, its an array of errors
             if (is_array($thisModel)) {
                 return $this->failDependencies($pageVars, $this->content, $thisModel) ;
             }
-            $joomlaPlatform = $this->getModelAndCheckDependencies(substr(get_class($this), 11), $pageVars, "Joomla30Config") ;
+            $joomlaPlatform = $this->getModelAndDeps(substr(get_class($this), 11), $pageVars, "Joomla30Config") ;
             $thisModel->setPlatformVars($joomlaPlatform);
             $thisModel->params["action"] = $action ;
             $this->content["result"] = $thisModel->askWhetherToConfigureDB();
@@ -106,12 +106,12 @@ class Joomla extends Base
         }
 
         if ($action == "joomla30-reset") {
-            $thisModel = $this->getModelAndCheckDependencies("DBConfigure", $pageVars) ;
+            $thisModel = $this->getModelAndDeps("DBConfigure", $pageVars) ;
             // if we don't have an object, its an array of errors
             if (is_array($thisModel)) {
                 return $this->failDependencies($pageVars, $this->content, $thisModel) ;
             }
-            $joomlaPlatform = $this->getModelAndCheckDependencies(substr(get_class($this), 11), $pageVars, "Joomla30Config") ;
+            $joomlaPlatform = $this->getModelAndDeps(substr(get_class($this), 11), $pageVars, "Joomla30Config") ;
             $thisModel->setPlatformVars($joomlaPlatform);
             $thisModel->params["action"] = $action ;
             $this->content["result"] = $thisModel->askWhetherToResetDBConfiguration();
@@ -119,12 +119,12 @@ class Joomla extends Base
         }
 
         if ($action == "joomla15-conf") {
-            $thisModel = $this->getModelAndCheckDependencies("DBConfigure", $pageVars) ;
+            $thisModel = $this->getModelAndDeps("DBConfigure", $pageVars) ;
             // if we don't have an object, its an array of errors
             if (is_array($thisModel)) {
                 return $this->failDependencies($pageVars, $this->content, $thisModel) ;
             }
-            $joomlaPlatform = $this->getModelAndCheckDependencies(substr(get_class($this), 11), $pageVars, "Joomla15Config") ;
+            $joomlaPlatform = $this->getModelAndDeps(substr(get_class($this), 11), $pageVars, "Joomla15Config") ;
             $thisModel->setPlatformVars($joomlaPlatform);
             $thisModel->params["action"] = $action ;
             $this->content["result"] = $thisModel->askWhetherToConfigureDB();
@@ -132,12 +132,12 @@ class Joomla extends Base
         }
 
         if ($action == "joomla15-reset") {
-            $thisModel = $this->getModelAndCheckDependencies("DBConfigure", $pageVars) ;
+            $thisModel = $this->getModelAndDeps("DBConfigure", $pageVars) ;
             // if we don't have an object, its an array of errors
             if (is_array($thisModel)) {
                 return $this->failDependencies($pageVars, $this->content, $thisModel) ;
             }
-            $joomlaPlatform = $this->getModelAndCheckDependencies(substr(get_class($this), 11), $pageVars, "Joomla15Config") ;
+            $joomlaPlatform = $this->getModelAndDeps(substr(get_class($this), 11), $pageVars, "Joomla15Config") ;
             $thisModel->setPlatformVars($joomlaPlatform);
             $thisModel->params["action"] = $action ;
             $this->content["result"] = $thisModel->askWhetherToResetDBConfiguration();
@@ -152,14 +152,14 @@ class Joomla extends Base
     {
         $action = $pageVars["route"]["action"];
         if ($action == "joomla-save") {
-            $confModel = $this->getModelAndCheckDependencies("DBConfigure", $pageVars) ;
+            $confModel = $this->getModelAndDeps("DBConfigure", $pageVars) ;
             // if we don't have an object, its an array of errors
             if (is_array($confModel)) {
                 return $this->failDependencies($pageVars, $this->content, $confModel) ;
             }
-            $joomlaPlatform = $this->getModelAndCheckDependencies(substr(get_class($this), 11), $pageVars, "Joomla30Config") ;
+            $joomlaPlatform = $this->getModelAndDeps(substr(get_class($this), 11), $pageVars, "Joomla30Config") ;
             $confModel->setPlatformVars($joomlaPlatform);
-            $thisModel = $this->getModelAndCheckDependencies("DBInstall", $pageVars) ;
+            $thisModel = $this->getModelAndDeps("DBInstall", $pageVars) ;
             if (is_array($thisModel)) {
                 return $this->failDependencies($pageVars, $this->content, $thisModel) ;
             }

@@ -154,7 +154,7 @@ class SFTPAllLinux extends Base
             if (isset($this->isNativeSSH) && $this->isNativeSSH==true) {
                 if (isset($this->params["mkdir"]) && $this->params["mkdir"]==true) {
                     $dn = dirname($remoteFile) ;
-                    if ($sftpObject->_is_dir($dn)==false) {
+                    if ($sftpObject->isDir($dn)==false) {
                         $logging->log("Target directory does not exist, so creating...", $this->getModuleName());
                         $sftpObject->mkdir($dn) ;
                     }
@@ -173,7 +173,7 @@ class SFTPAllLinux extends Base
             } else {
                 if (isset($this->params["mkdir"]) && $this->params["mkdir"]==true) {
                     $dn = dirname($remoteFile) ;
-                    if ($sftpObject->_is_dir($dn)==false) {
+                    if ($sftpObject->isDir($dn)==false) {
                         $logging->log("Target directory does not exist, so creating...", $this->getModuleName());
                         $sftpObject->mkdir($dn) ;
                     }
@@ -257,10 +257,18 @@ class SFTPAllLinux extends Base
         $ssh = $sshFactory->getModel($sshParams, "Default") ;
         $res = $ssh->askWhetherToInvokeSSHData() ;
         if ($res ==false) {
-            $logging->log("Failed executing remote SFTP command via SSH", $this->getModuleName(), LOG_FAILURE_EXIT_CODE) ;
+            $logging->log(
+                "Failed executing remote SFTP command via SSH",
+                $this->getModuleName(),
+                LOG_FAILURE_EXIT_CODE
+            ) ;
             return false ;
         }
-        $logging->log("Successful transfer of {$this->params["source"]} {$this->params["target"]} through SSH Hop", $this->getModuleName(), LOG_FAILURE_EXIT_CODE) ;
+        $logging->log(
+            "Successful transfer of {$this->params["source"]} {$this->params["target"]} through SSH Hop",
+            $this->getModuleName(),
+            LOG_FAILURE_EXIT_CODE
+        ) ;
 
         return true;
     }
@@ -317,28 +325,37 @@ class SFTPAllLinux extends Base
             if (isset($this->params["hops"]) && isset($this->params["environment-name"])) {
                 $logging->log("Attempting to load SFTP Hop Servers, as Hops are set...", $this->getModuleName()) ;
                 $this->hopEndEnvironment = (isset($this->params["env"])) ? $this->params["env"] : null ;
-                $this->hopEndEnvironment = (is_null($this->hopEndEnvironment)) ? $this->params["environment-name"] : $this->hopEndEnvironment ;
+                $this->hopEndEnvironment = (is_null($this->hopEndEnvironment)) ? $this->params["environment-name"] :
+                    $this->hopEndEnvironment ;
                 $names = $this->getEnvironmentNames();
 
                 // $this->hopEndEnvironment ;
 
-                $logging->log("Attempting to use hop environment {$this->params["hops"]} to reach target environment {$this->hopEndEnvironment}", $this->getModuleName()) ;
-                // @todo allow other algorithms, the best ones will be share by availability zone or literally share evenly so 5 in top and 50 in target take
+                $logging->log("Attempting to use hop environment {$this->params["hops"]} to reach target environment
+                {$this->hopEndEnvironment}", $this->getModuleName()) ;
+                // @todo allow other algorithms, the best ones will be share by availability zone or literally share
+                // evenly so 5 in top and 50 in target take
                 // @todo loadHopServersByAlgorithm()
                 // need to get
                 //   1) server/s to hop to
                 //   2) target servers, for EACH of those Servers to SSH to, in a further array
-                //   3) each array and their sub arrays need to have keynames or paths that already exist on the hop environment
+                //   3) each array and their sub arrays need to have keynames or paths that already exist on the hop
+                // environment
                 $this->servers[] = $this->getFirstServerOnlyAlgorithm();
                 if ($this->servers ===false) {
-                    $logging->log("Unable to populate servers from hop environment {$this->params["hops"]}", $this->getModuleName()) ;
+                    $logging->log(
+                        "Unable to populate servers from hop environment {$this->params["hops"]}",
+                        $this->getModuleName()
+                    ) ;
                 }
                 $srv = $this->servers ;
             } elseif (isset($this->params["environment-name"])) {
-                $logging->log("Environment name {$this->params["environment-name"]} is set without hops, loading servers...", $this->getModuleName()) ;
+                $logging->log("Environment name {$this->params["environment-name"]} is set without hops, ".
+                    " loading servers...", $this->getModuleName()) ;
                 $env = $this->getEnvironment($this->params["environment-name"]) ;
                 if (isset($this->params["first-server"])) {
-                    $logging->log("First Server parameter is set, will only connect to first server in environment pool...", $this->getModuleName()) ;
+                    $logging->log("First Server parameter is set, will only connect to first server in environment ".
+                        " pool...", $this->getModuleName()) ;
                     $this->servers[] = $env["servers"][0];
                 } else {
                     $logging->log("Loading all servers in environment pool...", $this->getModuleName()) ;
@@ -456,10 +473,14 @@ class SFTPAllLinux extends Base
             $target_scope_string = $this->findTargetScopeString();
 
             if ($attempt == null) {
-                $logging->log("Connection to Server {$server[$target_scope_string]} failed.", $this->getModuleName(), LOG_FAILURE_EXIT_CODE);
+                $logging->log(
+                    "Connection to Server {$server[$target_scope_string]} failed.",
+                    $this->getModuleName(),
+                    LOG_FAILURE_EXIT_CODE
+                );
                 $server["sftpObject"] = null ;
             } else {
-                $logging->log("Connection to Server {$server[$target_scope_string]} successful.", $this->getModuleName());
+                $logging->log("Connection to Server {$server[$target_scope_string]} success", $this->getModuleName());
                 $server["sftpObject"] = $attempt ;
             }
         }

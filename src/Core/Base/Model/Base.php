@@ -459,7 +459,10 @@ COMPLETION;
         // send empty params or it causes a loop with this one
         if (method_exists($madeModel, $method)) {
 //            var_dump($method_params) ;
-            $logging->log("Parameter transform loading value from method $method in $module, $modelGroup model group", $this->getModuleName()) ;
+            $logging->log(
+                "Parameter transform loading value from method $method in $module, $modelGroup model group",
+                $this->getModuleName()
+            ) ;
 
 //            var_dump('made', $madeModel) ;
 
@@ -534,7 +537,11 @@ COMPLETION;
         if (isset($vars[$var_requested])) {
             return $vars[$var_requested] ;
         }
-        $logging->log("No value set for requested Variable {$var_requested}", $this->getModuleName(), LOG_FAILURE_EXIT_CODE) ;
+        $logging->log(
+            "No value set for requested Variable {$var_requested}",
+            $this->getModuleName(),
+            LOG_FAILURE_EXIT_CODE
+        ) ;
         return false ;
     }
 

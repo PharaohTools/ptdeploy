@@ -11,7 +11,7 @@ class Drupal extends Base
         $action = $pageVars["route"]["action"];
 
         if ($action == "drupal-continuous") {
-            $thisModel = $this->getModelAndCheckDependencies(substr(get_class($this), 11), $pageVars, "DrupalContinuous") ;
+            $thisModel = $this->getModelAndDeps(substr(get_class($this), 11), $pageVars, "DrupalContinuous") ;
             // if we don't have an object, its an array of errors
             if (is_array($thisModel)) {
                 return $this->failDependencies($pageVars, $this->content, $thisModel) ;
@@ -23,7 +23,7 @@ class Drupal extends Base
         }
 
         if ($action == "drupal-efficient") {
-            $thisModel = $this->getModelAndCheckDependencies(substr(get_class($this), 11), $pageVars, "DrupalEfficient") ;
+            $thisModel = $this->getModelAndDeps(substr(get_class($this), 11), $pageVars, "DrupalEfficient") ;
             // if we don't have an object, its an array of errors
             if (is_array($thisModel)) {
                 return $this->failDependencies($pageVars, $this->content, $thisModel) ;
@@ -44,7 +44,7 @@ class Drupal extends Base
         $action = $pageVars["route"]["action"];
 
         if (in_array($action, array("drupal", "drupal7"))) {
-            $thisModel = $this->getModelAndCheckDependencies(substr(get_class($this), 11), $pageVars, "DapperfyDrupal") ;
+            $thisModel = $this->getModelAndDeps(substr(get_class($this), 11), $pageVars, "DapperfyDrupal") ;
             if (is_array($thisModel)) {
                 return $this->failDependencies($pageVars, $this->content, $thisModel) ;
             }
@@ -54,7 +54,7 @@ class Drupal extends Base
         }
 
         if (in_array($action, array("drupal6"))) {
-            $thisModel = $this->getModelAndCheckDependencies(substr(get_class($this), 11), $pageVars, "DapperfyDrupal") ;
+            $thisModel = $this->getModelAndDeps(substr(get_class($this), 11), $pageVars, "DapperfyDrupal") ;
             if (is_array($thisModel)) {
                 return $this->failDependencies($pageVars, $this->content, $thisModel) ;
             }
@@ -64,7 +64,7 @@ class Drupal extends Base
         }
 
         if (in_array($action, array("drupal-ptvirtualize", "drupal7-ptvirtualize"))) {
-            $thisModel = $this->getModelAndCheckDependencies(substr(get_class($this), 11), $pageVars, "DapperfyDrupalPTVirtualize") ;
+            $thisModel = $this->getModelAndDeps(substr(get_class($this), 11), $pageVars, "DapperfyDrupalPTVirtualize") ;
             if (is_array($thisModel)) {
                 return $this->failDependencies($pageVars, $this->content, $thisModel) ;
             }
@@ -83,12 +83,12 @@ class Drupal extends Base
         $action = $pageVars["route"]["action"];
 
         if ($action == "drupal7-conf") {
-            $thisModel = $this->getModelAndCheckDependencies("DBConfigure", $pageVars) ;
+            $thisModel = $this->getModelAndDeps("DBConfigure", $pageVars) ;
             // if we don't have an object, its an array of errors
             if (is_array($thisModel)) {
                 return $this->failDependencies($pageVars, $this->content, $thisModel) ;
             }
-            $drupalPlatform = $this->getModelAndCheckDependencies(substr(get_class($this), 11), $pageVars, "Drupal7Config") ;
+            $drupalPlatform = $this->getModelAndDeps(substr(get_class($this), 11), $pageVars, "Drupal7Config") ;
             $thisModel->setPlatformVars($drupalPlatform);
             $thisModel->params["action"] = $action ;
             $this->content["result"] = $thisModel->askWhetherToConfigureDB();
@@ -96,12 +96,12 @@ class Drupal extends Base
         }
 
         if ($action == "drupal7-reset") {
-            $thisModel = $this->getModelAndCheckDependencies("DBConfigure", $pageVars) ;
+            $thisModel = $this->getModelAndDeps("DBConfigure", $pageVars) ;
             // if we don't have an object, its an array of errors
             if (is_array($thisModel)) {
                 return $this->failDependencies($pageVars, $this->content, $thisModel) ;
             }
-            $drupalPlatform = $this->getModelAndCheckDependencies(substr(get_class($this), 11), $pageVars, "Drupal7Config") ;
+            $drupalPlatform = $this->getModelAndDeps(substr(get_class($this), 11), $pageVars, "Drupal7Config") ;
             $thisModel->setPlatformVars($drupalPlatform);
             $thisModel->params["action"] = $action ;
             $this->content["result"] = $thisModel->askWhetherToResetDBConfiguration();
@@ -109,12 +109,12 @@ class Drupal extends Base
         }
 
         if ($action == "drupal6-conf") {
-            $thisModel = $this->getModelAndCheckDependencies("DBConfigure", $pageVars) ;
+            $thisModel = $this->getModelAndDeps("DBConfigure", $pageVars) ;
             // if we don't have an object, its an array of errors
             if (is_array($thisModel)) {
                 return $this->failDependencies($pageVars, $this->content, $thisModel) ;
             }
-            $drupalPlatform = $this->getModelAndCheckDependencies(substr(get_class($this), 11), $pageVars, "Drupal6Config") ;
+            $drupalPlatform = $this->getModelAndDeps(substr(get_class($this), 11), $pageVars, "Drupal6Config") ;
             $thisModel->setPlatformVars($drupalPlatform);
             $thisModel->params["action"] = $action ;
             $this->content["result"] = $thisModel->askWhetherToConfigureDB();
@@ -122,12 +122,12 @@ class Drupal extends Base
         }
 
         if ($action == "drupal6-reset") {
-            $thisModel = $this->getModelAndCheckDependencies("DBConfigure", $pageVars) ;
+            $thisModel = $this->getModelAndDeps("DBConfigure", $pageVars) ;
             // if we don't have an object, its an array of errors
             if (is_array($thisModel)) {
                 return $this->failDependencies($pageVars, $this->content, $thisModel) ;
             }
-            $drupalPlatform = $this->getModelAndCheckDependencies(substr(get_class($this), 11), $pageVars, "Drupal6Config") ;
+            $drupalPlatform = $this->getModelAndDeps(substr(get_class($this), 11), $pageVars, "Drupal6Config") ;
             $thisModel->setPlatformVars($drupalPlatform);
             $thisModel->params["action"] = $action ;
             $this->content["result"] = $thisModel->askWhetherToResetDBConfiguration();

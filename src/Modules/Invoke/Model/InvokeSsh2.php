@@ -127,7 +127,7 @@ class InvokeSsh2 extends Base
         return $rc;
     }
 
-    function improvedExec($command)
+    protected function improvedExec($command)
     {
         $result = $this->rawExec(''.$command.'; echo -en "\n$?" ;');
         $pres = preg_match("/^(.*)\n(0|-?[1-9][0-9]*)$/s", $result[0], $matches) ;

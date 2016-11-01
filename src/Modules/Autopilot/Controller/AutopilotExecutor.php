@@ -10,7 +10,7 @@ class AutopilotExecutor extends Base
     public function executeAuto($pageVars, $autopilot, $test = false)
     {
 
-        $thisModel = $this->getModelAndCheckDependencies("Autopilot", $pageVars) ;
+        $thisModel = $this->getModelAndDeps("Autopilot", $pageVars) ;
         // if we don't have an object, its an array of errors
         if (is_array($thisModel)) {
             return $this->failDependencies($pageVars, $this->content, $thisModel) ;

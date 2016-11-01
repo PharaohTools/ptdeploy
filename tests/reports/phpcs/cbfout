@@ -1,0 +1,432 @@
+Changing into directory /opt/ptdeploy/ptdeploy/src
+Processing Constants.php [PHP => 534 tokens in 52 lines]... DONE in 18ms (0 fixable violations)
+Processing Bootstrap.php [PHP => 679 tokens in 85 lines]... DONE in 23ms (0 fixable violations)
+Changing into directory /opt/ptdeploy/ptdeploy/src/Core/Base/Model
+Processing Base.php [PHP => 8658 tokens in 924 lines]... DONE in 364ms (0 fixable violations)
+Changing into directory /opt/ptdeploy/ptdeploy/src/Core/Base/Controller
+Processing Base.php [PHP => 2354 tokens in 211 lines]... DONE in 89ms (0 fixable violations)
+Changing into directory /opt/ptdeploy/ptdeploy/src/Core/Base/Info
+Processing Base.php [PHP => 179 tokens in 44 lines]... DONE in 8ms (0 fixable violations)
+Changing into directory /opt/ptdeploy/ptdeploy/src/Core
+Processing AutoPilot.php [PHP => 257 tokens in 35 lines]... DONE in 10ms (0 fixable violations)
+Processing Router.php [PHP => 933 tokens in 100 lines]... DONE in 36ms (0 fixable violations)
+Changing into directory /opt/ptdeploy/ptdeploy/src/Core/Help/Model
+Processing Help.php [PHP => 59 tokens in 13 lines]... DONE in 4ms (0 fixable violations)
+Changing into directory /opt/ptdeploy/ptdeploy/src/Core
+Processing Control.php [PHP => 80 tokens in 15 lines]... DONE in 4ms (0 fixable violations)
+Processing View.php [PHP => 1273 tokens in 130 lines]... DONE in 50ms (0 fixable violations)
+Changing into directory /opt/ptdeploy/ptdeploy/src
+Processing AutoLoad.php [PHP => 1790 tokens in 188 lines]... DONE in 74ms (0 fixable violations)
+Changing into directory /opt/ptdeploy/ptdeploy/src/Modules/NginxControl/Model
+Processing NginxControl.php [PHP => 21 tokens in 8 lines]... DONE in 1ms (0 fixable violations)
+Processing NginxControlLinuxMac.php [PHP => 637 tokens in 87 lines]... DONE in 25ms (0 fixable violations)
+Changing into directory /opt/ptdeploy/ptdeploy/src/Modules/NginxControl/Controller
+Processing NginxControl.php [PHP => 270 tokens in 31 lines]... DONE in 11ms (0 fixable violations)
+Changing into directory /opt/ptdeploy/ptdeploy/src/Modules/NginxControl
+Processing info.NginxControl.php [PHP => 211 tokens in 54 lines]... DONE in 8ms (0 fixable violations)
+Changing into directory /opt/ptdeploy/ptdeploy/src/Modules/Dapperfy/Model
+Processing Dapperfy.php [PHP => 21 tokens in 8 lines]... DONE in 1ms (0 fixable violations)
+Processing DapperfyAllOS.php [PHP => 1275 tokens in 146 lines]... DONE in 50ms (0 fixable violations)
+Changing into directory /opt/ptdeploy/ptdeploy/src/Modules/Dapperfy
+Processing info.Dapperfy.php [PHP => 492 tokens in 90 lines]... DONE in 22ms (0 fixable violations)
+Changing into directory /opt/ptdeploy/ptdeploy/src/Modules/Dapperfy/Controller
+Processing Dapperfy.php [PHP => 461 tokens in 51 lines]... DONE in 18ms (0 fixable violations)
+Changing into directory /opt/ptdeploy/ptdeploy/src/Modules/Dapperfy/Templates
+Processing environment-node-install-enforce-revisions.php [PHP => 271 tokens in 41 lines]... DONE in 10ms (0 fixable violations)
+Processing environment-ptvirtualize-install-code-no-dbconf.php [PHP => 518 tokens in 98 lines]... DONE in 18ms (0 fixable violations)
+Processing environment-workstation-uninstall-code-data.php [PHP => 351 tokens in 59 lines]... DONE in 12ms (0 fixable violations)
+Processing environment-invoke-rollback-previous.php [PHP => 394 tokens in 63 lines]... DONE in 15ms (0 fixable violations)
+Processing environment-node-install-code-no-dbconf.php [PHP => 795 tokens in 126 lines]... DONE in 27ms (0 fixable violations)
+Processing environment-invoke-code-no-dbconf.php [PHP => 394 tokens in 63 lines]... DONE in 15ms (0 fixable violations)
+Processing environment-invoke-code-data.php [PHP => 394 tokens in 63 lines]... DONE in 15ms (0 fixable violations)
+Processing environment-ptvirtualize-host-uninstall-host-file-entry.php [PHP => 319 tokens in 49 lines]... DONE in 12ms (0 fixable violations)
+Processing environment-node-install-rollback-previous.php [PHP => 305 tokens in 42 lines]... DONE in 11ms (0 fixable violations)
+Processing environment-workstation-uninstall-code.php [PHP => 274 tokens in 50 lines]... DONE in 10ms (0 fixable violations)
+Processing environment-invoke-rollback-newest.php [PHP => 394 tokens in 63 lines]... DONE in 15ms (0 fixable violations)
+Processing environment-nodepool-install-code-no-dbconf.php [PHP => 794 tokens in 125 lines]... DONE in 28ms (0 fixable violations)
+Processing environment-invoke-code-dbconf.php [PHP => 394 tokens in 63 lines]... DONE in 15ms (0 fixable violations)
+Processing environment-node-uninstall-code.php [PHP => 745 tokens in 130 lines]... DONE in 27ms (0 fixable violations)
+Processing environment-node-uninstall-code-data.php [PHP => 351 tokens in 59 lines]... DONE in 14ms (0 fixable violations)
+Processing environment-workstation-install-code-no-dbconf.php [PHP => 375 tokens in 96 lines]... DONE in 14ms (0 fixable violations)
+Processing environment-ptvirtualize-host-install-host-file-entry.php [PHP => 331 tokens in 50 lines]... DONE in 12ms (0 fixable violations)
+Processing environment-invoke-enforce-revisions.php [PHP => 394 tokens in 63 lines]... DONE in 14ms (0 fixable violations)
+Processing environment-node-install-rollback-newest.php [PHP => 305 tokens in 42 lines]... DONE in 11ms (0 fixable violations)
+Changing into directory /opt/ptdeploy/ptdeploy/src/Modules/DBInstall/Model
+Processing DBInstall.php [PHP => 21 tokens in 8 lines]... DONE in 1ms (0 fixable violations)
+Processing DBInstallAllOS.php [PHP => 6364 tokens in 682 lines]... DONE in 268ms (0 fixable violations)
+Changing into directory /opt/ptdeploy/ptdeploy/src/Modules/DBInstall
+Processing info.DBInstall.php [PHP => 492 tokens in 96 lines]... DONE in 21ms (0 fixable violations)
+Changing into directory /opt/ptdeploy/ptdeploy/src/Modules/DBInstall/Controller
+Processing DBInstall.php [PHP => 677 tokens in 62 lines]... DONE in 25ms (0 fixable violations)
+Changing into directory /opt/ptdeploy/ptdeploy/src/Modules/PTConfigureRequired/Model
+Processing BaseTemplater.php [PHP => 421 tokens in 46 lines]... DONE in 17ms (0 fixable violations)
+Processing BaseModelFactory.php [PHP => 87 tokens in 14 lines]... DONE in 4ms (0 fixable violations)
+Processing BasePackager.php [PHP => 662 tokens in 82 lines]... DONE in 27ms (0 fixable violations)
+Processing BaseWindowsApp.php [PHP => 207 tokens in 30 lines]... DONE in 9ms (0 fixable violations)
+Processing RegExp.php [PHP => 72 tokens in 19 lines]... DONE in 4ms (0 fixable violations)
+Processing BasePHPWindowsApp.php [PHP => 837 tokens in 101 lines]... DONE in 35ms (0 fixable violations)
+Processing AppConfig.php [PHP => 1456 tokens in 170 lines]... DONE in 65ms (0 fixable violations)
+Processing RegistryStore.php [PHP => 209 tokens in 32 lines]... DONE in 10ms (0 fixable violations)
+Processing BaseComposerApp.php [PHP => 624 tokens in 86 lines]... DONE in 25ms (0 fixable violations)
+Processing SoftwareVersion.php [PHP => 1281 tokens in 128 lines]... DONE in 53ms (0 fixable violations)
+Processing BaseLinuxApp.php [PHP => 3360 tokens in 449 lines]... DONE in 147ms (0 fixable violations)
+Processing BasePHPApp.php [PHP => 6602 tokens in 658 lines]... DONE in 335ms (0 fixable violations)
+Changing into directory /opt/ptdeploy/ptdeploy/src/Modules/PTConfigureRequired/Controller
+Processing PTConfigureRequired.php [PHP => 156 tokens in 21 lines]... DONE in 6ms (0 fixable violations)
+Changing into directory /opt/ptdeploy/ptdeploy/src/Modules/PTConfigureRequired
+Processing info.PTConfigureRequired.php [PHP => 163 tokens in 36 lines]... DONE in 7ms (0 fixable violations)
+Changing into directory /opt/ptdeploy/ptdeploy/src/Modules/PTConfigureRequired/Info
+Processing PTConfigureBase.php [PHP => 95 tokens in 20 lines]... DONE in 4ms (0 fixable violations)
+Changing into directory /opt/ptdeploy/ptdeploy/src/Modules/SshKeyStore/Model
+Processing SshKeyStoreAnyOS.php [PHP => 1664 tokens in 181 lines]... DONE in 70ms (0 fixable violations)
+Processing SshKeyStore.php [PHP => 21 tokens in 8 lines]... DONE in 2ms (0 fixable violations)
+Changing into directory /opt/ptdeploy/ptdeploy/src/Modules/SshKeyStore/Controller
+Processing SshKeyStore.php [PHP => 351 tokens in 36 lines]... DONE in 13ms (0 fixable violations)
+Changing into directory /opt/ptdeploy/ptdeploy/src/Modules/SshKeyStore
+Processing info.SshKeyStore.php [PHP => 211 tokens in 49 lines]... DONE in 9ms (0 fixable violations)
+Changing into directory /opt/ptdeploy/ptdeploy/src/Modules/CukeConf
+Processing info.CukeConf.php [PHP => 196 tokens in 47 lines]... DONE in 8ms (0 fixable violations)
+Changing into directory /opt/ptdeploy/ptdeploy/src/Modules/CukeConf/Model
+Processing CukeConfAllOS.php [PHP => 1154 tokens in 160 lines]... DONE in 49ms (0 fixable violations)
+Processing CukeConf.php [PHP => 21 tokens in 8 lines]... DONE in 2ms (0 fixable violations)
+Changing into directory /opt/ptdeploy/ptdeploy/src/Modules/CukeConf/Controller
+Processing CukeConf.php [PHP => 356 tokens in 36 lines]... DONE in 13ms (0 fixable violations)
+Changing into directory /opt/ptdeploy/ptdeploy/src/Modules/Version
+Processing info.Version.php [PHP => 214 tokens in 58 lines]... DONE in 9ms (0 fixable violations)
+Changing into directory /opt/ptdeploy/ptdeploy/src/Modules/Version/Model
+Processing Version.php [PHP => 21 tokens in 8 lines]... DONE in 1ms (0 fixable violations)
+Processing VersionLinuxMac.php [PHP => 1959 tokens in 214 lines]... DONE in 81ms (0 fixable violations)
+Changing into directory /opt/ptdeploy/ptdeploy/src/Modules/Version/Controller
+Processing Version.php [PHP => 326 tokens in 36 lines]... DONE in 12ms (0 fixable violations)
+Changing into directory /opt/ptdeploy/ptdeploy/src/Modules/Templating
+Processing info.Templating.php [PHP => 182 tokens in 41 lines]... DONE in 8ms (0 fixable violations)
+Changing into directory /opt/ptdeploy/ptdeploy/src/Modules/Templating/Model
+Processing TemplatingLinuxMac.php [PHP => 538 tokens in 69 lines]... DONE in 21ms (0 fixable violations)
+Processing Templating.php [PHP => 21 tokens in 8 lines]... DONE in 1ms (0 fixable violations)
+Changing into directory /opt/ptdeploy/ptdeploy/src/Modules/Templating/Controller
+Processing Templating.php [PHP => 22 tokens in 8 lines]... DONE in 1ms (0 fixable violations)
+Changing into directory /opt/ptdeploy/ptdeploy/src/Modules/Drupal
+Processing info.Drupal.php [PHP => 471 tokens in 131 lines]... DONE in 19ms (0 fixable violations)
+Changing into directory /opt/ptdeploy/ptdeploy/src/Modules/Drupal/Model
+Processing DBConfigureDataDrupal70.php [PHP => 422 tokens in 67 lines]... DONE in 16ms (0 fixable violations)
+Processing DBInstallHooksDrupal.php [PHP => 385 tokens in 57 lines]... DONE in 15ms (0 fixable violations)
+Processing DapperfyDrupalPTVirtualizeAllOS.php [PHP => 910 tokens in 119 lines]... DONE in 36ms (0 fixable violations)
+Processing DapperfyDrupalAllOS.php [PHP => 888 tokens in 105 lines]... DONE in 32ms (0 fixable violations)
+Processing Drupal.php [PHP => 21 tokens in 8 lines]... DONE in 2ms (0 fixable violations)
+Changing into directory /opt/ptdeploy/ptdeploy/src/Modules/Drupal/Controller
+Processing Drupal.php [PHP => 1616 tokens in 140 lines]... DONE in 64ms (0 fixable violations)
+Changing into directory /opt/ptdeploy/ptdeploy/src/Modules/Drupal/Templates/Dapperfy/Drupal6
+Processing environment-invoke-code-data.php [PHP => 386 tokens in 62 lines]... DONE in 15ms (0 fixable violations)
+Processing environment-workstation-install-code-data.php [PHP => 696 tokens in 133 lines]... DONE in 24ms (0 fixable violations)
+Processing environment-workstation-install-code-dbconf.php [PHP => 489 tokens in 109 lines]... DONE in 17ms (0 fixable violations)
+Processing environment-node-install-code-dbconf.php [PHP => 956 tokens in 137 lines]... DONE in 33ms (0 fixable violations)
+Processing environment-invoke-code-dbconf.php [PHP => 386 tokens in 62 lines]... DONE in 15ms (0 fixable violations)
+Processing environment-node-install-code-data.php [PHP => 1159 tokens in 155 lines]... DONE in 41ms (0 fixable violations)
+Processing environment-node-uninstall-code-data.php [PHP => 375 tokens in 62 lines]... DONE in 14ms (0 fixable violations)
+Changing into directory /opt/ptdeploy/ptdeploy/src/Modules/Drupal/Templates/Dapperfy/Drupal7
+Processing environment-workstation-install-code-data.php [PHP => 696 tokens in 133 lines]... DONE in 24ms (0 fixable violations)
+Processing environment-workstation-install-code-dbconf.php [PHP => 489 tokens in 109 lines]... DONE in 17ms (0 fixable violations)
+Processing environment-node-install-code-dbconf.php [PHP => 956 tokens in 137 lines]... DONE in 33ms (0 fixable violations)
+Processing environment-node-install-code-data.php [PHP => 1159 tokens in 155 lines]... DONE in 42ms (0 fixable violations)
+Processing environment-node-uninstall-code-data.php [PHP => 375 tokens in 62 lines]... DONE in 14ms (0 fixable violations)
+Changing into directory /opt/ptdeploy/ptdeploy/src/Modules/Drupal/Templates/Dapperfy/Drupal7Phlagrant
+Processing environment-phlagrant-install-code-data.php [PHP => 953 tokens in 140 lines]... DONE in 32ms (0 fixable violations)
+Processing environment-host-install-host-file-entry.php [PHP => 331 tokens in 50 lines]... DONE in 14ms (0 fixable violations)
+Changing into directory /opt/ptdeploy/ptdeploy/src/Modules/Drupal/Templates/Builderfy/Autopilots
+Processing environment-invoke-continuous.php [PHP => 293 tokens in 55 lines]... DONE in 21ms (0 fixable violations)
+Changing into directory /opt/ptdeploy/ptdeploy/src/Modules/Drupal/Autopilots/Dapperfy
+Processing dapperfy-drupal-tiny.php [PHP => 259 tokens in 43 lines]... DONE in 11ms (0 fixable violations)
+Changing into directory /opt/ptdeploy/ptdeploy/src/Modules/Drupal/Autopilots/Builderfy
+Processing builderfy-create-autos-tiny.php [PHP => 251 tokens in 42 lines]... DONE in 9ms (0 fixable violations)
+Changing into directory /opt/ptdeploy/ptdeploy/src/Modules/LetsEncrypt/Model
+Processing LetsEncryptAllOS.php [PHP => 842 tokens in 112 lines]... DONE in 32ms (0 fixable violations)
+Processing LetsEncrypt.php [PHP => 21 tokens in 8 lines]... DONE in 1ms (0 fixable violations)
+Changing into directory /opt/ptdeploy/ptdeploy/src/Modules/LetsEncrypt
+Processing info.LetsEncrypt.php [PHP => 212 tokens in 48 lines]... DONE in 9ms (0 fixable violations)
+Changing into directory /opt/ptdeploy/ptdeploy/src/Modules/LetsEncrypt/Controller
+Processing LetsEncrypt.php [PHP => 370 tokens in 39 lines]... DONE in 13ms (0 fixable violations)
+Changing into directory /opt/ptdeploy/ptdeploy/src/Modules/Joomla/Model
+Processing DapperfyJoomlaAllOS.php [PHP => 1182 tokens in 136 lines]... DONE in 43ms (0 fixable violations)
+Processing Joomla.php [PHP => 21 tokens in 8 lines]... DONE in 2ms (0 fixable violations)
+Processing DapperfyJoomlaPTVirtualizeAllOS.php [PHP => 907 tokens in 116 lines]... DONE in 33ms (0 fixable violations)
+Processing DBConfigureDataJoomla30.php [PHP => 762 tokens in 94 lines]... DONE in 29ms (0 fixable violations)
+Processing DBConfigureDataJoomla15.php [PHP => 488 tokens in 70 lines]... DONE in 19ms (0 fixable violations)
+Changing into directory /opt/ptdeploy/ptdeploy/src/Modules/Joomla/Controller
+Processing Joomla.php [PHP => 2026 tokens in 173 lines]... DONE in 76ms (0 fixable violations)
+Changing into directory /opt/ptdeploy/ptdeploy/src/Modules/Joomla
+Processing info.Joomla.php [PHP => 558 tokens in 159 lines]... DONE in 24ms (0 fixable violations)
+Changing into directory /opt/ptdeploy/ptdeploy/src/Modules/Joomla/Templates/Dapperfy/Joomla30
+Processing environment-workstation-install-code-data.php [PHP => 953 tokens in 140 lines]... DONE in 32ms (0 fixable violations)
+Processing environment-workstation-install-code-dbconf.php [PHP => 700 tokens in 116 lines]... DONE in 26ms (0 fixable violations)
+Processing environment-node-install-code-dbconf.php [PHP => 1152 tokens in 158 lines]... DONE in 41ms (0 fixable violations)
+Processing environment-node-install-code-data.php [PHP => 1405 tokens in 182 lines]... DONE in 50ms (0 fixable violations)
+Changing into directory /opt/ptdeploy/ptdeploy/src/Modules/Joomla/Templates/Dapperfy/Joomla30Phlagrant
+Processing environment-phlagrant-install-code-data.php [PHP => 1111 tokens in 154 lines]... DONE in 39ms (0 fixable violations)
+Processing environment-host-install-host-file-entry.php [PHP => 331 tokens in 50 lines]... DONE in 13ms (0 fixable violations)
+Changing into directory /opt/ptdeploy/ptdeploy/src/Modules/Joomla/Templates/Builderfy/Autopilots
+Processing environment-invoke-continuous.php [PHP => 293 tokens in 55 lines]... DONE in 11ms (0 fixable violations)
+Changing into directory /opt/ptdeploy/ptdeploy/src/Modules/Joomla/Autopilots/Dapperfy
+Processing dapperfy-joomla-tiny.php [PHP => 259 tokens in 43 lines]... DONE in 10ms (0 fixable violations)
+Changing into directory /opt/ptdeploy/ptdeploy/src/Modules/Joomla/Autopilots/Builderfy
+Processing builderfy-create-autos-tiny.php [PHP => 251 tokens in 42 lines]... DONE in 9ms (0 fixable violations)
+Changing into directory /opt/ptdeploy/ptdeploy/src/Modules/Apt
+Processing info.Apt.php [PHP => 237 tokens in 73 lines]... DONE in 10ms (0 fixable violations)
+Changing into directory /opt/ptdeploy/ptdeploy/src/Modules/Apt/Model
+Processing AptUbuntu.php [PHP => 1146 tokens in 120 lines]... DONE in 45ms (0 fixable violations)
+Processing Apt.php [PHP => 21 tokens in 8 lines]... DONE in 2ms (0 fixable violations)
+Changing into directory /opt/ptdeploy/ptdeploy/src/Modules/Apt/Controller
+Processing Apt.php [PHP => 343 tokens in 35 lines]... DONE in 13ms (0 fixable violations)
+Changing into directory /opt/ptdeploy/ptdeploy/src/Modules/LighttpdControl/Model
+Processing LighttpdControl.php [PHP => 21 tokens in 8 lines]... DONE in 1ms (0 fixable violations)
+Processing LighttpdControlLinuxMac.php [PHP => 411 tokens in 60 lines]... DONE in 16ms (0 fixable violations)
+Changing into directory /opt/ptdeploy/ptdeploy/src/Modules/LighttpdControl/Controller
+Processing LighttpdControl.php [PHP => 270 tokens in 31 lines]... DONE in 10ms (0 fixable violations)
+Changing into directory /opt/ptdeploy/ptdeploy/src/Modules/LighttpdControl
+Processing info.LighttpdControl.php [PHP => 215 tokens in 58 lines]... DONE in 9ms (0 fixable violations)
+Changing into directory /opt/ptdeploy/ptdeploy/src/Modules/Invoke
+Processing info.Invoke.php [PHP => 223 tokens in 60 lines]... DONE in 9ms (0 fixable violations)
+Changing into directory /opt/ptdeploy/ptdeploy/src/Modules/Invoke/Model
+Processing InvokeServer.php [PHP => 433 tokens in 66 lines]... DONE in 17ms (0 fixable violations)
+Processing InvokeSsh2.php [PHP => 1822 tokens in 197 lines]... DONE in 70ms (0 fixable violations)
+Processing Invoke.php [PHP => 21 tokens in 8 lines]... DONE in 2ms (0 fixable violations)
+Processing InvokeBashSsh.php [PHP => 545 tokens in 74 lines]... DONE in 21ms (0 fixable violations)
+Processing InvokePhpSecLib.php [PHP => 939 tokens in 106 lines]... DONE in 38ms (0 fixable violations)
+Processing InvokeAllOS.php [PHP => 7842 tokens in 786 lines]... DONE in 410ms (0 fixable violations)
+Changing into directory /opt/ptdeploy/ptdeploy/src/Modules/Invoke/Controller
+Processing Invoke.php [PHP => 509 tokens in 49 lines]... DONE in 18ms (0 fixable violations)
+Changing into directory /opt/ptdeploy/ptdeploy/src/Modules/RunCommand/Model
+Processing RunCommandLinuxMac.php [PHP => 1473 tokens in 134 lines]... DONE in 57ms (0 fixable violations)
+Processing RunCommand.php [PHP => 21 tokens in 8 lines]... DONE in 2ms (0 fixable violations)
+Changing into directory /opt/ptdeploy/ptdeploy/src/Modules/RunCommand
+Processing info.RunCommand.php [PHP => 178 tokens in 41 lines]... DONE in 8ms (0 fixable violations)
+Changing into directory /opt/ptdeploy/ptdeploy/src/Modules/RunCommand/Controller
+Processing RunCommand.php [PHP => 22 tokens in 8 lines]... DONE in 1ms (0 fixable violations)
+Changing into directory /opt/ptdeploy/ptdeploy/src/Modules/Wordpress
+Processing info.Wordpress.php [PHP => 530 tokens in 151 lines]... DONE in 22ms (0 fixable violations)
+Changing into directory /opt/ptdeploy/ptdeploy/src/Modules/Wordpress/Model
+Processing DBInstallHooksWordpress.php [PHP => 437 tokens in 61 lines]... DONE in 18ms (0 fixable violations)
+Processing DapperfyWordpressAllOS.php [PHP => 1181 tokens in 135 lines]... DONE in 45ms (0 fixable violations)
+Processing DBConfigureDataWordpress.php [PHP => 498 tokens in 72 lines]... DONE in 19ms (0 fixable violations)
+Processing Wordpress.php [PHP => 21 tokens in 8 lines]... DONE in 1ms (0 fixable violations)
+Changing into directory /opt/ptdeploy/ptdeploy/src/Modules/Wordpress/Controller
+Processing Wordpress.php [PHP => 1252 tokens in 116 lines]... DONE in 48ms (0 fixable violations)
+Changing into directory /opt/ptdeploy/ptdeploy/src/Modules/Wordpress/Templates/Dapperfy/Wordpress
+Processing environment-workstation-install-code-data.php [PHP => 961 tokens in 141 lines]... DONE in 33ms (0 fixable violations)
+Processing environment-workstation-install-code-dbconf.php [PHP => 709 tokens in 117 lines]... DONE in 26ms (0 fixable violations)
+Processing environment-node-install-code-dbconf.php [PHP => 990 tokens in 143 lines]... DONE in 36ms (0 fixable violations)
+Processing environment-node-install-code-data.php [PHP => 1251 tokens in 168 lines]... DONE in 46ms (0 fixable violations)
+Changing into directory /opt/ptdeploy/ptdeploy/src/Modules/Wordpress/Templates/Builderfy/Autopilots
+Processing environment-invoke-continuous.php [PHP => 293 tokens in 55 lines]... DONE in 12ms (0 fixable violations)
+Changing into directory /opt/ptdeploy/ptdeploy/src/Modules/Wordpress/Autopilots/Dapperfy
+Processing dapperfy-wp-tiny.php [PHP => 259 tokens in 43 lines]... DONE in 10ms (0 fixable violations)
+Changing into directory /opt/ptdeploy/ptdeploy/src/Modules/Wordpress/Autopilots/Builderfy
+Processing builderfy-create-autos-tiny.php [PHP => 251 tokens in 42 lines]... DONE in 9ms (0 fixable violations)
+Changing into directory /opt/ptdeploy/ptdeploy/src/Modules/File/Model
+Processing File.php [PHP => 21 tokens in 8 lines]... DONE in 1ms (0 fixable violations)
+Processing FileAllOS.php [PHP => 4016 tokens in 426 lines]... DONE in 177ms (0 fixable violations)
+Changing into directory /opt/ptdeploy/ptdeploy/src/Modules/File/Controller
+Processing File.php [PHP => 352 tokens in 35 lines]... DONE in 14ms (0 fixable violations)
+Changing into directory /opt/ptdeploy/ptdeploy/src/Modules/File
+Processing info.File.php [PHP => 229 tokens in 75 lines]... DONE in 9ms (0 fixable violations)
+Changing into directory /opt/ptdeploy/ptdeploy/src/Modules/PharaohToolRunner/Model
+Processing PharaohToolRunnerAnyOS.php [PHP => 1245 tokens in 133 lines]... DONE in 50ms (0 fixable violations)
+Processing PharaohToolRunner.php [PHP => 21 tokens in 8 lines]... DONE in 2ms (0 fixable violations)
+Changing into directory /opt/ptdeploy/ptdeploy/src/Modules/PharaohToolRunner
+Processing info.PharaohToolRunner.php [PHP => 196 tokens in 48 lines]... DONE in 8ms (0 fixable violations)
+Changing into directory /opt/ptdeploy/ptdeploy/src/Modules/PharaohToolRunner/Controller
+Processing PharaohToolRunner.php [PHP => 292 tokens in 33 lines]... DONE in 11ms (0 fixable violations)
+Changing into directory /opt/ptdeploy/ptdeploy/src/Modules/EnvironmentConfig
+Processing info.EnvironmentConfig.php [PHP => 245 tokens in 72 lines]... DONE in 10ms (0 fixable violations)
+Changing into directory /opt/ptdeploy/ptdeploy/src/Modules/EnvironmentConfig/Model
+Processing EnvironmentConfigAllLinux.php [PHP => 2799 tokens in 291 lines]... DONE in 115ms (0 fixable violations)
+Processing EnvironmentConfigGenericAutosAllOS.php [PHP => 1063 tokens in 107 lines]... DONE in 39ms (0 fixable violations)
+Processing EnvironmentConfigAllOS.php [PHP => 3224 tokens in 337 lines]... DONE in 137ms (0 fixable violations)
+Processing EnvironmentConfig.php [PHP => 21 tokens in 8 lines]... DONE in 2ms (0 fixable violations)
+Changing into directory /opt/ptdeploy/ptdeploy/src/Modules/EnvironmentConfig/Controller
+Processing EnvironmentConfig.php [PHP => 588 tokens in 57 lines]... DONE in 23ms (0 fixable violations)
+Changing into directory /opt/ptdeploy/ptdeploy/src/Modules/DBConfigure/Model
+Processing DBConfigure.php [PHP => 21 tokens in 8 lines]... DONE in 1ms (0 fixable violations)
+Processing DBConfigureDataGCFW2.php [PHP => 275 tokens in 49 lines]... DONE in 11ms (0 fixable violations)
+Processing DBConfigureAllOS.php [PHP => 4095 tokens in 442 lines]... DONE in 172ms (0 fixable violations)
+Changing into directory /opt/ptdeploy/ptdeploy/src/Modules/DBConfigure
+Processing info.DBConfigure.php [PHP => 481 tokens in 83 lines]... DONE in 20ms (0 fixable violations)
+Changing into directory /opt/ptdeploy/ptdeploy/src/Modules/DBConfigure/Controller
+Processing DBConfigure.php [PHP => 529 tokens in 54 lines]... DONE in 21ms (0 fixable violations)
+Changing into directory /opt/ptdeploy/ptdeploy/src/Modules/GitClone/Model
+Processing GitCloneAllLinuxMac.php [PHP => 1718 tokens in 213 lines]... DONE in 72ms (0 fixable violations)
+Processing GitClone.php [PHP => 21 tokens in 8 lines]... DONE in 2ms (0 fixable violations)
+Changing into directory /opt/ptdeploy/ptdeploy/src/Modules/GitClone/Controller
+Processing GitClone.php [PHP => 266 tokens in 31 lines]... DONE in 12ms (0 fixable violations)
+Changing into directory /opt/ptdeploy/ptdeploy/src/Modules/GitClone
+Processing info.GitClone.php [PHP => 190 tokens in 42 lines]... DONE in 9ms (0 fixable violations)
+Changing into directory /opt/ptdeploy/ptdeploy/src/Modules/HostEditor
+Processing info.HostEditor.php [PHP => 186 tokens in 50 lines]... DONE in 8ms (0 fixable violations)
+Changing into directory /opt/ptdeploy/ptdeploy/src/Modules/HostEditor/Model
+Processing HostEditorAllLinuxMac.php [PHP => 2237 tokens in 242 lines]... DONE in 97ms (0 fixable violations)
+Processing HostEditorWindows.php [PHP => 783 tokens in 84 lines]... DONE in 32ms (0 fixable violations)
+Processing HostEditor.php [PHP => 21 tokens in 8 lines]... DONE in 2ms (0 fixable violations)
+Changing into directory /opt/ptdeploy/ptdeploy/src/Modules/HostEditor/Controller
+Processing HostEditor.php [PHP => 309 tokens in 33 lines]... DONE in 12ms (0 fixable violations)
+Changing into directory /opt/ptdeploy/ptdeploy/src/Modules/PTDeployRequired
+Processing info.PTDeployRequired.php [PHP => 163 tokens in 36 lines]... DONE in 7ms (0 fixable violations)
+Changing into directory /opt/ptdeploy/ptdeploy/src/Modules/PTDeployRequired/Model
+Processing BaseTemplater.php [PHP => 352 tokens in 41 lines]... DONE in 14ms (0 fixable violations)
+Processing BaseModelFactory.php [PHP => 87 tokens in 14 lines]... DONE in 4ms (0 fixable violations)
+Changing into directory /opt/ptdeploy/ptdeploy/src/Modules/SVN/Model
+Processing SVNAllLinuxMac.php [PHP => 1386 tokens in 176 lines]... DONE in 58ms (0 fixable violations)
+Processing SVN.php [PHP => 21 tokens in 8 lines]... DONE in 2ms (0 fixable violations)
+Changing into directory /opt/ptdeploy/ptdeploy/src/Modules/SVN/Controller
+Processing SVN.php [PHP => 273 tokens in 31 lines]... DONE in 10ms (0 fixable violations)
+Changing into directory /opt/ptdeploy/ptdeploy/src/Modules/SVN
+Processing info.SVN.php [PHP => 183 tokens in 42 lines]... DONE in 8ms (0 fixable violations)
+Changing into directory /opt/ptdeploy/ptdeploy/src/Modules/SystemDetection
+Processing info.SystemDetection.php [PHP => 179 tokens in 42 lines]... DONE in 8ms (0 fixable violations)
+Changing into directory /opt/ptdeploy/ptdeploy/src/Modules/SystemDetection/Model
+Processing SystemDetectionFactory.php [PHP => 1010 tokens in 95 lines]... DONE in 40ms (0 fixable violations)
+Processing SystemDetection.php [PHP => 21 tokens in 8 lines]... DONE in 2ms (0 fixable violations)
+Processing SystemDetectionAllOS.php [PHP => 1699 tokens in 196 lines]... DONE in 69ms (0 fixable violations)
+Changing into directory /opt/ptdeploy/ptdeploy/src/Modules/SystemDetection/Controller
+Processing SystemDetection.php [PHP => 222 tokens in 27 lines]... DONE in 9ms (0 fixable violations)
+Changing into directory /opt/ptdeploy/ptdeploy/src/Modules/AppSettings/Model
+Processing AppConfigAllOS.php [PHP => 1547 tokens in 177 lines]... DONE in 61ms (0 fixable violations)
+Processing ProjectConfigAllOS.php [PHP => 1185 tokens in 150 lines]... DONE in 48ms (0 fixable violations)
+Processing AppSettings.php [PHP => 21 tokens in 8 lines]... DONE in 2ms (0 fixable violations)
+Changing into directory /opt/ptdeploy/ptdeploy/src/Modules/AppSettings
+Processing info.AppSettings.php [PHP => 199 tokens in 54 lines]... DONE in 9ms (0 fixable violations)
+Changing into directory /opt/ptdeploy/ptdeploy/src/Modules/AppSettings/Controller
+Processing AppSettings.php [PHP => 424 tokens in 46 lines]... DONE in 15ms (0 fixable violations)
+Changing into directory /opt/ptdeploy/ptdeploy/src/Modules/VariableGroups/Model
+Processing VariableGroupsAllOS.php [PHP => 708 tokens in 86 lines]... DONE in 28ms (0 fixable violations)
+Processing VariableGroups.php [PHP => 21 tokens in 8 lines]... DONE in 2ms (0 fixable violations)
+Changing into directory /opt/ptdeploy/ptdeploy/src/Modules/VariableGroups
+Processing info.VariableGroups.php [PHP => 184 tokens in 43 lines]... DONE in 8ms (0 fixable violations)
+Changing into directory /opt/ptdeploy/ptdeploy/src/Modules/VariableGroups/Controller
+Processing VariableGroups.php [PHP => 22 tokens in 8 lines]... DONE in 2ms (0 fixable violations)
+Changing into directory /opt/ptdeploy/ptdeploy/src/Modules/ApacheControl
+Processing info.ApacheControl.php [PHP => 226 tokens in 65 lines]... DONE in 9ms (0 fixable violations)
+Changing into directory /opt/ptdeploy/ptdeploy/src/Modules/ApacheControl/Model
+Processing ApacheControl.php [PHP => 21 tokens in 8 lines]... DONE in 1ms (0 fixable violations)
+Processing ApacheControlOSX.php [PHP => 787 tokens in 113 lines]... DONE in 31ms (0 fixable violations)
+Processing ApacheControlAllLinux.php [PHP => 936 tokens in 124 lines]... DONE in 36ms (0 fixable violations)
+Changing into directory /opt/ptdeploy/ptdeploy/src/Modules/ApacheControl/Controller
+Processing ApacheControl.php [PHP => 418 tokens in 40 lines]... DONE in 15ms (0 fixable violations)
+Changing into directory /opt/ptdeploy/ptdeploy/src/Modules/Logging
+Processing info.Logging.php [PHP => 239 tokens in 53 lines]... DONE in 10ms (0 fixable violations)
+Changing into directory /opt/ptdeploy/ptdeploy/src/Modules/Logging/Model
+Processing LoggingAll.php [PHP => 1018 tokens in 106 lines]... DONE in 38ms (0 fixable violations)
+Processing LoggingColours.php [PHP => 673 tokens in 80 lines]... DONE in 24ms (0 fixable violations)
+Processing Logging.php [PHP => 21 tokens in 8 lines]... DONE in 1ms (0 fixable violations)
+Changing into directory /opt/ptdeploy/ptdeploy/src/Modules/Logging/Controller
+Processing Logging.php [PHP => 343 tokens in 36 lines]... DONE in 12ms (0 fixable violations)
+Changing into directory /opt/ptdeploy/ptdeploy/src/Modules/PHPSSH/Model
+Processing PHPSSHUbuntu.php [PHP => 508 tokens in 54 lines]... DONE in 18ms (0 fixable violations)
+Processing PHPSSH.php [PHP => 21 tokens in 8 lines]... DONE in 1ms (0 fixable violations)
+Processing PHPSSHMac.php [PHP => 1842 tokens in 177 lines]... DONE in 69ms (0 fixable violations)
+Changing into directory /opt/ptdeploy/ptdeploy/src/Modules/PHPSSH/Controller
+Processing PHPSSH.php [PHP => 22 tokens in 8 lines]... DONE in 2ms (0 fixable violations)
+Changing into directory /opt/ptdeploy/ptdeploy/src/Modules/PHPSSH
+Processing info.PHPSSH.php [PHP => 182 tokens in 41 lines]... DONE in 8ms (0 fixable violations)
+Changing into directory /opt/ptdeploy/ptdeploy/src/Modules/SFTP
+Processing info.SFTP.php [PHP => 190 tokens in 49 lines]... DONE in 8ms (0 fixable violations)
+Changing into directory /opt/ptdeploy/ptdeploy/src/Modules/SFTP/Model
+Processing SFTPNativeWrapperAllLinux.php [PHP => 979 tokens in 116 lines]... DONE in 39ms (0 fixable violations)
+Processing SFTP.php [PHP => 21 tokens in 8 lines]... DONE in 1ms (0 fixable violations)
+Processing SFTPAllLinux.php [PHP => 6889 tokens in 714 lines]... DONE in 362ms (0 fixable violations)
+Changing into directory /opt/ptdeploy/ptdeploy/src/Modules/SFTP/Controller
+Processing SFTP.php [PHP => 348 tokens in 38 lines]... DONE in 13ms (0 fixable violations)
+Changing into directory /opt/ptdeploy/ptdeploy/src/Modules/Project
+Processing info.Project.php [PHP => 213 tokens in 61 lines]... DONE in 10ms (0 fixable violations)
+Changing into directory /opt/ptdeploy/ptdeploy/src/Modules/Project/Model
+Processing ProjectLinuxMac.php [PHP => 1083 tokens in 139 lines]... DONE in 45ms (0 fixable violations)
+Processing Project.php [PHP => 21 tokens in 8 lines]... DONE in 2ms (0 fixable violations)
+Processing ProjectWindows.php [PHP => 228 tokens in 30 lines]... DONE in 9ms (0 fixable violations)
+Changing into directory /opt/ptdeploy/ptdeploy/src/Modules/Project/Controller
+Processing Project.php [PHP => 434 tokens in 46 lines]... DONE in 15ms (0 fixable violations)
+Changing into directory /opt/ptdeploy/ptdeploy/src/Modules/Index/Model
+Processing Index.php [PHP => 21 tokens in 8 lines]... DONE in 1ms (0 fixable violations)
+Processing IndexAllOS.php [PHP => 491 tokens in 57 lines]... DONE in 19ms (0 fixable violations)
+Changing into directory /opt/ptdeploy/ptdeploy/src/Modules/Index/Controller
+Processing Index.php [PHP => 160 tokens in 19 lines]... DONE in 7ms (0 fixable violations)
+Changing into directory /opt/ptdeploy/ptdeploy/src/Modules/Index
+Processing info.Index.php [PHP => 160 tokens in 34 lines]... DONE in 7ms (0 fixable violations)
+Changing into directory /opt/ptdeploy/ptdeploy/src/Modules/NginxSBEditor/Model
+Processing NginxSBEditor.php [PHP => 21 tokens in 8 lines]... DONE in 1ms (0 fixable violations)
+Processing NginxSBEditorLinuxMac.php [PHP => 4369 tokens in 636 lines]... DONE in 193ms (0 fixable violations)
+Changing into directory /opt/ptdeploy/ptdeploy/src/Modules/NginxSBEditor
+Processing info.NginxSBEditor.php [PHP => 362 tokens in 124 lines]... DONE in 14ms (0 fixable violations)
+Changing into directory /opt/ptdeploy/ptdeploy/src/Modules/NginxSBEditor/Controller
+Processing NginxSBEditor.php [PHP => 490 tokens in 43 lines]... DONE in 18ms (0 fixable violations)
+Changing into directory /opt/ptdeploy/ptdeploy/src/Modules/PackageManager/Model
+Processing PackageManagerAllOS.php [PHP => 2756 tokens in 291 lines]... DONE in 119ms (0 fixable violations)
+Processing PackageManager.php [PHP => 21 tokens in 8 lines]... DONE in 2ms (0 fixable violations)
+Changing into directory /opt/ptdeploy/ptdeploy/src/Modules/PackageManager/Controller
+Processing PackageManager.php [PHP => 340 tokens in 35 lines]... DONE in 13ms (0 fixable violations)
+Changing into directory /opt/ptdeploy/ptdeploy/src/Modules/PackageManager
+Processing info.PackageManager.php [PHP => 209 tokens in 52 lines]... DONE in 8ms (0 fixable violations)
+Changing into directory /opt/ptdeploy/ptdeploy/src/Modules/Facts/Model
+Processing FactsEnvironmentAnyOS.php [PHP => 399 tokens in 49 lines]... DONE in 15ms (0 fixable violations)
+Processing FactsRuntimeAnyOS.php [PHP => 229 tokens in 38 lines]... DONE in 9ms (0 fixable violations)
+Processing Facts.php [PHP => 21 tokens in 8 lines]... DONE in 1ms (0 fixable violations)
+Processing FactsAnyOS.php [PHP => 707 tokens in 82 lines]... DONE in 31ms (0 fixable violations)
+Changing into directory /opt/ptdeploy/ptdeploy/src/Modules/Facts/Controller
+Processing Facts.php [PHP => 292 tokens in 33 lines]... DONE in 11ms (0 fixable violations)
+Changing into directory /opt/ptdeploy/ptdeploy/src/Modules/Facts
+Processing info.Facts.php [PHP => 186 tokens in 45 lines]... DONE in 8ms (0 fixable violations)
+Changing into directory /opt/ptdeploy/ptdeploy/src/Modules/Autopilot/Model
+Processing AutopilotAllLinux.php [PHP => 305 tokens in 37 lines]... DONE in 12ms (0 fixable violations)
+Processing Autopilot.php [PHP => 21 tokens in 8 lines]... DONE in 2ms (0 fixable violations)
+Changing into directory /opt/ptdeploy/ptdeploy/src/Modules/Autopilot/Controller
+Processing Autopilot.php [PHP => 1514 tokens in 153 lines]... DONE in 60ms (0 fixable violations)
+Processing AutopilotExecutor.php [PHP => 3919 tokens in 415 lines]... DONE in 161ms (0 fixable violations)
+Changing into directory /opt/ptdeploy/ptdeploy/src/Modules/Autopilot
+Processing info.Autopilot.php [PHP => 210 tokens in 44 lines]... DONE in 9ms (0 fixable violations)
+Changing into directory /opt/ptdeploy/ptdeploy/src/Modules/ApacheVHostEditor
+Processing info.ApacheVHostEditor.php [PHP => 292 tokens in 94 lines]... DONE in 12ms (0 fixable violations)
+Changing into directory /opt/ptdeploy/ptdeploy/src/Modules/ApacheVHostEditor/Model
+Processing ApacheVHostEditorUbuntuModern.php [PHP => 573 tokens in 111 lines]... DONE in 21ms (0 fixable violations)
+Processing ApacheVHostEditorMac.php [PHP => 606 tokens in 83 lines]... DONE in 25ms (0 fixable violations)
+Processing ApacheVHostEditor.php [PHP => 21 tokens in 8 lines]... DONE in 2ms (0 fixable violations)
+Processing ApacheVHostEditorUbuntuLegacy.php [PHP => 6253 tokens in 851 lines]... DONE in 273ms (0 fixable violations)
+Processing ApacheVHostEditorCentos.php [PHP => 558 tokens in 76 lines]... DONE in 24ms (0 fixable violations)
+Changing into directory /opt/ptdeploy/ptdeploy/src/Modules/ApacheVHostEditor/Controller
+Processing ApacheVHostEditor.php [PHP => 668 tokens in 56 lines]... DONE in 25ms (0 fixable violations)
+Changing into directory /opt/ptdeploy/ptdeploy/src/Modules/Builderfy
+Processing info.Builderfy.php [PHP => 533 tokens in 117 lines]... DONE in 23ms (0 fixable violations)
+Changing into directory /opt/ptdeploy/ptdeploy/src/Modules/Builderfy/Model
+Processing BuilderfyLinuxDeveloper.php [PHP => 1761 tokens in 188 lines]... DONE in 72ms (0 fixable violations)
+Processing BuilderfyLinuxContinuousStagingToProduction.php [PHP => 2639 tokens in 271 lines]... DONE in 111ms (0 fixable violations)
+Processing BuilderfyGenericAutosUbuntu.php [PHP => 844 tokens in 103 lines]... DONE in 36ms (0 fixable violations)
+Processing Builderfy.php [PHP => 21 tokens in 8 lines]... DONE in 2ms (0 fixable violations)
+Processing BuilderfyLinux.php [PHP => 1864 tokens in 221 lines]... DONE in 79ms (0 fixable violations)
+Processing BuilderfyLinuxManualProduction.php [PHP => 2198 tokens in 226 lines]... DONE in 92ms (0 fixable violations)
+Processing BuilderfyLinuxContinuousStaging.php [PHP => 2198 tokens in 226 lines]... DONE in 92ms (0 fixable violations)
+Changing into directory /opt/ptdeploy/ptdeploy/src/Modules/Builderfy/Controller
+Processing Builderfy.php [PHP => 762 tokens in 79 lines]... DONE in 31ms (0 fixable violations)
+Changing into directory /opt/ptdeploy/ptdeploy/src/Modules/Builderfy/Templates/Autopilots
+Processing environment-invoke-continuous-staging-to-production.php [PHP => 376 tokens in 76 lines]... DONE in 17ms (0 fixable violations)
+Processing environment-invoke-continuous-staging.php [PHP => 363 tokens in 72 lines]... DONE in 14ms (0 fixable violations)
+Processing environment-invoke-manual-staging.php [PHP => 363 tokens in 72 lines]... DONE in 15ms (0 fixable violations)
+Processing environment-invoke-manual-production.php [PHP => 362 tokens in 71 lines]... DONE in 14ms (0 fixable violations)
+Changing into directory /opt/ptdeploy/ptdeploy/src/Modules/Builderfy/Autopilots/Generic/Code
+Processing code.php [PHP => 1105 tokens in 127 lines]... DONE in 42ms (0 fixable violations)
+Changing into directory /opt/ptdeploy/ptdeploy/src/Modules/Builderfy/Autopilots/Generic/DBReplication
+Processing db-replication.php [PHP => 1099 tokens in 127 lines]... DONE in 42ms (0 fixable violations)
+Changing into directory /opt/ptdeploy/ptdeploy/src/Modules/Builderfy/Autopilots/Generic/Medium
+Processing create-medium-autos.php [PHP => 977 tokens in 114 lines]... DONE in 37ms (0 fixable violations)
+Changing into directory /opt/ptdeploy/ptdeploy/src/Modules/ParallelSshChild
+Processing info.ParallelSshChild.php [PHP => 184 tokens in 43 lines]... DONE in 9ms (0 fixable violations)
+Changing into directory /opt/ptdeploy/ptdeploy/src/Modules/ParallelSshChild/Model
+Processing ParallelSshChildLinuxMac.php [PHP => 1108 tokens in 140 lines]... DONE in 45ms (0 fixable violations)
+Processing ParallelSshChild.php [PHP => 21 tokens in 8 lines]... DONE in 2ms (0 fixable violations)
+Changing into directory /opt/ptdeploy/ptdeploy/src/Modules/ParallelSshChild/Controller
+Processing ParallelSshChild.php [PHP => 270 tokens in 32 lines]... DONE in 12ms (0 fixable violations)
+Changing into directory /opt/ptdeploy/ptdeploy/src/Modules/AutopilotDSL/Model
+Processing AutopilotDSL.php [PHP => 21 tokens in 8 lines]... DONE in 2ms (0 fixable violations)
+Processing AutopilotDSLAnyOS.php [PHP => 2550 tokens in 274 lines]... DONE in 100ms (0 fixable violations)
+Changing into directory /opt/ptdeploy/ptdeploy/src/Modules/AutopilotDSL/Controller
+Processing AutopilotDSL.php [PHP => 38 tokens in 11 lines]... DONE in 3ms (0 fixable violations)
+Changing into directory /opt/ptdeploy/ptdeploy/src/Modules/AutopilotDSL
+Processing info.AutopilotDSL.php [PHP => 180 tokens in 49 lines]... DONE in 8ms (0 fixable violations)
+No fixable errors were found
+Time: 9.36 secs; Memory: 24.5Mb
+

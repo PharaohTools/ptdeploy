@@ -11,7 +11,7 @@ class Wordpress extends Base
         $action = $pageVars["route"]["action"];
 
         if ($action == "wordpress-continuous") {
-            $thisModel = $this->getModelAndCheckDependencies(substr(get_class($this), 11), $pageVars, "WordpressContinuous") ;
+            $thisModel = $this->getModelAndDeps(substr(get_class($this), 11), $pageVars, "WordpressContinuous") ;
             // if we don't have an object, its an array of errors
             if (is_array($thisModel)) {
                 return $this->failDependencies($pageVars, $this->content, $thisModel) ;
@@ -23,7 +23,7 @@ class Wordpress extends Base
         }
 
         if ($action == "wordpress-efficient") {
-            $thisModel = $this->getModelAndCheckDependencies(substr(get_class($this), 11), $pageVars, "WordpressEfficient") ;
+            $thisModel = $this->getModelAndDeps(substr(get_class($this), 11), $pageVars, "WordpressEfficient") ;
             // if we don't have an object, its an array of errors
             if (is_array($thisModel)) {
                 return $this->failDependencies($pageVars, $this->content, $thisModel) ;
@@ -44,7 +44,7 @@ class Wordpress extends Base
         $action = $pageVars["route"]["action"];
 
         if (in_array($action, array("wordpress"))) {
-            $thisModel = $this->getModelAndCheckDependencies(substr(get_class($this), 11), $pageVars, "DapperfyWordpress") ;
+            $thisModel = $this->getModelAndDeps(substr(get_class($this), 11), $pageVars, "DapperfyWordpress") ;
             if (is_array($thisModel)) {
                 return $this->failDependencies($pageVars, $this->content, $thisModel) ;
             }
@@ -63,12 +63,12 @@ class Wordpress extends Base
         $action = $pageVars["route"]["action"];
 
         if ($action == "wordpress-conf") {
-            $thisModel = $this->getModelAndCheckDependencies("DBConfigure", $pageVars) ;
+            $thisModel = $this->getModelAndDeps("DBConfigure", $pageVars) ;
             // if we don't have an object, its an array of errors
             if (is_array($thisModel)) {
                 return $this->failDependencies($pageVars, $this->content, $thisModel) ;
             }
-            $wordpressPlatform = $this->getModelAndCheckDependencies(substr(get_class($this), 11), $pageVars, "WordpressConfig") ;
+            $wordpressPlatform = $this->getModelAndDeps(substr(get_class($this), 11), $pageVars, "WordpressConfig") ;
             $thisModel->setPlatformVars($wordpressPlatform);
             $thisModel->params["action"] = $action ;
             $this->content["result"] = $thisModel->askWhetherToConfigureDB();
@@ -76,12 +76,12 @@ class Wordpress extends Base
         }
 
         if ($action == "wordpress-reset") {
-            $thisModel = $this->getModelAndCheckDependencies("DBConfigure", $pageVars) ;
+            $thisModel = $this->getModelAndDeps("DBConfigure", $pageVars) ;
             // if we don't have an object, its an array of errors
             if (is_array($thisModel)) {
                 return $this->failDependencies($pageVars, $this->content, $thisModel) ;
             }
-            $wordpressPlatform = $this->getModelAndCheckDependencies(substr(get_class($this), 11), $pageVars, "WordpressConfig") ;
+            $wordpressPlatform = $this->getModelAndDeps(substr(get_class($this), 11), $pageVars, "WordpressConfig") ;
             $thisModel->setPlatformVars($wordpressPlatform);
             $thisModel->params["action"] = $action ;
             $this->content["result"] = $thisModel->askWhetherToResetDBConfiguration();
@@ -98,12 +98,12 @@ class Wordpress extends Base
         $action = $pageVars["route"]["action"];
 
         if ($action == "wordpress-install" || $action == "wp-install") {
-            $thisModel = $this->getModelAndCheckDependencies("DBInstall", $pageVars) ;
+            $thisModel = $this->getModelAndDeps("DBInstall", $pageVars) ;
             // if we don't have an object, its an array of errors
             if (is_array($thisModel)) {
                 return $this->failDependencies($pageVars, $this->content, $thisModel) ;
             }
-            $wpDBInstallHooks = $this->getModelAndCheckDependencies(substr(get_class($this), 11), $pageVars, "WordpressDBIHooks") ;
+            $wpDBInstallHooks = $this->getModelAndDeps(substr(get_class($this), 11), $pageVars, "WordpressDBIHooks") ;
             $thisModel->setPlatformDBIHooks($wpDBInstallHooks);
             $thisModel->params["action"] = $action ;
             $this->content["result"] = $thisModel->askWhetherToInstallDB();
